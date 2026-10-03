@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodTrip — Your Mood. Your Place. Your Soundtrack.</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+        :root {
+            --bg: #08090b;
+            --surface: #101216;
+            --surface2: #15171c;
+            --border: #292c32;
+            --text: #f5f3ed;
+            --muted: #9da1aa;
+            --gold: #d8ad36;
+            --gold2: #f0cb55;
+            --green: #1ed760;
+            --danger: #e85d75;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 50% -10%, rgba(216, 173, 54, .08), transparent 35%),
+                var(--bg);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.6;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1200px, 92%);
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 76px;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 9, 11, .88);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--gold);
+            border-radius: 11px;
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+        }
+
+        .india {
+            color: var(--gold);
+            font-family: "DM Sans", sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-left: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            color: #c6c7ca;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold2);
+        }
+
+        .surprise {
+            border: 1px solid var(--border);
+            background: #111318;
+            color: white;
+            border-radius: 30px;
+            padding: 10px 18px;
+            transition: .25s;
+        }
+
+        .surprise:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 105px 0 80px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 7px 14px;
+            color: #8db0d0;
+            font-size: 11px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(52px, 7vw, 92px);
+            line-height: .98;
+            max-width: 900px;
+            margin: 25px auto;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+            color: #9fa5b1;
+            font-size: 17px;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 35px 0 80px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: 31px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* MOODS */
+
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .mood-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            min-height: 160px;
+            transition: .25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mood-card:hover {
+            transform: translateY(-4px);
+            border-color: #555;
+        }
+
+        .mood-card.active {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 1px rgba(216, 173, 54, .2);
+        }
+
+        .mood-icon {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .mood-name {
+            font-family: "Playfair Display", serif;
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .mood-description {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* CONTROLS */
+
+        .controls {
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 15px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap span {
+            position: absolute;
+            left: 17px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        input,
+        select {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 16px 18px 16px 45px;
+            border-radius: 12px;
+            outline: none;
+        }
+
+        select {
+            padding-left: 18px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--gold);
+        }
+
+        /* FILTERS */
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: thin;
+        }
+
+        .filter {
+            white-space: nowrap;
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            background: #111318;
+            color: #b8bbc2;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        .filter.active {
+            background: var(--gold);
+            color: #111;
+            border-color: var(--gold);
+        }
+
+        /* DESTINATIONS */
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .destination {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .destination:hover {
+            transform: translateY(-5px);
+            border-color: #4b4e55;
+        }
+
+        .destination-top {
+            min-height: 180px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background:
+                linear-gradient(to bottom, transparent, rgba(0, 0, 0, .85)),
+                var(--destination-bg, #1a1d22);
+        }
+
+        .destination-category {
+            display: inline-block;
+            align-self: flex-start;
+            background: rgba(0, 0, 0, .55);
+            border: 1px solid rgba(255, 255, 255, .15);
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .destination-state {
+            color: var(--gold);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .destination h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 29px;
+            margin-top: 3px;
+        }
+
+        .destination-body {
+            padding: 20px;
+        }
+
+        .destination-description {
+            color: #b8bbc3;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .resonance {
+            background: #14161b;
+            border: 1px solid #24272d;
+            border-radius: 11px;
+            padding: 13px;
+            margin-bottom: 18px;
+        }
+
+        .resonance-label {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 1.4px;
+            font-weight: 700;
+        }
+
+        .resonance p {
+            color: #c8cad0;
+            font-size: 13px;
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .attractions-title {
+            color: #8e929b;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .attractions {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .attraction {
+            color: #d5d6da;
+            font-size: 13px;
+            display: flex;
+            gap: 7px;
+        }
+
+        .attraction::before {
+            content: "•";
+            color: var(--gold);
+        }
+
+        .destination-footer {
+            border-top: 1px solid #24272d;
+            margin-top: 18px;
+            padding-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .curated {
+            color: #777d87;
+            font-size: 11px;
+            font-style: italic;
+        }
+
+        .explore {
+            background: transparent;
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 8px 13px;
+        }
+
+        .explore:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* MUSIC */
+
+        .music-section {
+            background: #0c0e11;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 80px 0;
+        }
+
+        .music-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 35px;
+        }
+
+        .spotify-card {
+            background:
+                radial-gradient(circle at 70% 10%, rgba(30, 215, 96, .18), transparent 40%),
+                #11151a;
+            border: 1px solid #252a2f;
+            border-radius: 18px;
+            padding: 28px;
+            min-height: 280px;
+        }
+
+        .spotify-icon {
+            font-size: 35px;
+            color: var(--green);
+        }
+
+        .spotify-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            margin: 18px 0 7px;
+        }
+
+        .spotify-card p {
+            color: #999fa8;
+            font-size: 14px;
+        }
+
+        .spotify-button {
+            display: inline-block;
+            margin-top: 24px;
+            background: var(--green);
+            color: #07130a;
+            padding: 11px 17px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .song-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .song {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 17px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .song-cover {
+            width: 58px;
+            height: 58px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #2a2d34, #17191e);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .song h4 {
+            font-size: 15px;
+        }
+
+        .song p {
+            color: #8e939d;
+            font-size: 12px;
+        }
+
+        .language-badge {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .song-link {
+            margin-left: auto;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .song-link:hover {
+            color: var(--green);
+        }
+
+        /* EMPTY */
+
+        .empty {
+            border: 1px dashed #363940;
+            padding: 35px;
+            text-align: center;
+            border-radius: 14px;
+            color: #888;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 55px 0;
+            color: #6f747d;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #d1d1d1;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #191c21;
+            border: 1px solid #383c43;
+            padding: 12px 20px;
+            border-radius: 30px;
+            transition: .3s;
+            z-index: 200;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1050px) {
+            .mood-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .destination-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:760px) {
+            nav {
+                height: auto;
+                padding: 14px 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 0 55px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .mood-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            .destination-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .music-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .song-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                align-items: flex-start;
+                gap: 10px;
+                flex-direction: column;
+            }
+        }
+
+        @media(max-width:450px) {
+            .mood-card {
+                min-height: 145px;
+                padding: 15px;
+            }
+
+            .mood-name {
+                font-size: 18px;
+            }
+
+            .destination h3 {
+                font-size: 25px;
+            }
+
+            .hero h1 {
+                font-size: 41px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">
+                <div class="logo-icon">◉</div>
+                MoodTrip <span class="india">INDIA</span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#destinations">Destinations</a>
+                <a href="#music">Soundtracks</a>
+                <a href="#india">The India Collection</a>
+            </div>
+
+            <button class="surprise" onclick="surpriseMe()">✦ Surprise Me</button>
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="hero">
+            <div class="container">
+                <span class="eyebrow">Curated Indian Travel & Soundtracks</span>
+
+                <h1>
+                    Where does your<br>
+                    <span>mood</span> want to go?
+                </h1>
+
+                <p>
+                    Choose how you feel. Discover specific places across India
+                    that match your mood — then find the Indian-language soundtrack
+                    for the journey.
+                </p>
+            </div>
+        </section>
+
+
+        <section class="section" id="india">
+
+            <div class="container">
+
+                <div class="section-header">
+                    <div>
+                        <div class="section-label">Step 01</div>
+                        <div class="section-title">Select your emotional state</div>
+                    </div>
+
+                    <button class="surprise" onclick="surpriseMe()">✦ Surprise Me</button>
+                </div>
+
+                <div class="mood-grid" id="moodGrid"></div>
+
+
+                <div class="controls">
+
+                    <div class="input-wrap">
+                        <span>⌕</span>
+                        <input id="locationInput" placeholder="Search an Indian city or destination..."
+                            oninput="renderDestinations()">
+                    </div>
+
+                    <select id="languageSelect" onchange="renderMusic()">
+                        <option value="All">All Indian Languages</option>
+                        <option>Telugu</option>
+                        <option>Hindi</option>
+                        <option>Tamil</option>
+                        <option>Kannada</option>
+                        <option>Malayalam</option>
+                        <option>Bengali</option>
+                        <option>Marathi</option>
+                        <option>Gujarati</option>
+                        <option>Punjabi</option>
+                        <option>Odia</option>
+                        <option>Assamese</option>
+                        <option>Urdu</option>
+                    </select>
+
+                </div>
+
+
+                <div id="destinations"></div>
+
+            </div>
+
+        </section>
+
+
+        <section class="music-section" id="music">
+
+            <div class="container">
+
+                <div class="section-header">
+                    <div>
+                        <div class="section-label">Step 03</div>
+                        <div class="section-title">Your soundtrack</div>
+                    </div>
+                </div>
+
+                <div class="filters" id="languageFilters"></div>
+
+                <br>
+
+                <div class="music-layout">
+
+                    <div id="spotify"></div>
+
+                    <div id="songs"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <strong>MoodTrip</strong> — Your mood. Your place. Your soundtrack.
+            <br><br>
+            Curated recommendations. Verify current travel details before visiting.
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+
+    <script>
+
+        /* =========================================================
+           MOODS
+        ========================================================= */
+
+        const moods = [
+
+            {
+                id: "romantic",
+                name: "Romantic",
+                icon: "❤️",
+                description: "Sunsets, slow walks, beautiful places"
+            },
+
+            {
+                id: "peaceful",
+                name: "Peaceful",
+                icon: "🌿",
+                description: "Quiet landscapes and slow mornings"
+            },
+
+            {
+                id: "happy",
+                name: "Happy",
+                icon: "☀️",
+                description: "Colourful places and unforgettable days"
+            },
+
+            {
+                id: "spiritual",
+                name: "Spiritual",
+                icon: "🪔",
+                description: "Temples, rivers and sacred places"
+            },
+
+            {
+                id: "relaxed",
+                name: "Relaxed",
+                icon: "☕",
+                description: "Slow living, beaches and cafés"
+            },
+
+            {
+                id: "energetic",
+                name: "Energetic",
+                icon: "⚡",
+                description: "Nightlife, adventure and movement"
+            },
+
+            {
+                id: "adventurous",
+                name: "Adventurous",
+                icon: "🧭",
+                description: "Mountains, caves and wild experiences"
+            },
+
+            {
+                id: "nostalgic",
+                name: "Nostalgic",
+                icon: "📻",
+                description: "Heritage, old streets and memories"
+            },
+
+            {
+                id: "reflective",
+                name: "Reflective",
+                icon: "🌙",
+                description: "Solitude, landscapes and deep thoughts"
+            },
+
+            {
+                id: "nature",
+                name: "Nature",
+                icon: "🌳",
+                description: "Forests, waterfalls and mountains"
+            },
+
+            {
+                id: "motivated",
+                name: "Motivated",
+                icon: "🔥",
+                description: "Places that make you feel alive"
+            },
+
+            {
+                id: "sad",
+                name: "Sad",
+                icon: "🌧️",
+                description: "Quiet places for a reset"
+            },
+
+            {
+                id: "lonely",
+                name: "Lonely",
+                icon: "🌌",
+                description: "Long walks and peaceful escapes"
+            },
+
+            {
+                id: "focused",
+                name: "Focused",
+                icon: "🎯",
+                description: "Quiet environments for clarity"
+            },
+
+            {
+                id: "stressful",
+                name: "Overwhelmed",
+                icon: "🌊",
+                description: "Step away, breathe and reset"
+            }
+
+        ];
+
+
+        /* =========================================================
+           DESTINATIONS + SPECIFIC ATTRACTIONS
+        ========================================================= */
+
+        const destinations = [
+
+            {
+                city: "Vijayawada",
+                state: "Andhra Pradesh",
+                category: "Spiritual",
+                moods: ["spiritual", "peaceful", "nostalgic"],
+                description: "A riverside Andhra city surrounded by temples, caves and cultural landmarks.",
+                resonance: "A place for river views, ancient architecture and quiet spiritual moments.",
+                bg: "linear-gradient(135deg,#4b2516,#171a1f)",
+                attractions: [
+                    "Kanaka Durga Temple",
+                    "Undavalli Caves",
+                    "Bhavani Island",
+                    "Prakasam Barrage",
+                    "Kondapalli Fort"
+                ]
+            },
+
+            {
+                city: "Visakhapatnam",
+                state: "Andhra Pradesh",
+                category: "Coastal Escape",
+                moods: ["relaxed", "happy", "romantic", "nature"],
+                description: "A coastal city where beaches, hills and the Bay of Bengal meet.",
+                resonance: "Sea air, sunsets and hilltop viewpoints make this a natural mood reset.",
+                bg: "linear-gradient(135deg,#06475b,#111b20)",
+                attractions: [
+                    "RK Beach",
+                    "Kailasagiri",
+                    "Yarada Beach",
+                    "INS Kurusura Submarine Museum",
+                    "Rishikonda Beach"
+                ]
+            },
+
+            {
+                city: "Araku Valley",
+                state: "Andhra Pradesh",
+                category: "Nature",
+                moods: ["nature", "peaceful", "adventurous", "reflective"],
+                description: "A mountain valley known for forests, coffee plantations and dramatic landscapes.",
+                resonance: "A slower rhythm surrounded by Eastern Ghats scenery.",
+                bg: "linear-gradient(135deg,#173c2b,#111713)",
+                attractions: [
+                    "Borra Caves",
+                    "Katiki Waterfalls",
+                    "Araku Tribal Museum",
+                    "Padmapuram Gardens",
+                    "Coffee plantations"
+                ]
+            },
+
+            {
+                city: "Hyderabad",
+                state: "Telangana",
+                category: "City Experience",
+                moods: ["nostalgic", "happy", "energetic", "romantic"],
+                description: "A city where centuries-old heritage meets modern food, culture and nightlife.",
+                resonance: "Historic monuments, old-city streets and contemporary experiences.",
+                bg: "linear-gradient(135deg,#403b34,#151619)",
+                attractions: [
+                    "Charminar",
+                    "Golconda Fort",
+                    "Chowmahalla Palace",
+                    "Salar Jung Museum",
+                    "Qutb Shahi Tombs",
+                    "Hussain Sagar",
+                    "Laad Bazaar"
+                ]
+            },
+
+            {
+                city: "Bengaluru",
+                state: "Karnataka",
+                category: "City Experience",
+                moods: ["energetic", "happy", "focused", "relaxed"],
+                description: "India's technology capital with gardens, historic buildings and a vibrant cultural scene.",
+                resonance: "A mix of green spaces, cafés, art and city energy.",
+                bg: "linear-gradient(135deg,#1d442f,#101714)",
+                attractions: [
+                    "Lalbagh Botanical Garden",
+                    "Cubbon Park",
+                    "Bangalore Palace",
+                    "Vidhana Soudha",
+                    "ISKCON Temple"
+                ]
+            },
+
+            {
+                city: "Mysuru",
+                state: "Karnataka",
+                category: "Heritage",
+                moods: ["nostalgic", "romantic", "peaceful", "spiritual"],
+                description: "A royal city famous for architecture, gardens and cultural traditions.",
+                resonance: "Palaces, gardens and a slower heritage-city atmosphere.",
+                bg: "linear-gradient(135deg,#49351b,#151411)",
+                attractions: [
+                    "Mysore Palace",
+                    "Chamundi Hill",
+                    "Brindavan Gardens",
+                    "St. Philomena's Cathedral",
+                    "Mysuru Zoo"
+                ]
+            },
+
+            {
+                city: "Hampi",
+                state: "Karnataka",
+                category: "Heritage",
+                moods: ["adventurous", "nostalgic", "reflective", "spiritual"],
+                description: "A surreal landscape of ancient ruins, temples and enormous boulder formations.",
+                resonance: "History and landscape combine into an unusually atmospheric experience.",
+                bg: "linear-gradient(135deg,#5b351d,#17130f)",
+                attractions: [
+                    "Virupaksha Temple",
+                    "Vittala Temple",
+                    "Hampi Bazaar",
+                    "Lotus Mahal",
+                    "Elephant Stables",
+                    "Matanga Hill"
+                ]
+            },
+
+            {
+                city: "Munnar",
+                state: "Kerala",
+                category: "Hill Station",
+                moods: ["peaceful", "romantic", "nature", "relaxed"],
+                description: "A mountain destination surrounded by tea gardens, forests and misty valleys.",
+                resonance: "Cool air, green landscapes and slow mornings.",
+                bg: "linear-gradient(135deg,#234f3a,#111a15)",
+                attractions: [
+                    "Eravikulam National Park",
+                    "Mattupetty Dam",
+                    "Top Station",
+                    "Tea Museum",
+                    "Kundala Lake"
+                ]
+            },
+
+            {
+                city: "Kochi",
+                state: "Kerala",
+                category: "Culture",
+                moods: ["nostalgic", "relaxed", "romantic", "happy"],
+                description: "A historic port city where colonial architecture and Kerala culture meet.",
+                resonance: "Old streets, waterfronts, art and multicultural heritage.",
+                bg: "linear-gradient(135deg,#174736,#101915)",
+                attractions: [
+                    "Fort Kochi",
+                    "Chinese Fishing Nets",
+                    "Mattancherry Palace",
+                    "Jew Town",
+                    "Paradesi Synagogue",
+                    "St. Francis Church"
+                ]
+            },
+
+            {
+                city: "Chennai",
+                state: "Tamil Nadu",
+                category: "Coastal City",
+                moods: ["happy", "relaxed", "spiritual", "nostalgic"],
+                description: "A major coastal city combining Tamil culture, beaches, temples and museums.",
+                resonance: "Sea breeze, architecture, food and deep cultural history.",
+                bg: "linear-gradient(135deg,#583722,#171513)",
+                attractions: [
+                    "Marina Beach",
+                    "Kapaleeshwarar Temple",
+                    "Fort St. George",
+                    "San Thome Basilica",
+                    "Government Museum"
+                ]
+            },
+
+            {
+                city: "Ooty",
+                state: "Tamil Nadu",
+                category: "Hill Station",
+                moods: ["romantic", "peaceful", "nature", "relaxed"],
+                description: "A classic Nilgiri hill station surrounded by gardens, lakes and mountain scenery.",
+                resonance: "Cool weather, old-world charm and quiet mountain landscapes.",
+                bg: "linear-gradient(135deg,#31524b,#111817)",
+                attractions: [
+                    "Ooty Lake",
+                    "Doddabetta Peak",
+                    "Government Botanical Garden",
+                    "Government Rose Garden",
+                    "Nilgiri Mountain Railway"
+                ]
+            },
+
+            {
+                city: "Goa",
+                state: "Goa",
+                category: "Beach Escape",
+                moods: ["happy", "romantic", "energetic", "relaxed"],
+                description: "India's famous coastal escape combining beaches, Portuguese heritage and nightlife.",
+                resonance: "Sunsets, beaches, music and a slower coastal rhythm.",
+                bg: "linear-gradient(135deg,#18566a,#111b1e)",
+                attractions: [
+                    "Baga Beach",
+                    "Anjuna Beach",
+                    "Vagator Beach",
+                    "Fort Aguada",
+                    "Chapora Fort",
+                    "Fontainhas",
+                    "Basilica of Bom Jesus"
+                ]
+            },
+
+            {
+                city: "Jaipur",
+                state: "Rajasthan",
+                category: "Heritage",
+                moods: ["nostalgic", "romantic", "happy", "adventurous"],
+                description: "The Pink City, filled with forts, palaces, markets and historic architecture.",
+                resonance: "Royal architecture and colourful streets create a strong sense of place.",
+                bg: "linear-gradient(135deg,#64353a,#181315)",
+                attractions: [
+                    "Amber Fort",
+                    "City Palace",
+                    "Hawa Mahal",
+                    "Jantar Mantar",
+                    "Jal Mahal",
+                    "Nahargarh Fort"
+                ]
+            },
+
+            {
+                city: "Udaipur",
+                state: "Rajasthan",
+                category: "Romantic Escape",
+                moods: ["romantic", "peaceful", "nostalgic", "relaxed"],
+                description: "A lake city known for palaces, old streets and dramatic sunset views.",
+                resonance: "Lakes, royal architecture and evening light make it naturally cinematic.",
+                bg: "linear-gradient(135deg,#3b5261,#11161a)",
+                attractions: [
+                    "City Palace",
+                    "Lake Pichola",
+                    "Jag Mandir",
+                    "Sajjangarh Palace",
+                    "Fateh Sagar Lake"
+                ]
+            },
+
+            {
+                city: "Delhi",
+                state: "Delhi",
+                category: "Capital Experience",
+                moods: ["nostalgic", "energetic", "happy", "focused"],
+                description: "India's capital contains layers of Mughal, colonial and modern history.",
+                resonance: "Monuments, markets, museums and enormous urban energy.",
+                bg: "linear-gradient(135deg,#4d3425,#141312)",
+                attractions: [
+                    "Red Fort",
+                    "India Gate",
+                    "Qutub Minar",
+                    "Humayun's Tomb",
+                    "Lotus Temple",
+                    "Chandni Chowk",
+                    "Lodhi Garden"
+                ]
+            },
+
+            {
+                city: "Agra",
+                state: "Uttar Pradesh",
+                category: "Heritage",
+                moods: ["romantic", "nostalgic", "reflective"],
+                description: "A historic city whose monuments preserve some of India's most recognizable architecture.",
+                resonance: "Monuments and gardens create a strong historical atmosphere.",
+                bg: "linear-gradient(135deg,#5a4937,#151412)",
+                attractions: [
+                    "Taj Mahal",
+                    "Agra Fort",
+                    "Mehtab Bagh",
+                    "Itmad-ud-Daulah"
+                ]
+            },
+
+            {
+                city: "Varanasi",
+                state: "Uttar Pradesh",
+                category: "Spiritual",
+                moods: ["spiritual", "reflective", "nostalgic", "peaceful"],
+                description: "One of India's oldest living cities, centered around the Ganges and its historic ghats.",
+                resonance: "Riverside rituals, ancient streets and a deeply atmospheric cultural landscape.",
+                bg: "linear-gradient(135deg,#4b2c1e,#14110f)",
+                attractions: [
+                    "Dashashwamedh Ghat",
+                    "Assi Ghat",
+                    "Kashi Vishwanath Temple",
+                    "Sarnath",
+                    "Manikarnika Ghat"
+                ]
+            },
+
+            {
+                city: "Mumbai",
+                state: "Maharashtra",
+                category: "City Experience",
+                moods: ["energetic", "happy", "romantic", "nostalgic"],
+                description: "A fast-moving coastal metropolis filled with architecture, cinema, food and nightlife.",
+                resonance: "Sea-facing drives, heritage architecture and endless city energy.",
+                bg: "linear-gradient(135deg,#3d4756,#11151a)",
+                attractions: [
+                    "Gateway of India",
+                    "Marine Drive",
+                    "Elephanta Caves",
+                    "Chhatrapati Shivaji Maharaj Terminus",
+                    "Colaba Causeway",
+                    "Siddhivinayak Temple"
+                ]
+            },
+
+            {
+                city: "Kolkata",
+                state: "West Bengal",
+                category: "Culture",
+                moods: ["nostalgic", "reflective", "happy", "spiritual"],
+                description: "A city of literature, art, colonial architecture and Bengali cultural traditions.",
+                resonance: "Old buildings, riverfronts, cafés and artistic history.",
+                bg: "linear-gradient(135deg,#4a3327,#141211)",
+                attractions: [
+                    "Victoria Memorial",
+                    "Howrah Bridge",
+                    "Indian Museum",
+                    "St. Paul's Cathedral",
+                    "Dakshineswar Kali Temple",
+                    "Kalighat Temple"
+                ]
+            },
+
+            {
+                city: "Amritsar",
+                state: "Punjab",
+                category: "Spiritual",
+                moods: ["spiritual", "reflective", "nostalgic", "happy"],
+                description: "A major cultural destination known for Sikh heritage and Punjabi culture.",
+                resonance: "Sacred architecture, history and vibrant local streets.",
+                bg: "linear-gradient(135deg,#6a481c,#18130c)",
+                attractions: [
+                    "Golden Temple",
+                    "Jallianwala Bagh",
+                    "Partition Museum",
+                    "Attari-Wagah Border"
+                ]
+            },
+
+            {
+                city: "Srinagar",
+                state: "Jammu & Kashmir",
+                category: "Mountain Escape",
+                moods: ["romantic", "peaceful", "nature", "reflective"],
+                description: "A Himalayan destination known for lakes, gardens and mountain landscapes.",
+                resonance: "Still waters, gardens and Himalayan scenery create a quiet atmosphere.",
+                bg: "linear-gradient(135deg,#263e4d,#0f1519)",
+                attractions: [
+                    "Dal Lake",
+                    "Shalimar Bagh",
+                    "Nishat Bagh",
+                    "Pari Mahal",
+                    "Mughal Gardens"
+                ]
+            },
+
+            {
+                city: "Manali",
+                state: "Himachal Pradesh",
+                category: "Mountain Escape",
+                moods: ["adventurous", "romantic", "nature", "peaceful"],
+                description: "A Himalayan mountain destination surrounded by valleys, rivers and high passes.",
+                resonance: "Mountain air, adventure and dramatic landscapes.",
+                bg: "linear-gradient(135deg,#263f35,#101715)",
+                attractions: [
+                    "Solang Valley",
+                    "Old Manali",
+                    "Hidimba Devi Temple",
+                    "Vashisht Temple",
+                    "Rohtang Pass"
+                ]
+            },
+
+            {
+                city: "Rishikesh",
+                state: "Uttarakhand",
+                category: "Adventure & Spiritual",
+                moods: ["adventurous", "spiritual", "peaceful", "reflective"],
+                description: "A Himalayan foothill destination known for yoga, temples and river experiences.",
+                resonance: "A rare combination of adventure, spirituality and natural scenery.",
+                bg: "linear-gradient(135deg,#18493d,#0f1715)",
+                attractions: [
+                    "Triveni Ghat",
+                    "Beatles Ashram",
+                    "Ram Jhula",
+                    "Laxman Jhula area",
+                    "Neer Garh Waterfall"
+                ]
+            },
+
+            {
+                city: "Shillong",
+                state: "Meghalaya",
+                category: "Nature",
+                moods: ["nature", "peaceful", "adventurous", "romantic"],
+                description: "A green hill destination surrounded by waterfalls, lakes and dramatic landscapes.",
+                resonance: "Cool weather, hills and Meghalaya's distinctive natural scenery.",
+                bg: "linear-gradient(135deg,#204f3d,#101714)",
+                attractions: [
+                    "Umiam Lake",
+                    "Elephant Falls",
+                    "Shillong Peak",
+                    "Laitlum Canyon"
+                ]
+            },
+
+            {
+                city: "Gangtok",
+                state: "Sikkim",
+                category: "Mountain City",
+                moods: ["peaceful", "nature", "adventurous", "reflective"],
+                description: "A Himalayan city with monasteries, viewpoints and mountain scenery.",
+                resonance: "Mountain views, monasteries and a slower high-altitude rhythm.",
+                bg: "linear-gradient(135deg,#293f4c,#101518)",
+                attractions: [
+                    "MG Marg",
+                    "Rumtek Monastery",
+                    "Tashi View Point",
+                    "Hanuman Tok"
+                ]
+            },
+
+            {
+                city: "Leh",
+                state: "Ladakh",
+                category: "Adventure",
+                moods: ["adventurous", "reflective", "nature", "motivated"],
+                description: "A high-altitude Himalayan destination surrounded by stark mountains and monasteries.",
+                resonance: "Huge landscapes and isolation create a powerful sense of adventure.",
+                bg: "linear-gradient(135deg,#625744,#171512)",
+                attractions: [
+                    "Leh Palace",
+                    "Shanti Stupa",
+                    "Hall of Fame",
+                    "Magnetic Hill"
+                ]
+            }
+
+        ];
+
+
+        /* =========================================================
+           SONG DATA
+           Real songs — Spotify uses search URLs rather than
+           fabricated playlist IDs.
+        ========================================================= */
+
+        const songs = [
+
+            /* TELUGU */
+
+            ["Inkem Inkem Inkem Kaavaale", "Sid Sriram", "Telugu", "Romantic"],
+            ["Samajavaragamana", "Sid Sriram", "Telugu", "Romantic"],
+            ["Vachindamma", "Sid Sriram", "Telugu", "Happy"],
+            ["Butta Bomma", "Armaan Malik", "Telugu", "Happy"],
+            ["Adiga Adiga", "Sid Sriram", "Telugu", "Sad"],
+            ["Oh Sita Hey Rama", "SPB Charan & Ramya Behara", "Telugu", "Romantic"],
+            ["Priyathama Priyathama", "Chinmayi", "Telugu", "Romantic"],
+            ["Nee Kannu Neeli Samudram", "Jubin Nautiyal", "Telugu", "Romantic"],
+            ["Yemito", "Haricharan", "Telugu", "Reflective"],
+            ["Kadalalle", "Sid Sriram", "Telugu", "Romantic"],
+
+            /* HINDI */
+
+            ["Tum Se Hi", "Mohit Chauhan", "Hindi", "Romantic"],
+            ["Agar Tum Saath Ho", "Alka Yagnik & Arijit Singh", "Hindi", "Sad"],
+            ["Ilahi", "Arijit Singh", "Hindi", "Adventurous"],
+            ["Kabira", "Tochi Raina & Rekha Bhardwaj", "Hindi", "Nostalgic"],
+            ["Iktara", "Kavita Seth", "Hindi", "Peaceful"],
+            ["Phir Se Ud Chala", "Mohit Chauhan", "Hindi", "Adventurous"],
+            ["Kun Faya Kun", "A.R. Rahman, Javed Ali & Mohit Chauhan", "Hindi", "Spiritual"],
+            ["Apna Bana Le", "Arijit Singh", "Hindi", "Romantic"],
+            ["Kesariya", "Arijit Singh", "Hindi", "Romantic"],
+            ["Safarnama", "Lucky Ali", "Hindi", "Reflective"],
+
+            /* TAMIL */
+
+            ["Munbe Vaa", "Shreya Ghoshal & Naresh Iyer", "Tamil", "Romantic"],
+            ["Vaseegara", "Bombay Jayashri", "Tamil", "Romantic"],
+            ["Nenjukkul Peidhidum", "Hariharan", "Tamil", "Romantic"],
+            ["Thalli Pogathey", "Sid Sriram", "Tamil", "Romantic"],
+            ["Why This Kolaveri Di", "Dhanush", "Tamil", "Happy"],
+            ["Anbil Avan", "Vineeth Srinivasan & Devan Ekambaram", "Tamil", "Happy"],
+            ["Maruvaarthai", "Sid Sriram", "Tamil", "Sad"],
+            ["New York Nagaram", "A.R. Rahman", "Tamil", "Reflective"],
+            ["Mun Sellada", "A.R. Rahman", "Tamil", "Motivational"],
+            ["Mental Manadhil", "A.R. Rahman", "Tamil", "Energetic"],
+
+            /* KANNADA */
+
+            ["Anisuthide", "Sonu Nigam", "Kannada", "Romantic"],
+            ["Jotheyali Jothe Jotheyali", "S.P. Balasubrahmanyam", "Kannada", "Romantic"],
+            ["Belageddu", "Vijay Prakash", "Kannada", "Happy"],
+            ["Kaanada Kadalige", "C. Ashwath", "Kannada", "Reflective"],
+            ["Naguva Nayana", "S. Janaki & S.P. Balasubrahmanyam", "Kannada", "Romantic"],
+            ["Minchagi Neenu Baralu", "Sonu Nigam", "Kannada", "Romantic"],
+            ["Kannu Hodiyaka Monne Kalitalla", "Vijay Prakash", "Kannada", "Happy"],
+            ["Karagida Baaninalli", "Shreya Ghoshal", "Kannada", "Sad"],
+
+            /* MALAYALAM */
+
+            ["Pavizha Mazha", "K. S. Harisankar", "Malayalam", "Romantic"],
+            ["Malare", "Vijay Yesudas", "Malayalam", "Romantic"],
+            ["Darshana", "Hesham Abdul Wahab & Darshana Rajendran", "Malayalam", "Romantic"],
+            ["Aaradhike", "Sooraj Santhosh & Madhuvanthi Narayan", "Malayalam", "Romantic"],
+            ["Cherathukal", "Sithara Krishnakumar", "Malayalam", "Peaceful"],
+            ["Uyiril Thodum", "Sooraj Santhosh & Anne Amie", "Malayalam", "Romantic"],
+            ["Jeevamshamayi", "Harishankar K.S. & Shreya Ghoshal", "Malayalam", "Romantic"],
+            ["Puthiyoru Pathayil", "Dabzee", "Malayalam", "Happy"],
+
+            /* BENGALI */
+
+            ["Amake Amar Moto Thakte Dao", "Anupam Roy", "Bengali", "Reflective"],
+            ["Bojhena Shey Bojhena", "Arijit Singh", "Bengali", "Sad"],
+            ["Tomake Chai", "Kabir Suman", "Bengali", "Romantic"],
+            ["Tumi Jake Bhalobasho", "Ishan Mitra", "Bengali", "Sad"],
+            ["Shey Je Boshe Achhe", "Arnob", "Bengali", "Peaceful"],
+            ["Benche Thakar Gaan", "Anupam Roy", "Bengali", "Motivational"],
+            ["E Tumi Kemon Tumi", "Rupam Islam", "Bengali", "Reflective"],
+            ["Moner Manush", "Lalon / popular recordings", "Bengali", "Spiritual"],
+
+            /* MARATHI */
+
+            ["Mala Ved Lagale Premache", "Swapnil Bandodkar & Ketaki Mategaonkar", "Marathi", "Romantic"],
+            ["Yad Lagla", "Ajay Gogawale", "Marathi", "Romantic"],
+            ["Tik Tik Vajate Dokyat", "Sonu Nigam & Sayali Pankaj", "Marathi", "Romantic"],
+            ["Gulabi Sadi", "Sanju Rathod", "Marathi", "Happy"],
+            ["Hi Chaal Turu Turu", "Various artists", "Marathi", "Happy"],
+            ["Man Udhan Varyache", "Shankar Mahadevan", "Marathi", "Peaceful"],
+            ["Sairat Zaala Ji", "Ajay-Atul", "Marathi", "Happy"],
+            ["Apsara Aali", "Ajay-Atul", "Marathi", "Energetic"],
+
+            /* GUJARATI */
+
+            ["Vhalam Aavo Ne", "Sachin-Jigar", "Gujarati", "Romantic"],
+            ["Chaand Ne Kaho", "Sachin-Jigar", "Gujarati", "Romantic"],
+            ["Vhalam Ni Vaat Kai", "Various artists", "Gujarati", "Romantic"],
+            ["Rangtaali", "Various artists", "Gujarati", "Happy"],
+            ["Mara Vhalam", "Various artists", "Gujarati", "Romantic"],
+            ["Mann Melo", "Various artists", "Gujarati", "Peaceful"],
+
+            /* PUNJABI */
+
+            ["Lover", "Diljit Dosanjh", "Punjabi", "Romantic"],
+            ["Do You Know", "Diljit Dosanjh", "Punjabi", "Romantic"],
+            ["Born To Shine", "Diljit Dosanjh", "Punjabi", "Motivational"],
+            ["Clash", "Diljit Dosanjh", "Punjabi", "Energetic"],
+            ["Excuses", "AP Dhillon", "Punjabi", "Sad"],
+            ["Insane", "AP Dhillon", "Punjabi", "Energetic"],
+            ["295", "Sidhu Moose Wala", "Punjabi", "Reflective"],
+            ["Pasoori", "Ali Sethi & Shae Gill", "Punjabi", "Romantic"],
+
+            /* ODIA */
+
+            ["To Pain Mu", "Various artists", "Odia", "Romantic"],
+            ["Tu Mo Hero", "Various artists", "Odia", "Romantic"],
+            ["E Mana Re", "Various artists", "Odia", "Sad"],
+            ["Rangabati", "Various artists", "Odia", "Happy"],
+            ["Mu Tate Love Karuchhi", "Various artists", "Odia", "Romantic"],
+            ["Dheu Dheu", "Various artists", "Odia", "Peaceful"],
+
+            /* ASSAMESE */
+
+            ["Mur Xopun", "Zubeen Garg", "Assamese", "Romantic"],
+            ["Mayabini Ratir Bukut", "Zubeen Garg", "Assamese", "Romantic"],
+            ["Junaki Raati", "Zubeen Garg", "Assamese", "Peaceful"],
+            ["Mon Mur Uri Gusi", "Zubeen Garg", "Assamese", "Reflective"],
+            ["Bistirno Paarore", "Bhupen Hazarika", "Assamese", "Reflective"],
+            ["Moi Eti Jajabor", "Bhupen Hazarika", "Assamese", "Nostalgic"],
+
+            /* URDU */
+
+            ["Aaj Jaane Ki Zid Na Karo", "Farida Khanum", "Urdu", "Romantic"],
+            ["Ranjish Hi Sahi", "Mehdi Hassan", "Urdu", "Sad"],
+            ["Gulon Mein Rang Bhare", "Mehdi Hassan", "Urdu", "Romantic"],
+            ["Aap Ki Yaad Aati Rahi", "Various artists", "Urdu", "Nostalgic"],
+            ["Dasht-e-Tanhai", "Iqbal Bano", "Urdu", "Reflective"],
+            ["Hungama Hai Kyon Barpa", "Ghulam Ali", "Urdu", "Reflective"]
+
+        ].map(x => ({
+            title: x[0],
+            artist: x[1],
+            language: x[2],
+            mood: x[3]
+        }));
+
+
+        /* =========================================================
+           STATE
+        ========================================================= */
+
+        let selectedMood = "romantic";
+
+
+        /* =========================================================
+           MOOD UI
+        ========================================================= */
+
+        function renderMoods() {
+
+            const grid = document.getElementById("moodGrid");
+
+            grid.innerHTML = moods.map(m => `
+
+        <button
+            class="mood-card ${m.id === selectedMood ? "active" : ""}"
+            onclick="selectMood('${m.id}')"
+        >
+
+            <div class="mood-icon">${m.icon}</div>
+
+            <div class="mood-name">${m.name}</div>
+
+            <div class="mood-description">
+                ${m.description}
+            </div>
+
+        </button>
+
+    `).join("");
+
+        }
+
+
+        /* =========================================================
+           SELECT MOOD
+        ========================================================= */
+
+        function selectMood(mood) {
+
+            selectedMood = mood;
+
+            renderMoods();
+            renderDestinations();
+            renderMusic();
+
+            document
+                .getElementById("destinations")
+                .scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+
+        /* =========================================================
+           DESTINATIONS
+        ========================================================= */
+
+        function renderDestinations() {
+
+            const query =
+                document
+                    .getElementById("locationInput")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            let results = destinations.filter(d => {
+
+                const moodMatch = d.moods.includes(selectedMood);
+
+                const textMatch =
+                    !query ||
+                    d.city.toLowerCase().includes(query) ||
+                    d.state.toLowerCase().includes(query) ||
+                    d.attractions.some(a => a.toLowerCase().includes(query));
+
+                return moodMatch && textMatch;
+
+            });
+
+            const container = document.getElementById("destinations");
+
+            if (!results.length) {
+
+                container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>No curated match found</h3>
+
+                <p>
+                    We don't have a verified recommendation for that
+                    location and mood yet. Try another Indian city or
+                    destination.
+                </p>
+
+            </div>
+
+        `;
+
+                return;
+            }
+
+            container.innerHTML = `
+
+        <div class="section-header" id="destinations-header">
+
+            <div>
+                <div class="section-label">Step 02</div>
+                <div class="section-title">
+                    Places that match your mood
+                </div>
+            </div>
+
+            <span style="color:#888;font-size:13px">
+                ${results.length} curated destinations
+            </span>
+
+        </div>
+
+        <div class="destination-grid">
+
+            ${results.map(d => `
+
+                <article class="destination">
+
+                    <div
+                        class="destination-top"
+                        style="--destination-bg:${d.bg}"
+                    >
+
+                        <span class="destination-category">
+                            ${d.category}
+                        </span>
+
+                        <div>
+
+                            <div class="destination-state">
+                                ${d.state} • INDIA
+                            </div>
+
+                            <h3>${d.city}</h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="destination-body">
+
+                        <p class="destination-description">
+                            ${d.description}
+                        </p>
+
+                        <div class="resonance">
+
+                            <div class="resonance-label">
+                                THE RESONANCE
+                            </div>
+
+                            <p>
+                                "${d.resonance}"
+                            </p>
+
+                        </div>
+
+                        <div class="attractions-title">
+                            Places to explore
+                        </div>
+
+                        <div class="attractions">
+
+                            ${d.attractions.map(a => `
+                                <div class="attraction">
+                                    ${a}
+                                </div>
+                            `).join("")}
+
+                        </div>
+
+                        <div class="destination-footer">
+
+                            <span class="curated">
+                                Curated recommendation
+                            </span>
+
+                            <button
+                                class="explore"
+                                onclick="showToast('${d.city} • ${d.attractions.length} places to explore')"
+                            >
+                                Explore ↗
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+        }
+
+
+        /* =========================================================
+           LANGUAGE FILTERS
+        ========================================================= */
+
+        function renderLanguageFilters() {
+
+            const languages = [
+                "All",
+                "Telugu",
+                "Hindi",
+                "Tamil",
+                "Kannada",
+                "Malayalam",
+                "Bengali",
+                "Marathi",
+                "Gujarati",
+                "Punjabi",
+                "Odia",
+                "Assamese",
+                "Urdu"
+            ];
+
+            document.getElementById("languageFilters").innerHTML =
+                languages.map(lang => `
+
+            <button
+                class="filter ${lang === "All" ? "active" : ""}"
+                onclick="chooseLanguage('${lang}',this)"
+            >
+                ${lang === "All" ? "All Indian Languages" : lang}
+            </button>
+
+        `).join("");
+
+        }
+
+
+        /* =========================================================
+           MUSIC
+        ========================================================= */
+
+        function chooseLanguage(language, button) {
+
+            document
+                .getElementById("languageSelect")
+                .value = language;
+
+            document
+                .querySelectorAll(".filter")
+                .forEach(x => x.classList.remove("active"));
+
+            button.classList.add("active");
+
+            renderMusic();
+        }
+
+
+        function renderMusic() {
+
+            const language =
+                document
+                    .getElementById("languageSelect")
+                    .value;
+
+            let results = songs.filter(song => {
+
+                const moodMatch =
+                    song.mood.toLowerCase() === selectedMood.toLowerCase();
+
+                const languageMatch =
+                    language === "All" ||
+                    song.language === language;
+
+                return moodMatch && languageMatch;
+
+            });
+
+            /*
+              If a particular mood has few songs in one language,
+              show other songs from that language rather than
+              leaving the music section empty.
+            */
+
+            if (results.length < 4) {
+
+                results = songs.filter(song =>
+                    (language === "All" || song.language === language)
+                ).slice(0, 8);
+
+            }
+
+            const titleMood =
+                moods.find(m => m.id === selectedMood)?.name || "Mood";
+
+            renderSpotify(language, titleMood);
+
+            document.getElementById("songs").innerHTML = `
+
+        <div class="section-label">
+            ${language === "All" ? "INDIAN LANGUAGES" : language}
+        </div>
+
+        <h3 style="
+            font-family:'Playfair Display',serif;
+            font-size:28px;
+            margin:4px 0 18px;
+        ">
+            Songs for ${titleMood}
+        </h3>
+
+        <div class="song-grid">
+
+            ${results.slice(0, 12).map(song => `
+
+                <div class="song">
+
+                    <div class="song-cover">
+                        🎵
+                    </div>
+
+                    <div>
+
+                        <h4>${song.title}</h4>
+
+                        <p>${song.artist}</p>
+
+                        <span class="language-badge">
+                            ${song.language}
+                        </span>
+
+                    </div>
+
+                    <a
+                        class="song-link"
+                        target="_blank"
+                        href="${spotifySearch(song.title + " " + song.artist)}"
+                    >
+                        Spotify ↗
+                    </a>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+        }
+
+
+        /* =========================================================
+           SPOTIFY
+        ========================================================= */
+
+        function spotifySearch(query) {
+
+            return "https://open.spotify.com/search/" +
+                encodeURIComponent(query);
+
+        }
+
+
+        function renderSpotify(language, mood) {
+
+            const query =
+                language === "All"
+                    ? `Indian ${mood} songs`
+                    : `${language} ${mood} songs`;
+
+            document.getElementById("spotify").innerHTML = `
+
+        <div class="spotify-card">
+
+            <div class="spotify-icon">●</div>
+
+            <h3>
+                ${language === "All"
+                    ? "Indian"
+                    : language}
+                ${mood} Soundtrack
+            </h3>
+
+            <p>
+                Discover ${mood.toLowerCase()}
+                music in
+                ${language === "All"
+                    ? "Indian languages"
+                    : language}.
+            </p>
+
+            <a
+                class="spotify-button"
+                target="_blank"
+                href="${spotifySearch(query)}"
+            >
+                ▶ Open Spotify
+            </a>
+
+            <p style="
+                margin-top:15px;
+                font-size:11px;
+                color:#686e77;
+            ">
+                Spotify search recommendation
+            </p>
+
+        </div>
+
+    `;
+
+        }
+
+
+        /* =========================================================
+           SURPRISE ME
+        ========================================================= */
+
+        function surpriseMe() {
+
+            const mood =
+                moods[Math.floor(Math.random() * moods.length)];
+
+            selectedMood = mood.id;
+
+            renderMoods();
+            renderDestinations();
+            renderMusic();
+
+            document
+                .getElementById("destinations")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            showToast(
+                `${mood.icon} Mood selected: ${mood.name}`
+            );
+
+        }
+
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        function showToast(message) {
+
+            const toast = document.getElementById("toast");
+
+            toast.textContent = message;
+
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2500);
+
+        }
+
+
+        /* =========================================================
+           INITIALIZE
+        ========================================================= */
+
+        renderMoods();
+        renderLanguageFilters();
+        renderDestinations();
+        renderMusic();
+
+    </script>
+
+</body>
+
+</html>
