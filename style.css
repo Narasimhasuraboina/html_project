@@ -184,6 +184,113 @@
         .button-secondary:hover { border-color: var(--text); background: rgba(255, 255, 255, 0.12); }
         .button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
+        .catalog-section { padding-block: 76px; }
+
+        .catalog-section-alt {
+            border-block: 1px solid var(--border);
+            background: rgba(13, 16, 23, 0.72);
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        .section-heading h2 {
+            margin: 4px 0 0;
+            font-size: clamp(1.75rem, 4vw, 2.35rem);
+            letter-spacing: -0.045em;
+            line-height: 1.2;
+        }
+
+        .section-heading > p {
+            margin: 0 0 4px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .section-kicker {
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .movie-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface);
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(240, 184, 75, 0.55);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+        }
+
+        .movie-poster {
+            display: block;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            background: var(--surface-light);
+        }
+
+        .movie-card-content { padding: 14px; }
+
+        .movie-card-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+        }
+
+        .movie-genre {
+            overflow: hidden;
+            color: var(--muted);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-rating { flex: 0 0 auto; color: var(--accent); font-weight: 700; }
+
+        .movie-card h3 {
+            overflow: hidden;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.35;
+            text-overflow: ellipsis;
+        }
+
+        .movie-card-description {
+            display: -webkit-box;
+            overflow: hidden;
+            min-height: 3.9em;
+            margin: 8px 0 10px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.3;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+
+        .movie-year { color: #7e8795; font-size: 0.78rem; }
+
         .site-footer {
             border-top: 1px solid var(--border);
             background: rgba(9, 11, 16, 0.55);
@@ -213,7 +320,15 @@
             .featured h1 { font-size: clamp(3.35rem, 16vw, 5.5rem); }
             .featured-description { max-width: 460px; }
             .featured-actions { align-items: stretch; flex-direction: column; max-width: 270px; }
+            .catalog-section { padding-block: 54px; }
+            .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+            .movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+            .movie-card-content { padding: 11px; }
             .footer-content { flex-direction: column; justify-content: center; padding-block: 18px; text-align: center; }
+        }
+
+        @media (min-width: 641px) and (max-width: 950px) {
+            .movie-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
 
         @media (prefers-reduced-motion: reduce) {
