@@ -14,7 +14,7 @@ const movies = [
         title: "The Batman",
         year: 2022,
         rating: 7.8,
-        genre: "Crime",
+        genre: "Thriller",
         description: "A young Batman follows a trail of clues through Gotham's shadows.",
         poster: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?auto=format&fit=crop&w=700&q=85"
     },
@@ -89,6 +89,33 @@ const movies = [
         genre: "Mystery",
         description: "A detective investigates a family's tangled stories after a famous writer dies.",
         poster: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=85"
+    },
+    {
+        id: 11,
+        title: "A Quiet Place",
+        year: 2018,
+        rating: 7.5,
+        genre: "Horror",
+        description: "A family must stay silent to survive in a world where sound brings danger.",
+        poster: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=700&q=85"
+    },
+    {
+        id: 12,
+        title: "La La Land",
+        year: 2016,
+        rating: 8.0,
+        genre: "Romance",
+        description: "A musician and an aspiring actor pursue their dreams in Los Angeles.",
+        poster: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=700&q=85"
+    },
+    {
+        id: 13,
+        title: "The Prestige",
+        year: 2006,
+        rating: 8.5,
+        genre: "Thriller",
+        description: "Two rival magicians push their craft and their rivalry to extremes.",
+        poster: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=85"
     }
 ];
 
@@ -159,9 +186,48 @@ function createMovieCard(item) {
 
 function renderMovies(items, containerId) {
     const container = document.getElementById(containerId);
+    if (items.length === 0) {
+        container.innerHTML = '<p class="no-results">No movies found. Try another title or genre.</p>';
+        return;
+    }
+
     container.innerHTML = items.map(createMovieCard).join("");
 }
 
-renderMovies(movies.slice(0, 5), "trending-movies");
-renderMovies(movies.slice(5, 10), "popular-movies");
-renderMovies(tvShows, "popular-shows");
+const searchInput = document.getElementById("movie-search");
+const genreButtons = document.querySelectorAll(".genre-button");
+let selectedGenre = "All";
+
+function filterTitles(items) {
+    const searchText = searchInput.value.trim().toLowerCase();
+
+    return items.filter(item => {
+        const matchesTitle = item.title.toLowerCase().includes(searchText);
+        const matchesGenre = selectedGenre === "All" || item.genre === selectedGenre;
+        return matchesTitle && matchesGenre;
+    });
+}
+
+function updateCatalogs() {
+    renderMovies(filterTitles(movies.slice(0, 6)), "trending-movies");
+    renderMovies(filterTitles(movies.slice(6)), "popular-movies");
+    renderMovies(filterTitles(tvShows), "popular-shows");
+}
+
+searchInput.addEventListener("input", updateCatalogs);
+
+genreButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        selectedGenre = button.dataset.genre;
+
+        genreButtons.forEach(genreButton => {
+            const isSelected = genreButton === button;
+            genreButton.classList.toggle("active", isSelected);
+            genreButton.setAttribute("aria-pressed", isSelected);
+        });
+
+        updateCatalogs();
+    });
+});
+
+updateCatalogs();

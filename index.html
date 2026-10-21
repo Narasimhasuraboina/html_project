@@ -52,6 +52,26 @@
             </div>
         </section>
 
+        <section class="discovery-controls" aria-label="Find movies and shows">
+            <div class="container">
+                <label class="search-label" for="movie-search">Search by title</label>
+                <div class="search-field">
+                    <span aria-hidden="true">⌕</span>
+                    <input id="movie-search" type="search" placeholder="Search movies or TV shows..." autocomplete="off">
+                </div>
+                <div class="genre-filter" role="group" aria-label="Filter by genre">
+                    <button class="genre-button active" type="button" data-genre="All" aria-pressed="true">All</button>
+                    <button class="genre-button" type="button" data-genre="Action" aria-pressed="false">Action</button>
+                    <button class="genre-button" type="button" data-genre="Comedy" aria-pressed="false">Comedy</button>
+                    <button class="genre-button" type="button" data-genre="Drama" aria-pressed="false">Drama</button>
+                    <button class="genre-button" type="button" data-genre="Horror" aria-pressed="false">Horror</button>
+                    <button class="genre-button" type="button" data-genre="Sci-Fi" aria-pressed="false">Sci-Fi</button>
+                    <button class="genre-button" type="button" data-genre="Romance" aria-pressed="false">Romance</button>
+                    <button class="genre-button" type="button" data-genre="Thriller" aria-pressed="false">Thriller</button>
+                </div>
+            </div>
+        </section>
+
         <section class="catalog-section" id="movies" aria-labelledby="trending-title">
             <div class="container">
                 <div class="section-heading">

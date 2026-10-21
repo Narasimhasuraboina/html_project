@@ -184,6 +184,74 @@
         .button-secondary:hover { border-color: var(--text); background: rgba(255, 255, 255, 0.12); }
         .button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
+        .discovery-controls {
+            padding-block: 30px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(13, 16, 23, 0.82);
+        }
+
+        .search-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 0.88rem;
+            font-weight: 650;
+        }
+
+        .search-field {
+            position: relative;
+            max-width: 560px;
+        }
+
+        .search-field > span {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            color: var(--muted);
+            font-size: 1.35rem;
+            transform: translateY(-55%);
+            pointer-events: none;
+        }
+
+        .search-field input {
+            width: 100%;
+            min-height: 48px;
+            padding: 10px 16px 10px 45px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            outline: none;
+            background: var(--surface);
+            color: var(--text);
+            font: inherit;
+        }
+
+        .search-field input:focus { border-color: var(--accent); }
+        .search-field input::placeholder { color: #7e8795; }
+
+        .genre-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 17px;
+        }
+
+        .genre-button {
+            min-height: 37px;
+            padding: 6px 15px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--surface);
+            color: var(--muted);
+            font: inherit;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+        }
+
+        .genre-button:hover { border-color: rgba(240, 184, 75, 0.65); color: var(--text); }
+        .genre-button.active { border-color: var(--accent); background: var(--accent); color: #17130a; font-weight: 700; }
+        .genre-button:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
         .catalog-section { padding-block: 76px; }
 
         .catalog-section-alt {
@@ -290,6 +358,16 @@
         }
 
         .movie-year { color: #7e8795; font-size: 0.78rem; }
+
+        .no-results {
+            grid-column: 1 / -1;
+            margin: 0;
+            padding: 28px;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            color: var(--muted);
+            text-align: center;
+        }
 
         .site-footer {
             border-top: 1px solid var(--border);
