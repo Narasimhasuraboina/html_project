@@ -167,9 +167,30 @@ const tvShows = [
     }
 ];
 
+const runtimes = {
+    1: "166 min",
+    2: "176 min",
+    3: "139 min",
+    4: "180 min",
+    5: "140 min",
+    6: "116 min",
+    7: "99 min",
+    8: "106 min",
+    9: "120 min",
+    10: "130 min",
+    11: "90 min",
+    12: "128 min",
+    13: "130 min",
+    101: "Approx. 50 min per episode",
+    102: "Approx. 50 min per episode",
+    103: "Approx. 30 min per episode",
+    104: "Approx. 45 min per episode",
+    105: "Approx. 50 min per episode"
+};
+
 function createMovieCard(item) {
     return `
-        <article class="movie-card">
+        <article class="movie-card" data-item-id="${item.id}" tabindex="0" role="button" aria-label="View details for ${item.title}">
             <img class="movie-poster" src="${item.poster}" alt="${item.title} poster" loading="lazy">
             <div class="movie-card-content">
                 <div class="movie-card-topline">
@@ -231,3 +252,54 @@ genreButtons.forEach(button => {
 });
 
 updateCatalogs();
+
+const movieModal = document.getElementById("movie-modal");
+const modalContent = document.getElementById("modal-content");
+const closeModalButton = movieModal.querySelector(".modal-close");
+const allTitles = [...movies, ...tvShows];
+
+function openMovieModal(itemId) {
+    const item = allTitles.find(title => title.id === Number(itemId));
+
+    if (!item) return;
+
+    modalContent.innerHTML = `
+        <img class="modal-poster" src="${item.poster}" alt="${item.title} poster">
+        <div class="modal-details">
+            <span class="section-kicker">${item.id > 100 ? "TV show details" : "Movie details"}</span>
+            <h2 id="modal-title">${item.title}</h2>
+            <div class="modal-meta">
+                <span class="card-rating">★ ${item.rating}</span>
+                <span>${item.year}</span>
+                <span>${item.genre}</span>
+                <span>${runtimes[item.id]}</span>
+            </div>
+            <p>${item.description}</p>
+        </div>
+    `;
+
+    document.body.classList.add("modal-open");
+    movieModal.showModal();
+}
+
+document.querySelectorAll(".movie-grid").forEach(grid => {
+    grid.addEventListener("click", event => {
+        const card = event.target.closest(".movie-card");
+        if (card) openMovieModal(card.dataset.itemId);
+    });
+
+    grid.addEventListener("keydown", event => {
+        const card = event.target.closest(".movie-card");
+        if (!card || (event.key !== "Enter" && event.key !== " ")) return;
+
+        event.preventDefault();
+        openMovieModal(card.dataset.itemId);
+    });
+});
+
+closeModalButton.addEventListener("click", () => movieModal.close());
+movieModal.addEventListener("close", () => document.body.classList.remove("modal-open"));
+
+movieModal.addEventListener("click", event => {
+    if (event.target === movieModal) movieModal.close();
+});

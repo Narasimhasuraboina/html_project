@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>CineVerse | Discover Stories Worth Watching</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header class="site-header">
         <div class="container header-content">
@@ -39,9 +41,12 @@
                         <span class="meta-separator" aria-hidden="true">â€¢</span>
                         <span>Sci-Fi Â· Adventure Â· Drama</span>
                     </div>
-                    <p class="featured-description">As Earth becomes harder to call home, a team of explorers travels beyond our galaxy in search of a future for humanity.</p>
+                    <p class="featured-description">As Earth becomes harder to call home, a team of explorers travels
+                        beyond our galaxy in search of a future for humanity.</p>
                     <div class="featured-actions">
-                        <a class="button button-primary" href="https://www.youtube.com/results?search_query=Interstellar+official+trailer" target="_blank" rel="noopener noreferrer">
+                        <a class="button button-primary"
+                            href="https://www.youtube.com/results?search_query=Interstellar+official+trailer"
+                            target="_blank" rel="noopener noreferrer">
                             <span aria-hidden="true">â–¶</span> Watch Trailer
                         </a>
                         <button class="button button-secondary" type="button">
@@ -57,7 +62,8 @@
                 <label class="search-label" for="movie-search">Search by title</label>
                 <div class="search-field">
                     <span aria-hidden="true">⌕</span>
-                    <input id="movie-search" type="search" placeholder="Search movies or TV shows..." autocomplete="off">
+                    <input id="movie-search" type="search" placeholder="Search movies or TV shows..."
+                        autocomplete="off">
                 </div>
                 <div class="genre-filter" role="group" aria-label="Filter by genre">
                     <button class="genre-button active" type="button" data-genre="All" aria-pressed="true">All</button>
@@ -66,8 +72,10 @@
                     <button class="genre-button" type="button" data-genre="Drama" aria-pressed="false">Drama</button>
                     <button class="genre-button" type="button" data-genre="Horror" aria-pressed="false">Horror</button>
                     <button class="genre-button" type="button" data-genre="Sci-Fi" aria-pressed="false">Sci-Fi</button>
-                    <button class="genre-button" type="button" data-genre="Romance" aria-pressed="false">Romance</button>
-                    <button class="genre-button" type="button" data-genre="Thriller" aria-pressed="false">Thriller</button>
+                    <button class="genre-button" type="button" data-genre="Romance"
+                        aria-pressed="false">Romance</button>
+                    <button class="genre-button" type="button" data-genre="Thriller"
+                        aria-pressed="false">Thriller</button>
                 </div>
             </div>
         </section>
@@ -118,7 +126,11 @@
             <p>Made for movie lovers. &copy; 2026 CineVerse.</p>
         </div>
     </footer>
+    <dialog class="movie-modal" id="movie-modal" aria-labelledby="modal-title">
+        <button class="modal-close" type="button" aria-label="Close movie details">&times;</button>
+        <div class="modal-content" id="modal-content"></div>
+    </dialog>
     <script src="script.js"></script>
 </body>
-</html>
 
+</html>
