@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CineVerse is your space to explore the world of movies and television.">
+    <meta name="description" content="Pick a movie by mood, then explore 250 Indian and Hollywood films by genre and language.">
     <title>CineVerse | Discover Stories Worth Watching</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,10 +20,8 @@
             <nav class="site-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="#home" aria-current="page">Home</a></li>
-                    <li><a href="#movies">Movies</a></li>
-                    <li><a href="#mood-finder">Find by Mood</a></li>
-                    <li><a href="#movies">Movie Library</a></li>
-                    <li><a href="#watchlist">My Watchlist</a></li>
+                    <li><a href="#movies">Browse films</a></li>
+                    <li><a href="#watchlist">Watchlist</a></li>
                 </ul>
             </nav>
             <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Light theme</button>
@@ -40,23 +38,28 @@
         </section>
         <section class="mood-hero" id="mood-finder" aria-labelledby="mood-title">
             <div class="container mood-content">
-                <span class="featured-label">A better movie night starts here</span>
-                <h1 id="mood-title">What are you <span>in the mood for?</span></h1>
-                <p>Choose a feeling. We’ll find a story to meet you there.</p>
-                <div class="mood-options" id="mood-options" role="group" aria-label="Choose your mood">
-                    <button class="mood-button active" type="button" data-mood="cozy" aria-pressed="true">&#9749; Cozy</button>
-                    <button class="mood-button" type="button" data-mood="uplifted" aria-pressed="false">&#9728; Uplifted</button>
-                    <button class="mood-button" type="button" data-mood="thrilled" aria-pressed="false">&#9889; Thrilled</button>
-                    <button class="mood-button" type="button" data-mood="thoughtful" aria-pressed="false">&#9790; Thoughtful</button>
-                    <button class="mood-button" type="button" data-mood="wonder" aria-pressed="false">&#10024; In wonder</button>
-                    <button class="mood-button" type="button" data-mood="weepy" aria-pressed="false">&#127783; A good cry</button>
-                    <button class="mood-button" type="button" data-mood="adventurous" aria-pressed="false">&#129517; Adventurous</button>
-                    <button class="mood-button" type="button" data-mood="romantic" aria-pressed="false">&#128149; Romantic</button>
-                    <button class="mood-button" type="button" data-mood="spooky" aria-pressed="false">&#127875; Spooky</button>
-                    <button class="mood-button" type="button" data-mood="mindbending" aria-pressed="false">&#129504; Mind-bending</button>
-                    <button class="mood-button" type="button" data-mood="nostalgic" aria-pressed="false">&#128214; Nostalgic</button>
+                <div class="mood-intro">
+                    <span class="featured-label">CineVerse film guide</span>
+                    <h1 id="mood-title">What kind of night is it?</h1>
+                    <p>Pick a feeling. Browse until something catches your eye.</p>
                 </div>
-                <p class="mood-note" id="mood-note" aria-live="polite">Gentle, warm stories for a softer evening.</p>
+                <div class="mood-picker">
+                    <p class="picker-label">Tonight calls for...</p>
+                    <div class="mood-options" id="mood-options" role="group" aria-label="Choose your mood">
+                        <button class="mood-button active" type="button" data-mood="cozy" aria-pressed="true">Cozy</button>
+                        <button class="mood-button" type="button" data-mood="uplifted" aria-pressed="false">Uplifted</button>
+                        <button class="mood-button" type="button" data-mood="thrilled" aria-pressed="false">Thrilled</button>
+                        <button class="mood-button" type="button" data-mood="thoughtful" aria-pressed="false">Thoughtful</button>
+                        <button class="mood-button" type="button" data-mood="wonder" aria-pressed="false">In wonder</button>
+                        <button class="mood-button" type="button" data-mood="weepy" aria-pressed="false">A good cry</button>
+                        <button class="mood-button" type="button" data-mood="adventurous" aria-pressed="false">Adventurous</button>
+                        <button class="mood-button" type="button" data-mood="romantic" aria-pressed="false">Romantic</button>
+                        <button class="mood-button" type="button" data-mood="spooky" aria-pressed="false">Spooky</button>
+                        <button class="mood-button" type="button" data-mood="mindbending" aria-pressed="false">Mind-bending</button>
+                        <button class="mood-button" type="button" data-mood="nostalgic" aria-pressed="false">Nostalgic</button>
+                    </div>
+                    <p class="mood-note" id="mood-note" aria-live="polite">Gentle, warm stories for a softer evening.</p>
+                </div>
             </div>
         </section>
 
@@ -64,7 +67,7 @@
             <div class="container">
                 <label class="search-label" for="movie-search">Search titles, languages, or film industries</label>
                 <div class="search-field">
-                    <span aria-hidden="true">&#9906;</span>
+                    <span aria-hidden="true">&#8982;</span>
                     <input id="movie-search" type="search" placeholder="Search a real movie title..."
                         autocomplete="off">
                 </div>
@@ -102,8 +105,8 @@
                         <h2 id="trending-title">Your mood match</h2>
                     </div>
                     <p id="mood-results-caption">Curated stories for tonight</p>
-                    <p class="catalog-note">250 films: 125 Indian (Hindi) + 125 Hollywood (US, English-language).</p>
                 </div>
+                <p class="catalog-note">250 films: 125 Indian (Hindi) + 125 Hollywood (US, English-language).</p>
                 <div class="movie-grid" id="trending-movies"></div>
             </div>
         </section>
