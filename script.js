@@ -3853,6 +3853,20 @@ tvShows.forEach(item => {
     if (!item.mood) item.mood = moodDefaults[item.genre] || ["thoughtful"];
 });
 
+const textOf = item => `${item.title} ${item.description}`.toLowerCase();
+const extraMoodRules = {
+    adventurous: item => ["Action", "Adventure", "Animation"].includes(item.genre) || (item.genre === "Fantasy" && /quest|journey|adventure|expedition|explore|travel/.test(textOf(item))),
+    romantic: item => item.genre === "Romance" || /romance|love|lovers|relationship|wedding|couple|fall for/.test(textOf(item)),
+    spooky: item => item.genre === "Horror" || /ghost|haunt|haunted|demon|nightmare|supernatural|monster|vampire|witch|curse/.test(textOf(item)),
+    mindbending: item => ["Sci-Fi", "Mystery"].includes(item.genre) || /time loop|time travel|dream|reality|parallel|memory|identity|simulation|consciousness|twist/.test(textOf(item)),
+    nostalgic: item => Number(item.year) <= 2005
+};
+[...movies, ...tvShows].forEach(item => {
+    Object.entries(extraMoodRules).forEach(([mood, matches]) => {
+        if (matches(item) && !item.mood.includes(mood)) item.mood.push(mood);
+    });
+});
+
 function createMovieCard(item) {
     const isFavorite = favoriteIds.includes(item.id);
     const isInWatchlist = watchlistIds.includes(item.id);
@@ -4037,7 +4051,12 @@ const moodNotes = {
     thrilled: "Tension, momentum, and stories that keep you leaning in.",
     thoughtful: "Films that leave a little room to think afterward.",
     wonder: "Worlds and ideas that make the familiar feel new.",
-    weepy: "Tender, moving stories for letting the feelings out."
+    weepy: "Tender, moving stories for letting the feelings out.",
+    adventurous: "Big journeys, daring choices, and worlds to explore.",
+    romantic: "Love stories, tender chemistry, and matters of the heart.",
+    spooky: "Ghosts, monsters, and eerie nights for a little shiver.",
+    mindbending: "Puzzles and strange ideas that keep your mind spinning.",
+    nostalgic: "Older favorites and timeless stories to revisit."
 };
 
 document.querySelectorAll(".mood-button").forEach(button => {
