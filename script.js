@@ -168,6 +168,7 @@ const tvShows = [
 ];
 
 const runtimes = {
+    0: "169 min",
     1: "166 min",
     2: "176 min",
     3: "139 min",
@@ -188,9 +189,39 @@ const runtimes = {
     105: "Approx. 50 min per episode"
 };
 
+const featuredTitle = {
+    id: 0,
+    title: "Interstellar",
+    year: 2014,
+    rating: 8.7,
+    genre: "Sci-Fi",
+    description: "A team of explorers travels beyond our galaxy in search of a future for humanity.",
+    poster: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=700&q=85"
+};
+
+const allTitles = [featuredTitle, ...movies, ...tvShows];
+const WATCHLIST_KEY = "cineVerseWatchlist";
+const FAVORITES_KEY = "cineVerseFavorites";
+
+function loadSavedIds(storageKey) {
+    try {
+        const savedIds = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        return Array.isArray(savedIds) ? savedIds.map(Number).filter(Number.isFinite) : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+let watchlistIds = loadSavedIds(WATCHLIST_KEY);
+let favoriteIds = loadSavedIds(FAVORITES_KEY);
+
 function createMovieCard(item) {
+    const isFavorite = favoriteIds.includes(item.id);
+    const isInWatchlist = watchlistIds.includes(item.id);
+
     return `
-        <article class="movie-card" data-item-id="${item.id}" tabindex="0" role="button" aria-label="View details for ${item.title}">
+        <article class="movie-card">
+            <button class="movie-open" type="button" data-item-id="${item.id}" aria-label="View details for ${item.title}">
             <img class="movie-poster" src="${item.poster}" alt="${item.title} poster" loading="lazy">
             <div class="movie-card-content">
                 <div class="movie-card-topline">
@@ -201,6 +232,9 @@ function createMovieCard(item) {
                 <p class="movie-card-description">${item.description}</p>
                 <span class="movie-year">${item.year}</span>
             </div>
+            </button>
+            <button class="favorite-button ${isFavorite ? "is-favorite" : ""}" type="button" data-item-id="${item.id}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? "Remove" : "Add"} ${item.title} ${isFavorite ? "from" : "to"} favorites">♥</button>
+            <button class="watchlist-button" type="button" data-item-id="${item.id}" aria-pressed="${isInWatchlist}">${isInWatchlist ? "Remove from Watchlist" : "+ Add to Watchlist"}</button>
         </article>
     `;
 }
@@ -233,6 +267,84 @@ function updateCatalogs() {
     renderMovies(filterTitles(movies.slice(0, 6)), "trending-movies");
     renderMovies(filterTitles(movies.slice(6)), "popular-movies");
     renderMovies(filterTitles(tvShows), "popular-shows");
+    renderWatchlist();
+    updateFeaturedWatchlistButton();
+}
+
+function renderWatchlist() {
+    const watchlistGrid = document.getElementById("watchlist-grid");
+    const savedTitles = watchlistIds
+        .map(id => allTitles.find(title => title.id === id))
+        .filter(Boolean);
+
+    if (savedTitles.length === 0) {
+        watchlistGrid.innerHTML = '<p class="empty-watchlist">Your watchlist is empty. Add a movie or show to save it here.</p>';
+        return;
+    }
+
+    watchlistGrid.innerHTML = savedTitles.map(createMovieCard).join("");
+}
+
+function saveIds(storageKey, ids) {
+    try {
+        localStorage.setItem(storageKey, JSON.stringify(ids));
+        return true;
+    } catch (error) {
+        showToast("Could not save to browser storage.");
+        return false;
+    }
+}
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timeoutId);
+    showToast.timeoutId = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+function updateFeaturedWatchlistButton() {
+    const button = document.getElementById("featured-watchlist");
+    const isSaved = watchlistIds.includes(featuredTitle.id);
+    button.setAttribute("aria-pressed", isSaved);
+    button.innerHTML = `<span aria-hidden="true">${isSaved ? "✓" : "+"}</span> ${isSaved ? "In Watchlist" : "Add to Watchlist"}`;
+}
+
+function toggleWatchlist(itemId) {
+    const id = Number(itemId);
+    const wasSaved = watchlistIds.includes(id);
+    const previousIds = [...watchlistIds];
+    watchlistIds = wasSaved
+        ? watchlistIds.filter(savedId => savedId !== id)
+        : [...watchlistIds, id];
+
+    if (!saveIds(WATCHLIST_KEY, watchlistIds)) {
+        watchlistIds = previousIds;
+        return;
+    }
+
+    updateCatalogs();
+    const title = allTitles.find(item => item.id === id);
+    showToast(wasSaved ? `Removed ${title.title} from your watchlist.` : `Added ${title.title} to your watchlist.`);
+}
+
+function toggleFavorite(itemId) {
+    const id = Number(itemId);
+    const wasFavorite = favoriteIds.includes(id);
+    const previousIds = [...favoriteIds];
+    favoriteIds = wasFavorite
+        ? favoriteIds.filter(savedId => savedId !== id)
+        : [...favoriteIds, id];
+
+    if (!saveIds(FAVORITES_KEY, favoriteIds)) {
+        favoriteIds = previousIds;
+        return;
+    }
+
+    updateCatalogs();
+    const title = allTitles.find(item => item.id === id);
+    showToast(wasFavorite ? `Removed ${title.title} from favorites.` : `Added ${title.title} to favorites.`);
 }
 
 searchInput.addEventListener("input", updateCatalogs);
@@ -256,7 +368,6 @@ updateCatalogs();
 const movieModal = document.getElementById("movie-modal");
 const modalContent = document.getElementById("modal-content");
 const closeModalButton = movieModal.querySelector(".modal-close");
-const allTitles = [...movies, ...tvShows];
 
 function openMovieModal(itemId) {
     const item = allTitles.find(title => title.id === Number(itemId));
@@ -284,17 +395,22 @@ function openMovieModal(itemId) {
 
 document.querySelectorAll(".movie-grid").forEach(grid => {
     grid.addEventListener("click", event => {
-        const card = event.target.closest(".movie-card");
-        if (card) openMovieModal(card.dataset.itemId);
-    });
+        const favoriteButton = event.target.closest(".favorite-button");
+        const watchlistButton = event.target.closest(".watchlist-button");
+        const openButton = event.target.closest(".movie-open");
 
-    grid.addEventListener("keydown", event => {
-        const card = event.target.closest(".movie-card");
-        if (!card || (event.key !== "Enter" && event.key !== " ")) return;
-
-        event.preventDefault();
-        openMovieModal(card.dataset.itemId);
+        if (favoriteButton) {
+            toggleFavorite(favoriteButton.dataset.itemId);
+        } else if (watchlistButton) {
+            toggleWatchlist(watchlistButton.dataset.itemId);
+        } else if (openButton) {
+            openMovieModal(openButton.dataset.itemId);
+        }
     });
+});
+
+document.getElementById("featured-watchlist").addEventListener("click", event => {
+    toggleWatchlist(event.currentTarget.dataset.itemId);
 });
 
 closeModalButton.addEventListener("click", () => movieModal.close());

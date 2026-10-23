@@ -23,6 +23,7 @@
                     <li><a href="#movies">Movies</a></li>
                     <li><a href="#tv-shows">TV Shows</a></li>
                     <li><a href="#genres">Genres</a></li>
+                    <li><a href="#watchlist">My Watchlist</a></li>
                 </ul>
             </nav>
         </div>
@@ -49,7 +50,7 @@
                             target="_blank" rel="noopener noreferrer">
                             <span aria-hidden="true">â–¶</span> Watch Trailer
                         </a>
-                        <button class="button button-secondary" type="button">
+                        <button class="button button-secondary featured-watchlist" id="featured-watchlist" type="button" data-item-id="0" aria-pressed="false">
                             <span aria-hidden="true">ï¼‹</span> Add to Watchlist
                         </button>
                     </div>
@@ -118,6 +119,19 @@
                 <div class="movie-grid" id="popular-shows"></div>
             </div>
         </section>
+
+        <section class="catalog-section catalog-section-alt" id="watchlist" aria-labelledby="watchlist-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Saved for another night</span>
+                        <h2 id="watchlist-title">My Watchlist</h2>
+                    </div>
+                    <p>Your saved movies and shows</p>
+                </div>
+                <div class="movie-grid" id="watchlist-grid"></div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -130,6 +144,7 @@
         <button class="modal-close" type="button" aria-label="Close movie details">&times;</button>
         <div class="modal-content" id="modal-content"></div>
     </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="script.js"></script>
 </body>
 
