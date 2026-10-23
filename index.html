@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,51 +21,52 @@
                 <ul>
                     <li><a href="#home" aria-current="page">Home</a></li>
                     <li><a href="#movies">Movies</a></li>
-                    <li><a href="#tv-shows">TV Shows</a></li>
-                    <li><a href="#genres">Genres</a></li>
+                    <li><a href="#mood-finder">Find by Mood</a></li>
+                    <li><a href="#movies">Movie Library</a></li>
                     <li><a href="#watchlist">My Watchlist</a></li>
                 </ul>
             </nav>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Light theme</button>
         </div>
     </header>
 
     <main id="home">
-        <section class="featured" aria-labelledby="featured-title">
-            <div class="featured-content">
-                <div class="featured-copy">
-                    <span class="featured-label">Featured film</span>
-                    <h1 id="featured-title">Inter<span>stellar</span></h1>
-                    <div class="movie-meta" aria-label="Movie details">
-                        <span class="rating">â˜… 8.7</span>
-                        <span class="meta-separator" aria-hidden="true">â€¢</span>
-                        <span>2014</span>
-                        <span class="meta-separator" aria-hidden="true">â€¢</span>
-                        <span>Sci-Fi Â· Adventure Â· Drama</span>
-                    </div>
-                    <p class="featured-description">As Earth becomes harder to call home, a team of explorers travels
-                        beyond our galaxy in search of a future for humanity.</p>
-                    <div class="featured-actions">
-                        <a class="button button-primary"
-                            href="https://www.youtube.com/results?search_query=Interstellar+official+trailer"
-                            target="_blank" rel="noopener noreferrer">
-                            <span aria-hidden="true">â–¶</span> Watch Trailer
-                        </a>
-                        <button class="button button-secondary featured-watchlist" id="featured-watchlist" type="button" data-item-id="0" aria-pressed="false">
-                            <span aria-hidden="true">ï¼‹</span> Add to Watchlist
-                        </button>
-                    </div>
+        <section class="quote-banner" aria-label="Original movie-night quotes">
+            <div class="container quote-content">
+                <span class="quote-mark" aria-hidden="true">“</span>
+                <blockquote id="movie-quote">A story can turn a quiet room into a thousand places.</blockquote>
+                <button class="quote-next" id="next-quote" type="button" aria-label="Show another movie quote">Another thought <span aria-hidden="true">&#8599;</span></button>
+            </div>
+        </section>
+        <section class="mood-hero" id="mood-finder" aria-labelledby="mood-title">
+            <div class="container mood-content">
+                <span class="featured-label">A better movie night starts here</span>
+                <h1 id="mood-title">What are you <span>in the mood for?</span></h1>
+                <p>Choose a feeling. We’ll find a story to meet you there.</p>
+                <div class="mood-options" id="mood-options" role="group" aria-label="Choose your mood">
+                    <button class="mood-button active" type="button" data-mood="cozy" aria-pressed="true">&#9749; Cozy</button>
+                    <button class="mood-button" type="button" data-mood="uplifted" aria-pressed="false">&#9728; Uplifted</button>
+                    <button class="mood-button" type="button" data-mood="thrilled" aria-pressed="false">&#9889; Thrilled</button>
+                    <button class="mood-button" type="button" data-mood="thoughtful" aria-pressed="false">&#9790; Thoughtful</button>
+                    <button class="mood-button" type="button" data-mood="wonder" aria-pressed="false">&#10024; In wonder</button>
+                    <button class="mood-button" type="button" data-mood="weepy" aria-pressed="false">&#127783; A good cry</button>
                 </div>
+                <p class="mood-note" id="mood-note" aria-live="polite">Gentle, warm stories for a softer evening.</p>
             </div>
         </section>
 
-        <section class="discovery-controls" aria-label="Find movies and shows">
+        <section class="discovery-controls" aria-label="Search and refine movie suggestions">
             <div class="container">
-                <label class="search-label" for="movie-search">Search by title</label>
+                <label class="search-label" for="movie-search">Search titles, languages, or film industries</label>
                 <div class="search-field">
-                    <span aria-hidden="true">⌕</span>
-                    <input id="movie-search" type="search" placeholder="Search movies or TV shows..."
+                    <span aria-hidden="true">&#9906;</span>
+                    <input id="movie-search" type="search" placeholder="Search a real movie title..."
                         autocomplete="off">
                 </div>
+                <label class="search-label language-select-label" for="language-select">Language</label>
+                <select id="language-select" class="language-select">
+                    <option value="All">Any language</option>
+                </select>
                 <div class="genre-filter" role="group" aria-label="Filter by genre">
                     <button class="genre-button active" type="button" data-genre="All" aria-pressed="true">All</button>
                     <button class="genre-button" type="button" data-genre="Action" aria-pressed="false">Action</button>
@@ -77,7 +78,14 @@
                         aria-pressed="false">Romance</button>
                     <button class="genre-button" type="button" data-genre="Thriller"
                         aria-pressed="false">Thriller</button>
+                    <button class="genre-button" type="button" data-genre="Animation" aria-pressed="false">Animation</button>
+                    <button class="genre-button" type="button" data-genre="Crime" aria-pressed="false">Crime</button>
+                    <button class="genre-button" type="button" data-genre="Documentary" aria-pressed="false">Documentary</button>
+                    <button class="genre-button" type="button" data-genre="Fantasy" aria-pressed="false">Fantasy</button>
+                    <button class="genre-button" type="button" data-genre="Mystery" aria-pressed="false">Mystery</button>
+                    <button class="genre-button" type="button" data-genre="Adventure" aria-pressed="false">Adventure</button>
                 </div>
+                <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
             </div>
         </section>
 
@@ -85,38 +93,13 @@
             <div class="container">
                 <div class="section-heading">
                     <div>
-                        <span class="section-kicker">What everyone is watching</span>
-                        <h2 id="trending-title">Trending Movies</h2>
+                        <span class="section-kicker">Chosen for your current feeling</span>
+                        <h2 id="trending-title">Your mood match</h2>
                     </div>
-                    <p>Stories making waves right now</p>
+                    <p id="mood-results-caption">Curated stories for tonight</p>
+                    <p class="catalog-note">250 films: 125 Indian (Hindi) + 125 Hollywood (US, English-language).</p>
                 </div>
                 <div class="movie-grid" id="trending-movies"></div>
-            </div>
-        </section>
-
-        <section class="catalog-section catalog-section-alt" id="genres" aria-labelledby="popular-title">
-            <div class="container">
-                <div class="section-heading">
-                    <div>
-                        <span class="section-kicker">Picked for your next movie night</span>
-                        <h2 id="popular-title">Popular Movies</h2>
-                    </div>
-                    <p>Fan favorites worth discovering</p>
-                </div>
-                <div class="movie-grid" id="popular-movies"></div>
-            </div>
-        </section>
-
-        <section class="catalog-section" id="tv-shows" aria-labelledby="shows-title">
-            <div class="container">
-                <div class="section-heading">
-                    <div>
-                        <span class="section-kicker">Your next episode starts here</span>
-                        <h2 id="shows-title">Popular TV Shows</h2>
-                    </div>
-                    <p>Great stories, one episode at a time</p>
-                </div>
-                <div class="movie-grid" id="popular-shows"></div>
             </div>
         </section>
 
@@ -138,6 +121,7 @@
         <div class="container footer-content">
             <p class="footer-brand">CineVerse</p>
             <p>Made for movie lovers. &copy; 2026 CineVerse.</p>
+            <p class="attribution">Movie data and poster images: <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a> and <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>. CineVerse is not endorsed or certified by TMDB.</p>
         </div>
     </footer>
     <dialog class="movie-modal" id="movie-modal" aria-labelledby="modal-title">
@@ -145,6 +129,7 @@
         <div class="modal-content" id="modal-content"></div>
     </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top" hidden>&#8593;</button>
     <script src="script.js"></script>
 </body>
 
