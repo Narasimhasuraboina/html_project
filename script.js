@@ -4110,7 +4110,7 @@ const extraMoodRules = {
     romantic: item => item.genre === "Romance" || /romance|love|lovers|relationship|wedding|couple|fall for/.test(textOf(item)),
     spooky: item => item.genre === "Horror" || /ghost|haunt|haunted|demon|nightmare|supernatural|monster|vampire|witch|curse/.test(textOf(item)),
     mindbending: item => ["Sci-Fi", "Mystery"].includes(item.genre) || /time loop|time travel|dream|reality|parallel|memory|identity|simulation|consciousness|twist/.test(textOf(item)),
-    nostalgic: item => Number(item.year) <= 2005
+    nostalgic: item => Number(item.year) <= 1990
 };
 [...movies, ...tvShows].forEach(item => {
     Object.entries(extraMoodRules).forEach(([mood, matches]) => {
@@ -4118,25 +4118,27 @@ const extraMoodRules = {
     });
 });
 
-function createMovieCard(item) {
+function createMovieCard(item, showMoodReason = true) {
     const isFavorite = favoriteIds.includes(item.id);
     const isInWatchlist = watchlistIds.includes(item.id);
+    const moodReason = getMoodReason(item, selectedMood);
 
     return `
         <article class="movie-card">
             <button class="movie-open" type="button" data-item-id="${item.id}" aria-label="View details for ${item.title}">
-            ${item.poster ? `<img class="movie-poster" src="${item.poster}" alt="Movie poster for ${item.title}" loading="lazy">` : `<div class="movie-poster poster-unavailable" role="img" aria-label="Movie poster unavailable for ${item.title}"><span>Poster unavailable</span><small>${item.title}</small></div>`}
+            ${item.poster ? `<img class="movie-poster" src="${item.poster}" alt="Movie poster for ${item.title}" data-title="${item.title}" loading="lazy">` : `<span class="movie-poster poster-unavailable" role="img" aria-label="Movie poster unavailable for ${item.title}"><span>Poster unavailable</span><small>${item.title}</small></span>`}
+            </button>
             <div class="movie-card-content">
                 <div class="movie-card-topline">
                     <span class="movie-genre">${item.genre}</span>
                     <span class="card-rating" aria-label="Rating ${item.rating} out of 10">&#9733; ${item.rating}</span>
                 </div>
-                <h3>${item.title}</h3>
+                <h3><button class="movie-title-open" type="button" data-item-id="${item.id}">${item.title}</button></h3>
                 <span class="movie-language">${item.language} <span aria-hidden="true">&#183;</span> ${item.region}</span>
                 <p class="movie-card-description">${item.description}</p>
+                ${showMoodReason ? `<p class="mood-match-reason">${moodReason}</p>` : ""}
                 <span class="movie-year">${item.year}</span>
             </div>
-            </button>
             <button class="favorite-button ${isFavorite ? "is-favorite" : ""}" type="button" data-item-id="${item.id}" aria-pressed="${isFavorite}" aria-label="${isFavorite ? "Remove" : "Add"} ${item.title} ${isFavorite ? "from" : "to"} favorites">&#9829;</button>
             <button class="watchlist-button" type="button" data-item-id="${item.id}" aria-pressed="${isInWatchlist}">${isInWatchlist ? "Remove from Watchlist" : "+ Add to Watchlist"}</button>
         </article>
@@ -4150,10 +4152,10 @@ document.addEventListener("error", event => {
     const image = event.target;
     if (!image.matches || !image.matches(".movie-poster, .modal-poster")) return;
 
-    const fallback = document.createElement("div");
+    const fallback = document.createElement("span");
     fallback.className = `${image.className} poster-unavailable`;
     fallback.setAttribute("role", "img");
-    fallback.setAttribute("aria-label", "Movie poster unavailable");
+    fallback.setAttribute("aria-label", `Movie poster unavailable for ${image.dataset.title || "this title"}`);
     fallback.textContent = "Poster unavailable";
     image.replaceWith(fallback);
 }, true);
@@ -4170,6 +4172,35 @@ function renderMovies(items, containerId) {
     if (items.length > visibleItems.length) {
         container.insertAdjacentHTML("beforeend", `<button class="load-more-button" type="button" data-load-more>Load ${Math.min(CATALOG_PAGE_SIZE, items.length - visibleItems.length)} more (${visibleItems.length} of ${items.length})</button>`);
     }
+}
+
+function getMoodReason(item, mood) {
+    const moodName = mood.replace(/\b\w/g, letter => letter.toUpperCase());
+    if (mood === "nostalgic" && Number(item.year) <= 1990) {
+        return `A classic from ${item.year}, selected for a nostalgic movie night.`;
+    }
+    if (mood === "adventurous" && ["Action", "Adventure", "Animation"].includes(item.genre)) {
+        return `Its ${item.genre.toLowerCase()} genre brings the sense of adventure you picked.`;
+    }
+    if (mood === "adventurous" && item.genre === "Fantasy") {
+        return "Its story cues point to a journey, exploration, or quest.";
+    }
+    if (mood === "romantic" && (item.genre === "Romance" || /romance|love|lovers|relationship|wedding|couple|fall for/.test(textOf(item)))) {
+        return item.genre === "Romance" ? "A romance pick for a night centered on matters of the heart." : "Its story details point to love or a relationship.";
+    }
+    if (mood === "spooky" && (item.genre === "Horror" || /ghost|haunt|haunted|demon|nightmare|supernatural|monster|vampire|witch|curse/.test(textOf(item)))) {
+        return item.genre === "Horror" ? "Its horror genre fits the eerie mood you picked." : "Its story includes an eerie or supernatural cue.";
+    }
+    if (mood === "mindbending" && (["Sci-Fi", "Mystery"].includes(item.genre) || /time loop|time travel|dream|reality|parallel|memory|identity|simulation|consciousness|twist/.test(textOf(item)))) {
+        return ["Sci-Fi", "Mystery"].includes(item.genre) ? `Its ${item.genre} genre is a natural fit for a mind-bending pick.` : "Its story includes a puzzle, twist, or reality-bending cue.";
+    }
+    if (mood === "uplifted" && ["Comedy", "Animation", "Adventure"].includes(item.genre)) {
+        return `Its ${item.genre.toLowerCase()} genre suits a brighter, more uplifting night.`;
+    }
+    if (mood === "thoughtful" && ["Drama", "Documentary", "Mystery"].includes(item.genre)) {
+        return `Its ${item.genre.toLowerCase()} genre leaves room for reflection.`;
+    }
+    return `Tagged for ${moodName} in the CineVerse mood guide.`;
 }
 
 const searchInput = document.getElementById("movie-search");
@@ -4223,7 +4254,7 @@ function renderWatchlist() {
         return;
     }
 
-    watchlistGrid.innerHTML = savedTitles.map(createMovieCard).join("");
+    watchlistGrid.innerHTML = savedTitles.map(item => createMovieCard(item, false)).join("");
 }
 
 function saveIds(storageKey, ids) {
@@ -4349,7 +4380,7 @@ function openMovieModal(itemId) {
     if (!item) return;
 
     modalContent.innerHTML = `
-        ${item.poster ? `<img class="modal-poster" src="${item.poster}" alt="Movie poster for ${item.title}">` : `<div class="modal-poster poster-unavailable" role="img" aria-label="Official poster not added for ${item.title}"><span>Poster not added yet</span><small>${item.title}</small></div>`}
+        ${item.poster ? `<img class="modal-poster" src="${item.poster}" alt="Movie poster for ${item.title}" data-title="${item.title}">` : `<div class="modal-poster poster-unavailable" role="img" aria-label="Official poster not added for ${item.title}"><span>Poster not added yet</span><small>${item.title}</small></div>`}
         <div class="modal-details">
             <span class="section-kicker">${tvShows.includes(item) ? "TV show details" : "Movie details"}</span>
             <h2 id="modal-title">${item.title}</h2>
@@ -4373,7 +4404,7 @@ document.querySelectorAll(".movie-grid").forEach(grid => {
     grid.addEventListener("click", event => {
         const favoriteButton = event.target.closest(".favorite-button");
         const watchlistButton = event.target.closest(".watchlist-button");
-        const openButton = event.target.closest(".movie-open");
+        const openButton = event.target.closest(".movie-open, .movie-title-open");
 
         if (favoriteButton) {
             toggleFavorite(favoriteButton.dataset.itemId);
