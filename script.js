@@ -1,5 +1,5 @@
 ﻿// Curated local movie data keeps the project simple and independent of a movie API.
-// Static catalog: 125 Indian movies and 125 Hollywood (US, English-language) movies.
+// Static catalog: 125 Hindi-language Indian films, 20 Telugu films, and 125 US English-language films.
 const movies = [
     {
         "title": "The Godfather",
@@ -3978,6 +3978,106 @@ const movies = [
         "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/0/06/Aarti62.jpg/250px-Aarti62.jpg",
         "runtime": "156 min",
         "id": 1249
+    },
+    {
+        "title": "Baahubali: The Beginning", "year": 2015, "rating": 8.1, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "In ancient India, an adventurous and daring man becomes involved in a decades-old feud between two warring peoples.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Baahubali_The_Beginning_poster.jpg?width=500", "runtime": "159 min", "id": 1300
+    },
+    {
+        "title": "Baahubali 2: The Conclusion", "year": 2017, "rating": 8.2, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "When Shiva, the son of Baahubali, learns about his heritage, he seeks answers about the events that unfolded in the Mahishmati Kingdom.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Baahubali_2_The_Conclusion_poster.jpg?width=500", "runtime": "167 min", "id": 1301
+    },
+    {
+        "title": "Bharat Ane Nenu", "year": 2018, "rating": 7.7, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "After his father's death, a young graduate unexpectedly becomes chief minister and takes on the challenge of reforming society.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Bharat_Ane_Nenu_poster.jpg?width=500", "runtime": "173 min", "id": 1302
+    },
+    {
+        "title": "Dookudu", "year": 2011, "rating": 7.4, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "An undercover police officer pursues a dangerous crime boss with whom he has a personal score to settle.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Dookudu_poster.jpg?width=500", "runtime": "170 min", "id": 1303
+    },
+    {
+        "title": "Eega", "year": 2012, "rating": 7.7, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "A murdered man is reborn as a housefly and sets out to avenge his death.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Eega_poster.jpg?width=500", "runtime": "145 min", "id": 1304
+    },
+    {
+        "title": "Magadheera", "year": 2009, "rating": 7.6, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "A stunt rider recalls a past life as a warrior and pursues the reincarnation of the woman he loved.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Magadheera_Poster.jpg?width=500", "runtime": "166 min", "id": 1305
+    },
+    {
+        "title": "Saaho", "year": 2019, "rating": 5.2, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "An undercover officer is drawn into a battle between rival criminals chasing a mysterious black box.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Saaho_poster.jpg?width=500", "runtime": "170 min", "id": 1306
+    },
+    {
+        "title": "Athadu", "year": 2005, "rating": 8.2, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "A hired gun is framed for murder and takes on the identity of a man who died in the same incident.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Athadu_Poster.jpg?width=500", "runtime": "172 min", "id": 1307
+    },
+    {
+        "title": "Bommarillu", "year": 2006, "rating": 8.2, "genre": "Comedy", "language": "Telugu", "region": "India",
+        "description": "A young man pushes back against his overbearing father as he tries to shape a life and relationship of his own.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Bommarillu_poster.jpg?width=500", "runtime": "170 min", "id": 1308
+    },
+    {
+        "title": "Khaleja", "year": 2010, "rating": 7.5, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "When a mysterious illness strikes a remote village, its people look to a reluctant taxi driver for help.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Mahesh_khaleja_poster.jpg?width=500", "runtime": "170 min", "id": 1309
+    },
+    {
+        "title": "Mahanati", "year": 2018, "rating": 8.5, "genre": "Drama", "language": "Telugu", "region": "India",
+        "description": "A biographical drama about the life and career of celebrated South Indian actor Savitri.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Mahanati_poster.jpg?width=500", "runtime": "177 min", "id": 1310
+    },
+    {
+        "title": "Okkadu", "year": 2003, "rating": 8.0, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "A kabaddi player helps a young woman escape an unwanted marriage and hides her from the powerful man pursuing her.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Okkadu_poster.jpg?width=500", "runtime": "170 min", "id": 1311
+    },
+    {
+        "title": "Pokiri", "year": 2006, "rating": 7.9, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "A ruthless local gangster draws the anger of his girlfriend, a corrupt police officer, and a powerful crime boss.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Pokiri_movie_poster.jpg?width=500", "runtime": "164 min", "id": 1312
+    },
+    {
+        "title": "Evaru", "year": 2019, "rating": 8.2, "genre": "Crime", "language": "Telugu", "region": "India",
+        "description": "A sub-inspector investigates the killing of a senior officer and uncovers unexpected facts about the case.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Evaru_Poster.jpg?width=500", "runtime": "118 min", "id": 1313
+    },
+    {
+        "title": "Fidaa", "year": 2017, "rating": 7.5, "genre": "Drama", "language": "Telugu", "region": "India",
+        "description": "Two people from different worlds navigate family expectations and the challenges of their relationship.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Fidaa_poster.jpg?width=500", "runtime": "144 min", "id": 1314
+    },
+    {
+        "title": "Kshanam", "year": 2016, "rating": 8.3, "genre": "Thriller", "language": "Telugu", "region": "India",
+        "description": "An NRI returns to India to help an ex-girlfriend find her missing daughter, only to find the clues do not add up.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Kshanam_poster.jpg?width=500", "runtime": "110 min", "id": 1315
+    },
+    {
+        "title": "Nannaku Prematho", "year": 2016, "rating": 7.6, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "An intelligent son sets out to take revenge on the powerful businessman who ruined his father's life.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Nannaku_Prematho_poster.jpg?width=500", "runtime": "168 min", "id": 1316
+    },
+    {
+        "title": "Pelli Choopulu", "year": 2016, "rating": 8.2, "genre": "Comedy", "language": "Telugu", "region": "India",
+        "description": "A carefree young man and an ambitious woman meet through an arranged-match setup and team up to pursue a food-truck business.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Pelli_Choopulu_poster.jpg?width=500", "runtime": "125 min", "id": 1317
+    },
+    {
+        "title": "Race Gurram", "year": 2014, "rating": 7.2, "genre": "Action", "language": "Telugu", "region": "India",
+        "description": "Two brothers with opposite approaches to life find themselves on different sides of a fight against a criminal politician.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Race_Gurram_%28film%29_poster.jpg?width=500", "runtime": "163 min", "id": 1318
+    },
+    {
+        "title": "Agent Sai Srinivasa Athreya", "year": 2019, "rating": 8.5, "genre": "Crime", "language": "Telugu", "region": "India",
+        "description": "A small-town detective from Nellore investigates a case that leads him into a much larger mystery.",
+        "poster": "https://en.wikipedia.org/wiki/Special:FilePath/Agent_Sai_Srinivasa_Athreya_poster.jpg?width=500", "runtime": "148 min", "id": 1319
     }
 ];
 

@@ -35,8 +35,8 @@
             display: block;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, #b8792e, var(--accent), #ffe0a0);
-            box-shadow: 0 0 9px rgba(240, 184, 75, .45);
+            background: linear-gradient(90deg, #6f0015, #a3001b, #c1122f);
+            box-shadow: none;
             transform: scaleX(0);
             transform-origin: left center;
             will-change: transform;
