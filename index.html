@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pick a movie by mood, then explore 270 Indian and Hollywood films by genre and language.">
+    <meta name="description" content="Pick a movie by mood, then explore 450 Indian and Hollywood films by genre and language.">
     <title>CineVerse | Discover Stories Worth Watching</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -109,7 +109,7 @@
                     </div>
                     <p id="mood-results-caption">Curated stories for tonight</p>
                 </div>
-                <p class="catalog-note">270 films: 125 Hindi-language Indian + 20 Telugu + 125 English-language US.</p>
+                <p class="catalog-note">450 films: 125 Hindi-language Indian + 200 Telugu + 125 English-language US.</p>
                 <div class="movie-grid" id="trending-movies"></div>
             </div>
         </section>
@@ -137,15 +137,15 @@
                 </div>
                 <div class="about-details">
                     <div class="about-stat">
-                        <span class="about-stat-number">270</span>
+                        <span class="about-stat-number">450</span>
                         <span class="about-stat-label">films to explore</span>
                     </div>
                     <div class="about-stat about-stat-alt">
                         <span class="about-stat-number">11</span>
                         <span class="about-stat-label">ways to find your mood</span>
                     </div>
-                    <p class="about-collection">Our current collection includes 125 Hindi-language Indian films, 20 Telugu films, and 125 English-language films from the United States, across genres from drama and comedy to animation, mystery, and science fiction.</p>
-                    <p class="about-source">Movie information and poster links are credited to <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, the <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>, the <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank" rel="noreferrer">TeluguMovies dataset</a>, and Wikipedia-hosted poster files. Where-to-watch searches open <a href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>, where current availability can be checked. CineVerse is an independent college project and is not endorsed by TMDB.</p>
+                    <p class="about-collection">Our current collection includes 125 Hindi-language Indian films, 200 Telugu films, and 125 English-language films from the United States, across genres and decades.</p>
+                    <p class="about-source">Movie information and poster links are credited to <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, the <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>, the <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank" rel="noreferrer">TeluguMovies dataset</a>, and the <a href="https://huggingface.co/datasets/ROSCOSMOS/Movie-Poster-WebURL-Dataset-1874-2025" target="_blank" rel="noreferrer">TMDB-derived movie and poster dataset</a>. Where-to-watch searches open <a href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>, where current availability can be checked. CineVerse is an independent college project and is not endorsed by TMDB.</p>
                 </div>
             </div>
         </section>
@@ -155,7 +155,7 @@
         <div class="container footer-content">
             <p class="footer-brand">CineVerse</p>
             <p>Made for movie lovers. &copy; 2026 CineVerse.</p>
-            <p class="attribution">Movie data and poster images: <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>, <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank" rel="noreferrer">TeluguMovies dataset</a>, and Wikipedia-hosted poster files. Availability searches go to <a href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>. CineVerse is not endorsed or certified by TMDB.</p>
+            <p class="attribution">Movie data and poster images: <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>, <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank" rel="noreferrer">TeluguMovies dataset</a>, and the <a href="https://huggingface.co/datasets/ROSCOSMOS/Movie-Poster-WebURL-Dataset-1874-2025" target="_blank" rel="noreferrer">TMDB-derived movie and poster dataset</a>. Availability searches go to <a href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>. CineVerse is not endorsed or certified by TMDB.</p>
         </div>
     </footer>
     <dialog class="movie-modal" id="movie-modal" aria-labelledby="modal-title">
@@ -164,6 +164,7 @@
     </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top" hidden>&#8593;</button>
+    <script src="telugu-movies.js"></script>
     <script src="script.js"></script>
 </body>
 

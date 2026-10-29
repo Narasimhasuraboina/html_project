@@ -1,5 +1,5 @@
 ﻿// Curated local movie data keeps the project simple and independent of a movie API.
-// Static catalog: 125 Hindi-language Indian films, 20 Telugu films, and 125 US English-language films.
+// Static catalog: 125 Hindi-language Indian films, 200 Telugu films, and 125 US English-language films.
 const movies = [
     {
         "title": "The Godfather",
@@ -984,6 +984,7 @@ const movies = [
             "thrilled"
         ],
         "description": "Story of a young woman who marries a fascinating widower only to find out that she must live in the shadow of his former wife, Rebecca, who died mysteriously several years earlier. The young wife must come to grips with the terrible secret ",
+        "whyWatch": "Watch a new bride try to make a life in a house still ruled by her husband's first wife. Rebecca's lingering presence turns an intimate marriage story into a quietly unsettling mystery.",
         "poster": "https://image.tmdb.org/t/p/w500/1qz3qUOHnVy7dL7M7G8jSErxE4b.jpg",
         "id": 1061,
         "runtime": "130 min"
@@ -4081,6 +4082,9 @@ const movies = [
     }
 ];
 
+// Keep the larger Telugu collection in its own source file for easier maintenance.
+movies.push(...(window.additionalTeluguMovies || []));
+
 const tvShows = [
     {
         id: 101,
@@ -4231,7 +4235,7 @@ function createMovieCard(item, showMoodReason = true) {
             <div class="movie-card-content">
                 <div class="movie-card-topline">
                     <span class="movie-genre">${item.genre}</span>
-                    <span class="card-rating" aria-label="Rating ${item.rating} out of 10">&#9733; ${item.rating}</span>
+                    ${Number.isFinite(Number(item.rating)) && Number(item.rating) > 0 ? `<span class="card-rating" aria-label="Rating ${item.rating} out of 10">&#9733; ${item.rating}</span>` : `<span class="card-rating rating-unavailable">Rating not listed</span>`}
                 </div>
                 <h3><button class="movie-title-open" type="button" data-item-id="${item.id}">${item.title}</button></h3>
                 <span class="movie-language">${item.language} <span aria-hidden="true">&#183;</span> ${item.region}</span>
@@ -4474,6 +4478,33 @@ const movieModal = document.getElementById("movie-modal");
 const modalContent = document.getElementById("modal-content");
 const closeModalButton = movieModal.querySelector(".modal-close");
 
+const plotSpecificReasons = [
+    [/former wife|first wife|widow|widower|dead wife|shadow of his former wife/i, "a new bride trying to build a life under the shadow of her husband's first wife"],
+    [/revenge|avenge/i, "the personal cost of a revenge mission"],
+    [/detective|investigat|murder|murdered|killed/i, "an investigation where each new clue changes the case"],
+    [/missing|kidnap|abduct|disappear/i, "the urgent search for someone who has vanished"],
+    [/family|father|mother|son|daughter|brother|sister/i, "family relationships tested by the story's central conflict"],
+    [/love|romance|relationship|couple|lovers/i, "a relationship shaped by the characters' choices"],
+    [/journey|quest|explor|travel/i, "a journey that pushes its characters into unfamiliar territory"],
+    [/surviv|escape|trapped/i, "characters forced to find a way through a dangerous situation"],
+    [/war|battle|soldier/i, "the human stakes behind a larger conflict"],
+    [/dream|memory|reality|identity/i, "the uncertainty around what is real and who to trust"],
+    [/ghost|haunt|haunted|supernatural|demon|monster/i, "the way an eerie presence disrupts ordinary life"],
+    [/actor|artist|musician|singer|career|performer/i, "the personal sacrifices behind a creative life"]
+];
+
+function getWhyWatchReason(item) {
+    if (item.whyWatch) return item.whyWatch;
+
+    const synopsis = String(item.description || "").replace(/\s+/g, " ").trim();
+    const storyAngle = plotSpecificReasons.find(([pattern]) => pattern.test(synopsis))?.[1];
+    if (storyAngle) return `The film's draw is ${storyAngle}.`;
+
+    const premise = synopsis.replace(/^story of\s+/i, "").split(/(?<=[.!?])\s+/u)[0];
+    if (premise) return `Its central premise is what makes this film distinctive: ${premise}`;
+    return "Open the details to explore this film's story and mood tags.";
+}
+
 function openMovieModal(itemId) {
     const item = allTitles.find(title => title.id === Number(itemId));
 
@@ -4487,14 +4518,18 @@ function openMovieModal(itemId) {
             <span class="section-kicker">${tvShows.includes(item) ? "TV show details" : "Movie details"}</span>
             <h2 id="modal-title">${item.title}</h2>
             <div class="modal-meta">
-                <span class="card-rating">&#9733; ${item.rating}</span>
+                ${Number.isFinite(Number(item.rating)) && Number(item.rating) > 0 ? `<span class="card-rating">&#9733; ${item.rating}</span>` : `<span class="card-rating rating-unavailable">Rating not listed</span>`}
                 <span>${item.year}</span>
                 <span>${item.genre}</span>
                 <span>${item.language}</span>
                 <span>${item.region}</span>
                 <span>${item.runtime || runtimes[item.id] || "Runtime not listed"}</span>
             </div>
-            <p>${item.description}</p>
+            <section class="why-watch" aria-labelledby="why-watch-title">
+                <h3 id="why-watch-title">Why watch this?</h3>
+                <p>${getWhyWatchReason(item)}</p>
+            </section>
+            <p class="modal-synopsis">${item.description}</p>
             <div class="where-to-watch">
                 <span class="where-to-watch-label">Where to watch in India</span>
                 <p>Streaming, rental, and purchase options can change. Check the current listings before you choose.</p>
