@@ -4394,6 +4394,7 @@ movieModal.addEventListener("click", event => {
 
 const themeToggle = document.getElementById("theme-toggle");
 const backToTopButton = document.getElementById("back-to-top");
+const readingProgressFill = document.getElementById("reading-progress-fill");
 const quoteElement = document.getElementById("movie-quote");
 const quoteButton = document.getElementById("next-quote");
 const originalMovieQuotes = [
@@ -4600,8 +4601,25 @@ function updateBackToTopVisibility() {
     backToTopButton.hidden = window.scrollY < 480;
 }
 
-window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
+let progressUpdateQueued = false;
+function updateScrollProgress() {
+    if (progressUpdateQueued) return;
+    progressUpdateQueued = true;
+    window.requestAnimationFrame(() => {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+        readingProgressFill.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+        progressUpdateQueued = false;
+    });
+}
+
+window.addEventListener("scroll", () => {
+    updateBackToTopVisibility();
+    updateScrollProgress();
+}, { passive: true });
+window.addEventListener("resize", updateScrollProgress, { passive: true });
 updateBackToTopVisibility();
+updateScrollProgress();
 
 backToTopButton.addEventListener("click", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
