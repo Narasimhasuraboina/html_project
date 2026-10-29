@@ -4479,6 +4479,8 @@ function openMovieModal(itemId) {
 
     if (!item) return;
 
+    const watchSearchUrl = `https://www.justwatch.com/in/search?q=${encodeURIComponent(`${item.title} ${item.year}`)}`;
+
     modalContent.innerHTML = `
         ${item.poster ? `<img class="modal-poster" src="${item.poster}" alt="Movie poster for ${item.title}" data-title="${item.title}">` : `<div class="modal-poster poster-unavailable" role="img" aria-label="Official poster not added for ${item.title}"><span>Poster not added yet</span><small>${item.title}</small></div>`}
         <div class="modal-details">
@@ -4493,6 +4495,13 @@ function openMovieModal(itemId) {
                 <span>${item.runtime || runtimes[item.id] || "Runtime not listed"}</span>
             </div>
             <p>${item.description}</p>
+            <div class="where-to-watch">
+                <span class="where-to-watch-label">Where to watch in India</span>
+                <p>Streaming, rental, and purchase options can change. Check the current listings before you choose.</p>
+                <a class="watch-options-link" href="${watchSearchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Check where to watch ${item.title} in India on JustWatch">
+                    Check JustWatch <span aria-hidden="true">&#8599;</span>
+                </a>
+            </div>
         </div>
     `;
 

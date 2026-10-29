@@ -601,6 +601,36 @@
             color: #c2c8d2;
         }
 
+        .where-to-watch {
+            margin-top: 22px;
+            padding: 17px 18px;
+            border: 1px solid rgba(240, 184, 75, .28);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            background: linear-gradient(110deg, rgba(240, 184, 75, .11), rgba(240, 184, 75, .035));
+        }
+
+        .where-to-watch-label { color: var(--text); font-weight: 700; }
+        .where-to-watch p { margin: 4px 0 13px; color: var(--muted); font-size: .82rem; line-height: 1.5; }
+        .watch-options-link {
+            display: inline-flex;
+            min-height: 38px;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 13px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            background: var(--accent);
+            color: #17130a;
+            font-size: .84rem;
+            font-weight: 700;
+        }
+        .watch-options-link:hover { background: #ffd071; }
+        .watch-options-link:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+        body.light-theme .where-to-watch { background: linear-gradient(110deg, rgba(218, 167, 75, .14), rgba(218, 167, 75, .045)); }
+        body.light-theme .where-to-watch p { color: #596273; }
+
         @keyframes modal-enter {
             from { opacity: 0; transform: translateY(12px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
