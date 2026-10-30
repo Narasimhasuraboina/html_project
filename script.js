@@ -42,7 +42,8 @@ const movies = [
         "region": "United States",
         "mood": [
             "wonder",
-            "cozy"
+            "thoughtful",
+            "weepy"
         ],
         "description": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tri",
         "poster": "https://image.tmdb.org/t/p/w500/8VG8fDNiy50H4FedGwdSVUPoaJe.jpg",
@@ -152,7 +153,7 @@ const movies = [
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "mindbending",
             "thrilled"
         ],
         "description": "Leonard Shelby is tracking down the man who raped and murdered his wife. The difficulty of locating his wife's killer, however, is compounded by the fact that he suffers from a rare, untreatable form of short-term memory loss. Although he c",
@@ -185,7 +186,7 @@ const movies = [
         "region": "United States",
         "mood": [
             "cozy",
-            "weepy"
+            "romantic"
         ],
         "description": "Overwhelmed by her suffocating schedule, touring European princess Ann takes off for a night while in Rome. When a sedative she took from her doctor kicks in, however, she falls asleep on a park bench and is found by an American reporter, J",
         "poster": "https://image.tmdb.org/t/p/w500/8lI9dmz1RH20FAqltkGelY1v4BE.jpg",
@@ -296,7 +297,7 @@ const movies = [
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "thoughtful",
             "uplifted"
         ],
         "description": "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime.",
@@ -359,7 +360,7 @@ const movies = [
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "mindbending",
             "thrilled"
         ],
         "description": "A retired San Francisco detective suffering from acrophobia investigates the strange activities of an old friend's wife, all the while becoming dangerously obsessed with her.",
@@ -391,8 +392,9 @@ const movies = [
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
-            "weepy"
+            "romantic",
+            "thrilled",
+            "thoughtful"
         ],
         "description": "In order to help bring Nazis to justice, U.S. government agent T.R. Devlin recruits Alicia Huberman, the American daughter of a convicted German war criminal, as a spy. As they begin to fall for one another, Alicia is instructed to win the ",
         "poster": "https://image.tmdb.org/t/p/w500/4RERYb1NIQrJHYY5e8nUlYM7t2z.jpg",
@@ -456,7 +458,8 @@ const movies = [
         "region": "United States",
         "mood": [
             "wonder",
-            "cozy"
+            "mindbending",
+            "spooky"
         ],
         "description": "After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a large bunny rabbit that manipulates him to commit a series of crimes.",
         "poster": "https://image.tmdb.org/t/p/w500/j2AtZFsflxiluaNtajMTI0Avm8C.jpg",
@@ -566,7 +569,7 @@ const movies = [
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "thoughtful",
             "thrilled"
         ],
         "description": "Newspaper magnate Charles Foster Kane is taken from his mother as a boy and made the ward of a rich industrialist. As a result, every well-meaning, tyrannical or self-destructive move he makes for the rest of his life appears in some way to",
@@ -594,17 +597,17 @@ const movies = [
         "title": "What's Eating Gilbert Grape",
         "year": 1993,
         "rating": 7.66,
-        "genre": "Romance",
+        "genre": "Drama",
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "thoughtful",
             "weepy"
         ],
-        "description": "Gilbert Grape is a small-town young man with a lot of responsibility. Chief among his concerns are his mother, who is so overweight that she can't leave the house, and his mentally impaired younger brother, Arnie, who has a knack for findin",
+        "description": "Gilbert Grape supports his family while caring for his brother Arnie. When Becky arrives in town, he begins to imagine a life beyond his responsibilities.",
         "poster": "https://image.tmdb.org/t/p/w500/8FxWgsfDNosewo7H65oE4QkOb7g.jpg",
         "id": 1037,
-        "runtime": "118 min"
+        "runtime": "117 min"
     },
     {
         "title": "Bob Dylan – Don't Look Back",
@@ -773,7 +776,7 @@ const movies = [
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "spooky",
             "thrilled"
         ],
         "description": "Following an unexpected tragedy, child psychologist Malcolm Crowe meets a nine year old boy named Cole Sear, who is hiding a dark secret.",
@@ -1009,17 +1012,18 @@ const movies = [
         "title": "Cinderella Man",
         "year": 2005,
         "rating": 7.58,
-        "genre": "Romance",
+        "genre": "Drama",
         "language": "English",
         "region": "United States",
         "mood": [
-            "cozy",
+            "uplifted",
+            "thoughtful",
             "weepy"
         ],
         "description": "The true story of boxer Jim Braddock who, following his retirement in the 1930s, makes a surprise comeback in order to lift his family out of poverty.",
         "poster": "https://image.tmdb.org/t/p/w500/wkeOjIcpuqLMW4GnVowlM9VI0JE.jpg",
         "id": 1063,
-        "runtime": "144 min"
+        "runtime": "145 min"
     },
     {
         "title": "A Brief History of Time",
@@ -1628,14 +1632,15 @@ const movies = [
     },
     {
         "title": "The African Queen",
-        "year": 1952,
+        "year": 1951,
         "rating": 7.342,
-        "genre": "Romance",
+        "genre": "Adventure",
         "language": "English",
-        "region": "United States",
+        "region": "United States / United Kingdom",
         "mood": [
-            "cozy",
-            "weepy"
+            "adventurous",
+            "romantic",
+            "thrilled"
         ],
         "description": "At the start of the First World War, in the middle of Africa’s nowhere, a gin soaked riverboat captain is persuaded by a strong-willed missionary to go down river and face-off a German warship.",
         "poster": "https://image.tmdb.org/t/p/w500/2Ypg0KhQfFYWILelvHGtSHHR0dk.jpg",
@@ -1837,14 +1842,14 @@ const movies = [
         "title": "Snow Cake",
         "year": 2006,
         "rating": 7.119,
-        "genre": "Romance",
+        "genre": "Drama",
         "language": "English",
-        "region": "United States",
+        "region": "Canada / United Kingdom",
         "mood": [
-            "cozy",
+            "thoughtful",
             "weepy"
         ],
-        "description": "A drama focused on the friendship between a high-functioning autistic woman and a man who is traumatized after a fatal car accident.",
+        "description": "After a fatal road accident, Alex visits the victim's mother, Linda, and finds himself drawn into her life. Their growing bond forces him to confront the past and consider how to move forward.",
         "poster": "https://image.tmdb.org/t/p/w500/dzKNKUqaDu9JCUmjhuoDd8KQBBs.jpg",
         "id": 1115,
         "runtime": "112 min"
@@ -1995,15 +2000,16 @@ const movies = [
     {
         "title": "Family of Thakurganj",
         "year": 2019,
-        "rating": 9.4,
+        "rating": 5.3,
+        "ratingSource": "IMDb",
         "genre": "Action",
         "language": "Hindi",
         "region": "India",
         "mood": [
-            "thrilled",
-            "wonder"
+            "thoughtful",
+            "thrilled"
         ],
-        "description": "The film is based on small town of North India. Film's story is about confrontation of love and thoughts. Along with entertainment.",
+        "description": "In a small North Indian town, two brothers choose very different paths. As power, politics, and violence close in, their conflict tests whether they can stand together for justice.",
         "poster": "https://upload.wikimedia.org/wikipedia/en/9/99/Family_of_Thakurganj.jpg",
         "runtime": "127 min",
         "id": 1125
@@ -2187,16 +2193,17 @@ const movies = [
         "title": "Aalaap (film)",
         "year": 2012,
         "rating": 5.8,
-        "genre": "Sci-Fi",
+        "genre": "Drama",
         "language": "Hindi",
         "region": "India",
         "mood": [
-            "wonder",
-            "thoughtful"
+            "uplifted",
+            "thoughtful",
+            "adventurous"
         ],
-        "description": "Artdirector Md asdulla khan",
+        "description": "A rock band of four college students reaches a village controlled by Maoists. Rather than answer violence with violence, they try to use music to change minds and bring people together.",
         "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/AALAAP.jpg/250px-AALAAP.jpg",
-        "runtime": "116 min",
+        "runtime": "118 min",
         "id": 1137
     },
     {
@@ -2696,14 +2703,14 @@ const movies = [
         "title": "Parda Hai Parda (film)",
         "year": 1992,
         "rating": 7.9,
-        "genre": "Romance",
+        "genre": "Drama",
         "language": "Hindi",
         "region": "India",
         "mood": [
-            "cozy",
-            "weepy"
+            "thoughtful",
+            "thrilled"
         ],
-        "description": "Four friends try to woo a girl next door.",
+        "description": "Four friends befriend a new girl in their neighborhood after her brother is murdered over a bag. They investigate the bag together and uncover the mystery behind his death.",
         "poster": "https://upload.wikimedia.org/wikipedia/en/5/59/Parda_Hai_Parda_poster.jpg",
         "runtime": "128 min",
         "id": 1169
@@ -2855,14 +2862,14 @@ const movies = [
         "title": "Vandana (film)",
         "year": 1975,
         "rating": 7.5,
-        "genre": "Fantasy",
+        "genre": "Drama",
         "language": "Hindi",
         "region": "India",
         "mood": [
-            "wonder",
-            "cozy"
+            "thoughtful",
+            "weepy"
         ],
-        "description": "Add a Plot »",
+        "description": "After prison leaves Rekha separated from her family, she hides her release when her husband's financial crisis leads him toward another marriage. She sacrifices her own chance at happiness to protect her children and husband.",
         "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Vandana_%281975_film%29.jpg/250px-Vandana_%281975_film%29.jpg",
         "runtime": "",
         "id": 1179
@@ -2871,14 +2878,14 @@ const movies = [
         "title": "Sant Gyaneshwar",
         "year": 1964,
         "rating": 7.8,
-        "genre": "Romance",
+        "genre": "Drama",
         "language": "Hindi",
         "region": "India",
         "mood": [
-            "cozy",
-            "weepy"
+            "thoughtful",
+            "wonder"
         ],
-        "description": "Add a Plot »",
+        "description": "A young Dnyaneshwar faces religious persecution after his family is ostracized, then preaches equality and earns recognition through acts described as miracles. The devotional biography follows his spiritual mission and short life.",
         "poster": "https://upload.wikimedia.org/wikipedia/en/9/9d/Santgyaneswar.jpg",
         "runtime": "",
         "id": 1180
@@ -4176,7 +4183,6 @@ const allTitles = [featuredTitle, ...movies, ...tvShows];
 allTitles.forEach(item => {
     if (!item.language) item.language = "English";
     if (!item.region) item.region = "United States";
-    if (!item.mood) item.mood = ["cozy", "uplifted", "thrilled", "thoughtful", "wonder", "weepy"];
 });
 
 const WATCHLIST_KEY = "cineVerseWatchlist";
@@ -4195,10 +4201,10 @@ function loadSavedIds(storageKey) {
 let watchlistIds = loadSavedIds(WATCHLIST_KEY);
 let favoriteIds = loadSavedIds(FAVORITES_KEY);
 const moodDefaults = {
-    Action: ["thrilled", "wonder"], Adventure: ["wonder", "uplifted"], Animation: ["wonder", "cozy"],
-    Comedy: ["cozy", "uplifted"], Crime: ["thrilled", "thoughtful"], Documentary: ["thoughtful", "wonder"],
-    Drama: ["thoughtful", "weepy"], Fantasy: ["wonder", "cozy"], Horror: ["thrilled"],
-    Mystery: ["cozy", "thrilled"], Romance: ["cozy", "weepy"], "Sci-Fi": ["wonder", "thoughtful"],
+    Action: ["thrilled", "wonder"], Adventure: ["wonder", "uplifted"], Animation: ["wonder"],
+    Comedy: ["uplifted"], Crime: ["thrilled", "thoughtful"], Documentary: ["thoughtful", "wonder"],
+    Drama: ["thoughtful"], Fantasy: ["wonder"], Horror: ["thrilled"],
+    Mystery: ["thrilled", "thoughtful"], Romance: ["romantic"], "Sci-Fi": ["wonder", "thoughtful"],
     Thriller: ["thrilled", "thoughtful"]
 };
 movies.forEach(item => {
@@ -4207,8 +4213,13 @@ movies.forEach(item => {
 tvShows.forEach(item => {
     if (!item.mood) item.mood = moodDefaults[item.genre] || ["thoughtful"];
 });
+// A mystery can be thoughtful or tense, but its genre alone does not make it cozy.
+[...movies, ...tvShows].forEach(item => {
+    if (item.genre === "Mystery") item.mood = item.mood.filter(mood => mood !== "cozy");
+});
 
 const textOf = item => `${item.title} ${item.description}`.toLowerCase();
+const formatRating = rating => Number(rating).toFixed(1);
 const extraMoodRules = {
     adventurous: item => ["Action", "Adventure", "Animation"].includes(item.genre) || (item.genre === "Fantasy" && /quest|journey|adventure|expedition|explore|travel/.test(textOf(item))),
     romantic: item => item.genre === "Romance" || /romance|love|lovers|relationship|wedding|couple|fall for/.test(textOf(item)),
@@ -4235,7 +4246,7 @@ function createMovieCard(item, showMoodReason = true) {
             <div class="movie-card-content">
                 <div class="movie-card-topline">
                     <span class="movie-genre">${item.genre}</span>
-                    ${Number.isFinite(Number(item.rating)) && Number(item.rating) > 0 ? `<span class="card-rating" aria-label="Rating ${item.rating} out of 10">&#9733; ${item.rating}</span>` : `<span class="card-rating rating-unavailable">Rating not listed</span>`}
+                    ${Number.isFinite(Number(item.rating)) && Number(item.rating) > 0 ? `<span class="card-rating" aria-label="Rating ${formatRating(item.rating)} out of 10${item.ratingSource ? ` from ${item.ratingSource}` : ""}">&#9733; ${item.ratingSource ? `${item.ratingSource} ` : ""}${formatRating(item.rating)}</span>` : ""}
                 </div>
                 <h3><button class="movie-title-open" type="button" data-item-id="${item.id}">${item.title}</button></h3>
                 <span class="movie-language">${item.language} <span aria-hidden="true">&#183;</span> ${item.region}</span>
@@ -4272,14 +4283,44 @@ function renderMovies(items, containerId) {
     }
 
     const visibleItems = items.slice(0, visibleMovieCount);
-    container.innerHTML = visibleItems.map(createMovieCard).join("");
+    container.innerHTML = visibleItems.map(item => createMovieCard(item)).join("");
     if (items.length > visibleItems.length) {
         container.insertAdjacentHTML("beforeend", `<button class="load-more-button" type="button" data-load-more>Load ${Math.min(CATALOG_PAGE_SIZE, items.length - visibleItems.length)} more (${visibleItems.length} of ${items.length})</button>`);
     }
 }
 
+const moodLabels = {
+    cozy: "a cozy night", uplifted: "an uplifting night", thrilled: "a thrilling night",
+    thoughtful: "a thoughtful mood", wonder: "a sense of wonder", weepy: "a good cry",
+    adventurous: "an adventure", romantic: "a romantic night", spooky: "a spooky night",
+    mindbending: "a mind-bending story", nostalgic: "a nostalgic night"
+};
+
 function getMoodReason(item, mood) {
     const moodName = mood.replace(/\b\w/g, letter => letter.toUpperCase());
+    const specificMoodReasons = {
+        "Forrest Gump|cozy": "Forrest's gentle outlook and the people he meets give this decades-spanning story a warm center, even as life brings real heartbreak.",
+        "Monsters, Inc.|cozy": "Sulley and Mike's growing bond with Boo turns a scream-powered factory into a funny story about friendship and kindness.",
+        "Roman Holiday|cozy": "A princess trades her formal schedule for one carefree day in Rome and an easygoing connection with a reporter.",
+        "Toy Story|cozy": "Woody and Buzz's rivalry gives way to an adventure about friendship, play, and finding your place.",
+        "Finding Nemo|cozy": "Marlin's determined search for Nemo is softened by Dory's warmth and humor, keeping this ocean adventure rooted in family.",
+        "City Lights|cozy": "The Tramp's efforts to help a blind flower seller turn this silent comedy into a tender story about kindness.",
+        "Shrek|cozy": "Beneath the fairy-tale jokes, Shrek and Donkey's unlikely friendship gives this adventure a warm-hearted center.",
+        "The Apartment|cozy": "Baxter's choice to stand by Fran gives this city comedy a tender, human center beneath its office satire.",
+        "Aladdin|cozy": "A street kid, a runaway princess, and a wish-granting genie make this a playful fairy-tale escape.",
+        "Groundhog Day|cozy": "Phil's repeated day in Punxsutawney gradually becomes a warm comedy about paying attention to the people around him.",
+        "Singin' in the Rain|cozy": "The backstage chaos of Hollywood's switch to talkies keeps this romance light, funny, and full of performance.",
+        "Toy Story 2|cozy": "The toys' rescue mission and Woody's bond with the gang make this a playful story about friendship and belonging.",
+        "Willy Wonka & the Chocolate Factory|cozy": "Charlie's visit to Wonka's wonderfully strange factory offers a colorful, imaginative escape.",
+        "Ice Age|cozy": "An unlikely trio's comic journey with a lost baby turns a prehistoric setting into a warm story of found family.",
+        "Pretty Woman|cozy": "Vivian's lively presence gradually unsettles Edward's guarded routine in this modern fairy-tale romance.",
+        "The General|cozy": "Buster Keaton turns a train rescue during the Civil War into a nimble silent comedy built around physical gags and determination.",
+        "Fantasia|cozy": "Classical music and hand-painted animation make this an imaginative, low-dialogue escape into visual storytelling.",
+        "Grease|cozy": "A summer romance spills into high-school life, carried by energetic songs and an ensemble of memorable classmates.",
+        "Parda Hai Parda (film)|thrilled": "A murder tied to a mysterious bag turns four friends' new-neighbor story into a crime puzzle they investigate together."
+    };
+    if (specificMoodReasons[`${item.title}|${mood}`]) return specificMoodReasons[`${item.title}|${mood}`];
+
     if (mood === "nostalgic" && Number(item.year) <= 1990) {
         return `A classic from ${item.year}, selected for a nostalgic movie night.`;
     }
@@ -4304,7 +4345,19 @@ function getMoodReason(item, mood) {
     if (mood === "thoughtful" && ["Drama", "Documentary", "Mystery"].includes(item.genre)) {
         return `Its ${item.genre.toLowerCase()} genre leaves room for reflection.`;
     }
-    return `Tagged for ${moodName} in the CineVerse mood guide.`;
+    if (mood === "cozy" && /warm|gentle|kind-hearted|heartwarming|friendship|family|charming|innocent|lovable|kindness|feel-good/i.test(textOf(item))) {
+        return "Its story centers on warmth, kindness, or friendship, which suits a softer movie night.";
+    }
+    if (mood === "weepy" && ["Drama", "Romance"].includes(item.genre)) {
+        return `Its ${item.genre.toLowerCase()} story is a natural fit when you want something emotional.`;
+    }
+    if (mood === "wonder" && ["Fantasy", "Sci-Fi", "Animation", "Adventure"].includes(item.genre)) {
+        return `Its ${item.genre === "Sci-Fi" ? "science-fiction" : item.genre.toLowerCase()} world invites a sense of discovery.`;
+    }
+    if (mood === "thrilled" && ["Action", "Thriller", "Horror", "Crime"].includes(item.genre)) {
+        return `Its ${item.genre.toLowerCase()} genre brings the tension and momentum you picked.`;
+    }
+    return `CineVerse's mood guide groups this ${item.genre.toLowerCase()} under ${moodName.toLowerCase()}.`;
 }
 
 const searchInput = document.getElementById("movie-search");
@@ -4478,31 +4531,78 @@ const movieModal = document.getElementById("movie-modal");
 const modalContent = document.getElementById("modal-content");
 const closeModalButton = movieModal.querySelector(".modal-close");
 
-const plotSpecificReasons = [
-    [/former wife|first wife|widow|widower|dead wife|shadow of his former wife/i, "a new bride trying to build a life under the shadow of her husband's first wife"],
-    [/revenge|avenge/i, "the personal cost of a revenge mission"],
-    [/detective|investigat|murder|murdered|killed/i, "an investigation where each new clue changes the case"],
-    [/missing|kidnap|abduct|disappear/i, "the urgent search for someone who has vanished"],
-    [/family|father|mother|son|daughter|brother|sister/i, "family relationships tested by the story's central conflict"],
-    [/love|romance|relationship|couple|lovers/i, "a relationship shaped by the characters' choices"],
-    [/journey|quest|explor|travel/i, "a journey that pushes its characters into unfamiliar territory"],
-    [/surviv|escape|trapped/i, "characters forced to find a way through a dangerous situation"],
-    [/war|battle|soldier/i, "the human stakes behind a larger conflict"],
-    [/dream|memory|reality|identity/i, "the uncertainty around what is real and who to trust"],
-    [/ghost|haunt|haunted|supernatural|demon|monster/i, "the way an eerie presence disrupts ordinary life"],
-    [/actor|artist|musician|singer|career|performer/i, "the personal sacrifices behind a creative life"]
-];
+// Hand-written picks keep the details panel personal for well-known titles across the collection.
+const specificWhyWatch = {
+    "Forrest Gump": "Follow Forrest through decades of American history as his gentle outlook keeps shaping the lives around him—and as he holds on to the love he never quite leaves behind.",
+    "Monsters, Inc.": "A company that runs on children's screams changes overnight when its top scarer meets a little girl who is more curious than afraid.",
+    "Roman Holiday": "A princess escapes her official schedule for one day in Rome, where an American reporter's plan for an exclusive becomes something more human.",
+    "Toy Story": "A new toy threatens Woody's place as Andy's favorite, turning a rivalry into a rescue mission and an unexpected friendship.",
+    "The Great Dictator": "Charlie Chaplin uses mistaken identity and sharp satire to set a humble barber against a dictator—and gives the film a final plea for compassion.",
+    "Finding Nemo": "A cautious clownfish crosses the ocean to find his son, meeting a forgetful ally and learning that protecting someone sometimes means letting them grow.",
+    "Notorious": "A government agent recruits Alicia for a dangerous undercover mission; the espionage plot gets sharper as trust and attraction pull in opposite directions.",
+    "Donnie Darko": "A teenager survives a bizarre near-accident, then follows visions of a giant rabbit into a puzzle about fate, time, and what is real.",
+    "City Lights": "A resourceful tramp tries to help a blind flower seller, building a tender silent comedy around generosity, dignity, and one painful misunderstanding.",
+    "Shrek": "An ogre sent to rescue a princess finds that the fairy-tale rules—and the first impressions people make of him—are due for a rewrite.",
+    "Edward Scissorhands": "An unfinished young man with blades for hands is welcomed into a picture-perfect suburb, where his kindness clashes with the neighbors' fear of difference.",
+    "The Apartment": "An office worker lends his apartment to executives chasing promotions, until the arrangement forces him to choose between career convenience and doing right by someone he loves.",
+    "Aladdin": "A streetwise young man finds a magic lamp and a chance to change his life, but winning a princess's trust takes more than pretending to be a prince.",
+    "Groundhog Day": "A cynical weatherman wakes to the same small-town day again and again; the clever loop becomes a story about how he chooses to treat people when nothing seems to change.",
+    "Who Framed Roger Rabbit": "A hard-boiled detective investigates a murder in a world shared by humans and cartoon characters, mixing film noir clues with gleefully impossible visuals.",
+    "Singin' in the Rain": "Hollywood's shift from silent pictures to sound turns a romance into a backstage comedy about performers trying to stay afloat as the industry changes around them.",
+    "Toy Story 2": "When Woody is stolen by a collector, the toys mount a rescue while he discovers the tempting promise—and cost—of being remembered as a rare original.",
+    "Willy Wonka & the Chocolate Factory": "Five children enter a candy-maker's impossible factory, where each strange room turns the tour into a test of character as well as imagination.",
+    "Some Like It Hot": "Two musicians hide in an all-women band after witnessing a mob hit, and their disguise becomes a fast-moving comedy of close calls and mistaken assumptions.",
+    "Ice Age": "A mammoth, a sloth, and a saber-toothed cat form an unlikely team to return a human baby to its family during a prehistoric migration.",
+    "The Matrix": "A computer hacker learns that everyday reality is a simulation and must decide whether to accept the truth or help challenge the system controlling it.",
+    "2001: A Space Odyssey": "A mysterious object links humanity's origins to a mission in deep space, where a quiet journey becomes a visual meditation on evolution and artificial intelligence.",
+    "Alien": "A commercial spaceship answers a distress signal, bringing an unseen predator aboard and turning routine protocol into a claustrophobic survival story.",
+    "The Thing": "An Antarctic research team cannot tell who is still human after an alien starts imitating them, making suspicion as dangerous as the creature itself.",
+    "Mahanati": "Savitri's rise to fame and the private costs of that success make this biographical drama a portrait of a performer whose life extended far beyond her screen image.",
+    "Agent Sai Srinivasa Athreya": "A small-town detective's investigation in Nellore starts as an unusual case and opens into a much larger mystery, giving the film a distinctive local setting and an inventive sleuth.",
+    "Kshanam": "An NRI returns to help his former girlfriend find her missing daughter, then discovers that the evidence challenges his own memory of the child.",
+    "Pelli Choopulu": "An arranged introduction brings together a carefree young man and an ambitious woman, who discover a shared business plan before they understand each other.",
+    "Bommarillu": "A young man pushes back against his controlling father to make his own choices about work, independence, and the relationship he wants.",
+    "Eega": "A murdered man returns as a housefly and wages an ingenious revenge campaign, turning a simple reincarnation premise into an unusually playful action story.",
+    "3 Idiots": "Two friends retrace their college years while searching for a missing companion, using the reunion to question the pressure to follow a conventional path to success.",
+    "Andhadhun": "A blind pianist becomes entangled in a crime he may have witnessed, and the film keeps shifting what you think he—and everyone around him—can see.",
+    "Taare Zameen Par": "A patient art teacher recognizes what others miss in a struggling schoolboy, making the story's emotional turn depend on being understood rather than being fixed.",
+    "Dangal (film)": "A former wrestler trains his daughters to compete in a sport their village does not expect them to pursue, turning a family ambition into a hard-won athletic journey.",
+    "Bowling for Columbine": "Michael Moore uses the Columbine shootings as a starting point to question America's relationship with guns and fear, building a documentary from interviews, archival footage, and uncomfortable comparisons.",
+    "Fight Club": "An insomniac and a soap salesman create a secret fight club that spreads beyond their control; its appeal lies in watching rebellion turn into a new kind of power and identity crisis.",
+    "Daybreak Express": "Duke Ellington's music drives a short, impressionistic portrait of New York's Third Avenue elevated railway shortly before its demolition—a city landmark captured as it disappears.",
+    "Evil Dead II": "A remote cabin, an ancient book, and one increasingly besieged Ash give this horror film room to swing between supernatural terror and outrageous physical comedy.",
+    "The Birds": "A quiet California town is besieged by birds for reasons no one can explain, turning an ordinary coastal setting into a suspenseful fight to stay safe.",
+    "It's a Wonderful Life": "When George Bailey loses hope, an angel shows him how Bedford Falls would have changed if he had never been born, reframing his ordinary acts of care as the town's greatest wealth.",
+    "Dawn of the Dead": "As zombies overrun the city, a small group of survivors barricades themselves inside a shopping mall, where staying alive becomes a test of both trust and what consumer comfort can really protect.",
+    "Madhumati": "A man caught in a storm finds shelter in a mansion and begins to recognize its people and places from another life, drawing him into a haunting tale of love and reincarnation.",
+    "Raat (film)": "After moving into a new house, a family's daughter becomes linked to a dead cat and a series of disturbing events, bringing supernatural dread into an everyday home.",
+    "Aalaap (film)": "Four college musicians enter a Maoist-controlled village and choose to challenge its violence with music, giving this drama an unusual premise about art as a form of resistance.",
+    "Gangs of Wasseypur": "A dispute between two families in a coal-mining town grows into a generational crime saga, where revenge keeps reshaping the people who inherit it.",
+    "Deedar (1951 film)": "A traumatized young man who has lost his sight earns a living through song while searching for the childhood sweetheart he has never forgotten.",
+    "Khaleja": "When a mysterious illness strikes a remote village, its people look to a reluctant taxi driver for help, pulling an ordinary outsider into a story of fate and responsibility.",
+    "Manjhi – The Mountain Man": "After losing his wife to a dangerous mountain path, Dashrath Manjhi spends decades carving a safer route through the rock with only a hammer and chisel.",
+    "Gangs of Wasseypur – Part 2": "The feud between two crime families continues into a new generation, tracing how the children inherit—and reshape—the power struggle their elders began.",
+    "Bhayaanak": "When people in Mangalpur die in a strange pattern, Inspector Vijay must find the link between the deaths before the next one occurs.",
+    "Sutradhaarulu": "In a rural community shaped by violence, the story follows people trying to break its hold and imagine a more peaceful way to live.",
+    "English Pellam East Godavari Mogudu": "Sireesha's curiosity about dating challenges the expectations of a tradition-conscious setting, giving the film its central culture clash.",
+    "Shankam": "A man follows his girlfriend back to India, then finds himself responsible for escorting a volatile relative through a journey full of rivalries and close calls.",
+    "Guna 369": "Guna believes problems should be solved without violence; after he is framed by someone close to him, holding to that principle becomes his hardest test.",
+    "Sye Raa Narasimha Reddy": "A frame story set during the 1857 uprising introduces the earlier revolt of Telugu chieftain Uyyalawada Narasimha Reddy against British rule.",
+    "Yatra": "This political drama follows Y. S. Rajasekhara Reddy's 1999–2004 padayatra and how meeting voters on the road shaped his public campaign.",
+    "Falaknuma Das": "A group of young men led by Das tries to control the local meat trade, but unexpected setbacks draw them into crime and force them to face the consequences.",
+    "Sita": "A self-interested businesswoman is drawn into a dangerous bargain with an MLA, turning her carefully controlled life into a contest for agency and survival.",
+    "Gaddalakonda Ganesh": "A young filmmaker searching for a compelling antagonist becomes fascinated by a ruthless real-life gangster, blurring the line between observing violence and using it for art.",
+    "Special": "A man who can read thoughts through touch becomes consumed by revenge, turning his unusual ability into a dangerous weapon against the people he blames.",
+    "Court: State vs. A Nobody": "A determined lawyer defends a 19-year-old boy in a high-stakes case, challenging a system that appears to have judged him before the evidence is heard.",
+    "Gopi Gopika Godavari": "Two strangers fall in love over the phone, but an accident leaves Gopi unable to recognize Gopika when she later saves and treats him. Their romance turns on whether they can find each other again.",
+    "Rahasyam": "An aspiring director seeks out a holy man to learn about spirits for his first horror film; then the spirit Divya starts chasing him and demands a role in his movie.",
+    "Magnet": "Its focus on young people making poor choices and searching for a better direction gives this Telugu drama a chance to explore how ambition can go off course.",
+    "Chikati Gadilo Chithakotudu": "Two couples trapped in a haunted house face a ghost with its own agenda; the film blends horror with adult comedy, so expect a deliberately bawdy tone alongside the scares.",
+    "Parda Hai Parda (film)": "Four friends become involved with a new girl in their neighborhood after her brother is killed over a bag. Their effort to uncover what happened gives this neighborhood drama a murder mystery at its center."
+};
 
 function getWhyWatchReason(item) {
-    if (item.whyWatch) return item.whyWatch;
-
-    const synopsis = String(item.description || "").replace(/\s+/g, " ").trim();
-    const storyAngle = plotSpecificReasons.find(([pattern]) => pattern.test(synopsis))?.[1];
-    if (storyAngle) return `The film's draw is ${storyAngle}.`;
-
-    const premise = synopsis.replace(/^story of\s+/i, "").split(/(?<=[.!?])\s+/u)[0];
-    if (premise) return `Its central premise is what makes this film distinctive: ${premise}`;
-    return "Open the details to explore this film's story and mood tags.";
+    return item.whyWatch || specificWhyWatch[item.title] || "";
 }
 
 function openMovieModal(itemId) {
@@ -4511,6 +4611,7 @@ function openMovieModal(itemId) {
     if (!item) return;
 
     const watchSearchUrl = `https://www.justwatch.com/in/search?q=${encodeURIComponent(`${item.title} ${item.year}`)}`;
+    const whyWatchReason = getWhyWatchReason(item);
 
     modalContent.innerHTML = `
         ${item.poster ? `<img class="modal-poster" src="${item.poster}" alt="Movie poster for ${item.title}" data-title="${item.title}">` : `<div class="modal-poster poster-unavailable" role="img" aria-label="Official poster not added for ${item.title}"><span>Poster not added yet</span><small>${item.title}</small></div>`}
@@ -4518,17 +4619,19 @@ function openMovieModal(itemId) {
             <span class="section-kicker">${tvShows.includes(item) ? "TV show details" : "Movie details"}</span>
             <h2 id="modal-title">${item.title}</h2>
             <div class="modal-meta">
-                ${Number.isFinite(Number(item.rating)) && Number(item.rating) > 0 ? `<span class="card-rating">&#9733; ${item.rating}</span>` : `<span class="card-rating rating-unavailable">Rating not listed</span>`}
+                ${Number.isFinite(Number(item.rating)) && Number(item.rating) > 0 ? `<span class="card-rating">&#9733; ${item.ratingSource ? `${item.ratingSource} ` : ""}${formatRating(item.rating)}</span>` : `<span class="card-rating rating-unavailable">Rating not listed</span>`}
                 <span>${item.year}</span>
                 <span>${item.genre}</span>
                 <span>${item.language}</span>
                 <span>${item.region}</span>
                 <span>${item.runtime || runtimes[item.id] || "Runtime not listed"}</span>
             </div>
-            <section class="why-watch" aria-labelledby="why-watch-title">
+            ${whyWatchReason ? `<section class="why-watch" aria-labelledby="why-watch-title">
                 <h3 id="why-watch-title">Why watch this?</h3>
-                <p>${getWhyWatchReason(item)}</p>
-            </section>
+                <p>${whyWatchReason}</p>
+            </section>` : ""}
+            ${item.mood.includes(selectedMood) ? `<p class="why-watch-mood"><strong>Mood guide note for ${moodLabels[selectedMood] || selectedMood}:</strong> ${getMoodReason(item, selectedMood)}</p>` : ""}
+            <h3 class="modal-story-label">Story snapshot</h3>
             <p class="modal-synopsis">${item.description}</p>
             <div class="where-to-watch">
                 <span class="where-to-watch-label">Where to watch in India</span>
@@ -4543,6 +4646,21 @@ function openMovieModal(itemId) {
     document.body.classList.add("modal-open");
     movieModal.showModal();
 }
+
+let lastSurprisePickId = null;
+document.getElementById("surprise-pick").addEventListener("click", () => {
+    const matchingFilms = filterTitles(movies).filter(item => item.mood.includes(selectedMood));
+    if (!matchingFilms.length) {
+        showToast("No films match those filters. Try another mood or clear a filter.");
+        return;
+    }
+
+    const freshPicks = matchingFilms.filter(item => item.id !== lastSurprisePickId);
+    const options = freshPicks.length ? freshPicks : matchingFilms;
+    const pickedFilm = options[Math.floor(Math.random() * options.length)];
+    lastSurprisePickId = pickedFilm.id;
+    openMovieModal(pickedFilm.id);
+});
 
 document.querySelectorAll(".movie-grid").forEach(grid => {
     grid.addEventListener("click", event => {
