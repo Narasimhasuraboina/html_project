@@ -23,6 +23,7 @@
             <nav class="site-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="#home" aria-current="page">Home</a></li>
+                    <li><a href="#movie-night">Movie Night</a></li>
                     <li><a href="#movies">Browse films</a></li>
                     <li><a href="#watchlist">Watchlist</a></li>
                     <li><a href="#about">About</a></li>
@@ -69,6 +70,71 @@
                     </div>
                     <p class="mood-note" id="mood-note" aria-live="polite">Gentle, warm stories for a softer evening.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="feature-section" id="movie-night" aria-labelledby="movie-night-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Plan the evening</span>
+                        <h2 id="movie-night-title">Movie Night mode</h2>
+                    </div>
+                    <p>Answer three questions for a focused pick.</p>
+                </div>
+                <form class="movie-night-form" id="movie-night-form">
+                    <fieldset>
+                        <legend>What kind of night is it?</legend>
+                        <div class="choice-grid">
+                            <label><input type="radio" name="night-mood" value="cozy" checked> Cozy</label>
+                            <label><input type="radio" name="night-mood" value="uplifted"> Uplifting</label>
+                            <label><input type="radio" name="night-mood" value="thrilled"> Thrilling</label>
+                            <label><input type="radio" name="night-mood" value="thoughtful"> Thoughtful</label>
+                            <label><input type="radio" name="night-mood" value="wonder"> Wonder</label>
+                            <label><input type="radio" name="night-mood" value="romantic"> Romantic</label>
+                        </div>
+                    </fieldset>
+                    <label for="night-language">Preferred language</label>
+                    <select id="night-language" name="night-language">
+                        <option value="All">Any language</option>
+                    </select>
+                    <label for="night-runtime">Available time</label>
+                    <select id="night-runtime" name="night-runtime">
+                        <option value="any">Any runtime</option>
+                        <option value="short">Under 100 minutes</option>
+                        <option value="medium">100–150 minutes</option>
+                        <option value="long">Over 150 minutes</option>
+                    </select>
+                    <button class="feature-button" type="submit">Build my movie night</button>
+                </form>
+                <div class="feature-result" id="movie-night-result" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="feature-section feature-section-alt" aria-labelledby="daily-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">A new discovery each day</span>
+                        <h2 id="daily-title">Film of the Day</h2>
+                    </div>
+                    <p id="daily-date"></p>
+                </div>
+                <div class="feature-result" id="film-of-day"></div>
+            </div>
+        </section>
+
+        <section class="feature-section" aria-labelledby="double-feature-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Two stories, one sitting</span>
+                        <h2 id="double-feature-title">Double Feature</h2>
+                    </div>
+                    <p>Paired using shared catalog details.</p>
+                </div>
+                <div class="feature-result" id="double-feature"></div>
+                <button class="feature-button feature-button-secondary" id="new-double-feature" type="button">Find another pairing</button>
             </div>
         </section>
 

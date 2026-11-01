@@ -4289,6 +4289,120 @@ function renderMovies(items, containerId) {
     }
 }
 
+function getRuntimeMinutes(item) {
+    const runtimeMatch = String(item.runtime || "").match(/\d+/);
+    return runtimeMatch ? Number(runtimeMatch[0]) : null;
+}
+
+function matchesRuntime(item, runtimeChoice) {
+    if (runtimeChoice === "any") return true;
+    const runtime = getRuntimeMinutes(item);
+    if (runtime === null) return false;
+    if (runtimeChoice === "short") return runtime < 100;
+    if (runtimeChoice === "medium") return runtime >= 100 && runtime <= 150;
+    return runtime > 150;
+}
+
+function renderFeatureCard(item, reason) {
+    return `
+        <div class="feature-card">
+            <div class="feature-card-poster">
+                ${item.poster
+                    ? `<img class="movie-poster" src="${item.poster}" alt="Movie poster for ${item.title}" data-title="${item.title}" loading="lazy">`
+                    : `<span class="movie-poster poster-unavailable" role="img" aria-label="Movie poster unavailable for ${item.title}"><span>Poster unavailable</span><small>${item.title}</small></span>`}
+            </div>
+            <div class="feature-card-copy">
+                <span class="section-kicker">${item.genre}</span>
+                <h3>${item.title}</h3>
+                <p class="feature-card-meta">${item.year} · ${item.language}${item.runtime ? ` · ${item.runtime}` : ""}${item.rating ? ` · ★ ${formatRating(item.rating)}` : ""}</p>
+                <p>${reason}</p>
+                <button class="feature-link" type="button" data-item-id="${item.id}">View details</button>
+            </div>
+        </div>
+    `;
+}
+
+function renderMovieNightResult() {
+    const form = document.getElementById("movie-night-form");
+    const result = document.getElementById("movie-night-result");
+    const formData = new FormData(form);
+    const mood = formData.get("night-mood");
+    const language = formData.get("night-language");
+    const runtimeChoice = formData.get("night-runtime");
+    const candidates = movies.filter(item =>
+        (language === "All" || item.language === language) &&
+        item.mood.includes(mood) &&
+        matchesRuntime(item, runtimeChoice)
+    );
+
+    if (candidates.length === 0) {
+        result.innerHTML = `<p class="no-results">No catalog titles match all three choices. Try any runtime or another language.</p>`;
+        return;
+    }
+
+    const recommendation = [...candidates].sort((a, b) =>
+        Number(b.rating || 0) - Number(a.rating || 0) ||
+        Number(b.year || 0) - Number(a.year || 0) ||
+        a.title.localeCompare(b.title)
+    )[0];
+    const runtimeText = recommendation.runtime ? ` at ${recommendation.runtime}` : "";
+    result.innerHTML = renderFeatureCard(
+        recommendation,
+        `A ${mood} pick${runtimeText}, selected from ${candidates.length} catalog title${candidates.length === 1 ? "" : "s"} matching your choices.`
+    );
+}
+
+function getDateSeed(date = new Date()) {
+    return Number(`${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getDate()).padStart(2, "0")}`);
+}
+
+function renderFilmOfDay() {
+    const result = document.getElementById("film-of-day");
+    const dateLabel = document.getElementById("daily-date");
+    const today = new Date();
+    const candidates = movies;
+    const item = candidates[getDateSeed(today) % candidates.length];
+    dateLabel.textContent = today.toLocaleDateString(undefined, { dateStyle: "long" });
+    result.innerHTML = renderFeatureCard(item, "The same catalog title stays featured for everyone throughout this calendar day.");
+}
+
+let doubleFeatureOffset = 0;
+
+function getDoubleFeaturePair() {
+    const candidates = movies;
+    const first = candidates[doubleFeatureOffset % candidates.length];
+    const partners = candidates
+        .filter(item => item.id !== first.id)
+        .map(item => ({
+            item,
+            score: (item.language === first.language ? 4 : 0) +
+                (item.genre === first.genre ? 4 : 0) +
+                (Math.floor(Number(item.year) / 10) === Math.floor(Number(first.year) / 10) ? 1 : 0)
+        }))
+        .sort((a, b) => b.score - a.score || Number(b.item.rating || 0) - Number(a.item.rating || 0) || a.item.title.localeCompare(b.item.title));
+    return [first, partners[0].item];
+}
+
+function renderDoubleFeature() {
+    const result = document.getElementById("double-feature");
+    const [first, second] = getDoubleFeaturePair();
+    const sharedDetails = [];
+    if (first.language === second.language) sharedDetails.push(`${first.language} language`);
+    if (first.genre === second.genre) sharedDetails.push(`${first.genre} genre`);
+    if (Math.floor(Number(first.year) / 10) === Math.floor(Number(second.year) / 10)) sharedDetails.push(`${Math.floor(Number(first.year) / 10) * 10}s release period`);
+    const connection = sharedDetails.length
+        ? `Both titles share ${sharedDetails.join(" and ")} details in the catalog.`
+        : "These titles are paired as a contrast across the catalog.";
+    result.innerHTML = `
+        <div class="double-feature-pair">
+            ${renderFeatureCard(first, `Start here: ${first.description}`)}
+            <span class="double-feature-plus" aria-hidden="true">+</span>
+            ${renderFeatureCard(second, `Follow with this: ${second.description}`)}
+        </div>
+        <p class="pairing-note">${connection}</p>
+    `;
+}
+
 const moodLabels = {
     cozy: "a cozy night", uplifted: "an uplifting night", thrilled: "a thrilling night",
     thoughtful: "a thoughtful mood", wonder: "a sense of wonder", weepy: "a good cry",
@@ -4602,7 +4716,17 @@ const specificWhyWatch = {
 };
 
 function getWhyWatchReason(item) {
-    return item.whyWatch || specificWhyWatch[item.title] || "";
+    if (item.whyWatch) return item.whyWatch;
+    if (specificWhyWatch[item.title]) return specificWhyWatch[item.title];
+
+    const format = item.genre ? item.genre.toLowerCase() : "movie";
+    const yearText = item.year ? ` from ${item.year}` : "";
+    const languageText = item.language ? ` in ${item.language}` : "";
+    const description = item.description
+        ? ` Its story snapshot: ${item.description}`
+        : "";
+
+    return `A ${format} worth exploring${yearText}${languageText}.${description}`;
 }
 
 function openMovieModal(itemId) {
@@ -4646,6 +4770,34 @@ function openMovieModal(itemId) {
     document.body.classList.add("modal-open");
     movieModal.showModal();
 }
+
+const movieNightLanguage = document.getElementById("night-language");
+[...new Set(allTitles.map(item => item.language).filter(Boolean))].sort().forEach(language => {
+    const option = document.createElement("option");
+    option.value = language;
+    option.textContent = language;
+    movieNightLanguage.append(option);
+});
+
+document.getElementById("movie-night-form").addEventListener("submit", event => {
+    event.preventDefault();
+    renderMovieNightResult();
+});
+
+document.querySelectorAll(".feature-result").forEach(result => {
+    result.addEventListener("click", event => {
+        const detailButton = event.target.closest("[data-item-id]");
+        if (detailButton) openMovieModal(detailButton.dataset.itemId);
+    });
+});
+
+document.getElementById("new-double-feature").addEventListener("click", () => {
+    doubleFeatureOffset += 1;
+    renderDoubleFeature();
+});
+
+renderFilmOfDay();
+renderDoubleFeature();
 
 let lastSurprisePickId = null;
 document.getElementById("surprise-pick").addEventListener("click", () => {
@@ -4918,10 +5070,6 @@ backToTopButton.addEventListener("click", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
 });
-
-
-
-
 
 
 
