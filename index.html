@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pick a movie by mood, then explore 450 Indian and Hollywood films by genre and language.">
+    <meta name="description"
+        content="Pick a movie by mood, then explore 450 Indian and Hollywood films by genre and language.">
     <title>CineVerse | Discover Stories Worth Watching</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -38,7 +40,8 @@
             <div class="container quote-content">
                 <span class="quote-mark" aria-hidden="true">“</span>
                 <blockquote id="movie-quote">A story can turn a quiet room into a thousand places.</blockquote>
-                <button class="quote-next" id="next-quote" type="button" aria-label="Show another movie quote">Another thought <span aria-hidden="true">&#8599;</span></button>
+                <button class="quote-next" id="next-quote" type="button" aria-label="Show another movie quote">Another
+                    thought <span aria-hidden="true">&#8599;</span></button>
             </div>
         </section>
         <section class="mood-hero" id="mood-finder" aria-labelledby="mood-title">
@@ -46,29 +49,45 @@
                 <div class="mood-intro">
                     <span class="featured-label">A movie finder built around your mood</span>
                     <h1 id="mood-title">Find a film for the way you feel.</h1>
-                    <p>Choose the kind of night you want. CineVerse will find a real story, explain why it fits, and help you check where to watch it.</p>
+                    <p>Choose the kind of night you want. CineVerse will find a real story, explain why it fits, and
+                        help you check where to watch it.</p>
                     <div class="hero-actions">
-                        <button class="surprise-button" id="surprise-pick" type="button">Pick a film for me <span aria-hidden="true">&#8599;</span></button>
-                        <a class="browse-link" href="#movies">Browse the collection <span aria-hidden="true">&#8595;</span></a>
+                        <button class="surprise-button" id="surprise-pick" type="button">Pick a film for me <span
+                                aria-hidden="true">&#8599;</span></button>
+                        <a class="browse-link" href="#movies">Browse the collection <span
+                                aria-hidden="true">&#8595;</span></a>
                     </div>
-                    <p class="hero-catalog-fact">450 films <span aria-hidden="true">&#183;</span> Hindi, Telugu, and English</p>
+                    <p class="hero-catalog-fact">450 films <span aria-hidden="true">&#183;</span> Hindi, Telugu, and
+                        English</p>
                 </div>
                 <div class="mood-picker">
                     <p class="picker-label">Tonight calls for...</p>
                     <div class="mood-options" id="mood-options" role="group" aria-label="Choose your mood">
-                        <button class="mood-button active" type="button" data-mood="cozy" aria-pressed="true">Cozy</button>
-                        <button class="mood-button" type="button" data-mood="uplifted" aria-pressed="false">Uplifted</button>
-                        <button class="mood-button" type="button" data-mood="thrilled" aria-pressed="false">Thrilled</button>
-                        <button class="mood-button" type="button" data-mood="thoughtful" aria-pressed="false">Thoughtful</button>
-                        <button class="mood-button" type="button" data-mood="wonder" aria-pressed="false">In wonder</button>
-                        <button class="mood-button" type="button" data-mood="weepy" aria-pressed="false">A good cry</button>
-                        <button class="mood-button" type="button" data-mood="adventurous" aria-pressed="false">Adventurous</button>
-                        <button class="mood-button" type="button" data-mood="romantic" aria-pressed="false">Romantic</button>
-                        <button class="mood-button" type="button" data-mood="spooky" aria-pressed="false">Spooky</button>
-                        <button class="mood-button" type="button" data-mood="mindbending" aria-pressed="false">Mind-bending</button>
-                        <button class="mood-button" type="button" data-mood="nostalgic" aria-pressed="false">Nostalgic</button>
+                        <button class="mood-button active" type="button" data-mood="cozy"
+                            aria-pressed="true">Cozy</button>
+                        <button class="mood-button" type="button" data-mood="uplifted"
+                            aria-pressed="false">Uplifted</button>
+                        <button class="mood-button" type="button" data-mood="thrilled"
+                            aria-pressed="false">Thrilled</button>
+                        <button class="mood-button" type="button" data-mood="thoughtful"
+                            aria-pressed="false">Thoughtful</button>
+                        <button class="mood-button" type="button" data-mood="wonder" aria-pressed="false">In
+                            wonder</button>
+                        <button class="mood-button" type="button" data-mood="weepy" aria-pressed="false">A good
+                            cry</button>
+                        <button class="mood-button" type="button" data-mood="adventurous"
+                            aria-pressed="false">Adventurous</button>
+                        <button class="mood-button" type="button" data-mood="romantic"
+                            aria-pressed="false">Romantic</button>
+                        <button class="mood-button" type="button" data-mood="spooky"
+                            aria-pressed="false">Spooky</button>
+                        <button class="mood-button" type="button" data-mood="mindbending"
+                            aria-pressed="false">Mind-bending</button>
+                        <button class="mood-button" type="button" data-mood="nostalgic"
+                            aria-pressed="false">Nostalgic</button>
                     </div>
-                    <p class="mood-note" id="mood-note" aria-live="polite">Gentle, warm stories for a softer evening.</p>
+                    <p class="mood-note" id="mood-note" aria-live="polite">Gentle, warm stories for a softer evening.
+                    </p>
                 </div>
             </div>
         </section>
@@ -134,7 +153,8 @@
                     <p>Paired using shared catalog details.</p>
                 </div>
                 <div class="feature-result" id="double-feature"></div>
-                <button class="feature-button feature-button-secondary" id="new-double-feature" type="button">Find another pairing</button>
+                <button class="feature-button feature-button-secondary" id="new-double-feature" type="button">Find
+                    another pairing</button>
             </div>
         </section>
 
@@ -160,12 +180,17 @@
                         aria-pressed="false">Romance</button>
                     <button class="genre-button" type="button" data-genre="Thriller"
                         aria-pressed="false">Thriller</button>
-                    <button class="genre-button" type="button" data-genre="Animation" aria-pressed="false">Animation</button>
+                    <button class="genre-button" type="button" data-genre="Animation"
+                        aria-pressed="false">Animation</button>
                     <button class="genre-button" type="button" data-genre="Crime" aria-pressed="false">Crime</button>
-                    <button class="genre-button" type="button" data-genre="Documentary" aria-pressed="false">Documentary</button>
-                    <button class="genre-button" type="button" data-genre="Fantasy" aria-pressed="false">Fantasy</button>
-                    <button class="genre-button" type="button" data-genre="Mystery" aria-pressed="false">Mystery</button>
-                    <button class="genre-button" type="button" data-genre="Adventure" aria-pressed="false">Adventure</button>
+                    <button class="genre-button" type="button" data-genre="Documentary"
+                        aria-pressed="false">Documentary</button>
+                    <button class="genre-button" type="button" data-genre="Fantasy"
+                        aria-pressed="false">Fantasy</button>
+                    <button class="genre-button" type="button" data-genre="Mystery"
+                        aria-pressed="false">Mystery</button>
+                    <button class="genre-button" type="button" data-genre="Adventure"
+                        aria-pressed="false">Adventure</button>
                 </div>
                 <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
             </div>
@@ -203,12 +228,27 @@
                 <div class="about-copy">
                     <span class="section-kicker">A little about CineVerse</span>
                     <h2 id="about-title">A better movie night starts with how you feel.</h2>
-                    <p class="about-lead">Some nights call for comfort. Others need a big adventure, a good cry, or a story that stays with you. CineVerse helps you begin with that feeling and find a film from there.</p>
-                    <p>Choose a mood, then narrow the collection by genre or language. Save the films you want to remember and keep your next movie night simple.</p>
+                    <p class="about-lead">Some nights call for comfort. Others need a big adventure, a good cry, or a
+                        story that stays with you. CineVerse helps you begin with that feeling and find a film from
+                        there.</p>
+                    <p>Choose a mood, then narrow the collection by genre or language. Save the films you want to
+                        remember and keep your next movie night simple.</p>
                     <ol class="how-it-works" aria-label="How CineVerse works">
-                        <li><span>01</span><div><strong>Pick your mood</strong><p>Start with the kind of story you want tonight.</p></div></li>
-                        <li><span>02</span><div><strong>See why it fits</strong><p>Each suggestion shows the story or genre cue behind its mood match.</p></div></li>
-                        <li><span>03</span><div><strong>Make it movie night</strong><p>Save it for later or check current viewing options in India.</p></div></li>
+                        <li><span>01</span>
+                            <div><strong>Pick your mood</strong>
+                                <p>Start with the kind of story you want tonight.</p>
+                            </div>
+                        </li>
+                        <li><span>02</span>
+                            <div><strong>See why it fits</strong>
+                                <p>Each suggestion shows the story or genre cue behind its mood match.</p>
+                            </div>
+                        </li>
+                        <li><span>03</span>
+                            <div><strong>Make it movie night</strong>
+                                <p>Save it for later or check current viewing options in India.</p>
+                            </div>
+                        </li>
                     </ol>
                 </div>
                 <div class="about-details">
@@ -220,8 +260,27 @@
                         <span class="about-stat-number">11</span>
                         <span class="about-stat-label">ways to find your mood</span>
                     </div>
-                    <p class="about-collection">Our current collection includes 125 Hindi-language Indian films, 200 Telugu films, and 125 English-language films from the United States, across genres and decades.</p>
-                    <p class="about-source">Movie information and poster links are credited to <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, the <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>, the <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank" rel="noreferrer">TeluguMovies dataset</a>, the <a href="https://huggingface.co/datasets/ROSCOSMOS/Movie-Poster-WebURL-Dataset-1874-2025" target="_blank" rel="noreferrer">TMDB-derived movie and poster dataset</a>, the <a href="https://cinemaazi.com/" target="_blank" rel="noreferrer">Cinemaazi Indian cinema archive</a>, <a href="https://www.nowrunning.com/" target="_blank" rel="noreferrer">NowRunning</a>, <a href="https://www.moviebuff.com/" target="_blank" rel="noreferrer">Moviebuff</a>, <a href="https://www.jiotv.com/" target="_blank" rel="noreferrer">JioTV</a>, <a href="https://tv.apple.com/" target="_blank" rel="noreferrer">Apple TV</a>, and <a href="https://www.primevideo.com/" target="_blank" rel="noreferrer">Prime Video</a>. The <a href="https://www.youtube.com/watch?v=Z6rdvxv0-TA" target="_blank" rel="noreferrer">Goldmines Bollywood release</a> is the source for our Parda Hai Parda plot summary. Where-to-watch searches open <a href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>, where current availability can be checked. CineVerse is an independent college project and is not endorsed by TMDB.</p>
+                    <p class="about-collection">Our current collection includes 125 Hindi-language Indian films, 200
+                        Telugu films, and 125 English-language films from the United States, across genres and decades.
+                    </p>
+                    <p class="about-source">Movie information and poster links are credited to <a
+                            href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, the <a
+                            href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood
+                            dataset</a>, the <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies"
+                            target="_blank" rel="noreferrer">TeluguMovies dataset</a>, the <a
+                            href="https://huggingface.co/datasets/ROSCOSMOS/Movie-Poster-WebURL-Dataset-1874-2025"
+                            target="_blank" rel="noreferrer">TMDB-derived movie and poster dataset</a>, the <a
+                            href="https://cinemaazi.com/" target="_blank" rel="noreferrer">Cinemaazi Indian cinema
+                            archive</a>, <a href="https://www.nowrunning.com/" target="_blank"
+                            rel="noreferrer">NowRunning</a>, <a href="https://www.moviebuff.com/" target="_blank"
+                            rel="noreferrer">Moviebuff</a>, <a href="https://www.jiotv.com/" target="_blank"
+                            rel="noreferrer">JioTV</a>, <a href="https://tv.apple.com/" target="_blank"
+                            rel="noreferrer">Apple TV</a>, and <a href="https://www.primevideo.com/" target="_blank"
+                            rel="noreferrer">Prime Video</a>. The <a href="https://www.youtube.com/watch?v=Z6rdvxv0-TA"
+                            target="_blank" rel="noreferrer">Goldmines Bollywood release</a> is the source for our Parda
+                        Hai Parda plot summary. Where-to-watch searches open <a href="https://www.justwatch.com/in"
+                            target="_blank" rel="noreferrer">JustWatch India</a>, where current availability can be
+                        checked. CineVerse is an independent college project and is not endorsed by TMDB.</p>
                 </div>
             </div>
         </section>
@@ -231,7 +290,23 @@
         <div class="container footer-content">
             <p class="footer-brand">CineVerse</p>
             <p>Made for movie lovers. &copy; 2026 CineVerse.</p>
-            <p class="attribution">Movie data and poster images: <a href="https://www.themoviedb.org/" target="_blank" rel="noreferrer">TMDB</a>, <a href="https://github.com/pncnmnp/TIMDB" target="_blank" rel="noreferrer">TIMDB Bollywood dataset</a>, <a href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank" rel="noreferrer">TeluguMovies dataset</a>, <a href="https://huggingface.co/datasets/ROSCOSMOS/Movie-Poster-WebURL-Dataset-1874-2025" target="_blank" rel="noreferrer">TMDB-derived movie and poster dataset</a>, <a href="https://cinemaazi.com/" target="_blank" rel="noreferrer">Cinemaazi Indian cinema archive</a>, <a href="https://www.nowrunning.com/" target="_blank" rel="noreferrer">NowRunning</a>, <a href="https://www.moviebuff.com/" target="_blank" rel="noreferrer">Moviebuff</a>, <a href="https://www.jiotv.com/" target="_blank" rel="noreferrer">JioTV</a>, <a href="https://tv.apple.com/" target="_blank" rel="noreferrer">Apple TV</a>, and <a href="https://www.primevideo.com/" target="_blank" rel="noreferrer">Prime Video</a>. <a href="https://www.youtube.com/watch?v=Z6rdvxv0-TA" target="_blank" rel="noreferrer">Goldmines Bollywood</a> supplied the Parda Hai Parda plot summary. Availability searches go to <a href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>. CineVerse is not endorsed or certified by TMDB.</p>
+            <p class="attribution">Movie data and poster images: <a href="https://www.themoviedb.org/" target="_blank"
+                    rel="noreferrer">TMDB</a>, <a href="https://github.com/pncnmnp/TIMDB" target="_blank"
+                    rel="noreferrer">TIMDB Bollywood dataset</a>, <a
+                    href="https://huggingface.co/datasets/rohitvaddepalli/TeluguMovies" target="_blank"
+                    rel="noreferrer">TeluguMovies dataset</a>, <a
+                    href="https://huggingface.co/datasets/ROSCOSMOS/Movie-Poster-WebURL-Dataset-1874-2025"
+                    target="_blank" rel="noreferrer">TMDB-derived movie and poster dataset</a>, <a
+                    href="https://cinemaazi.com/" target="_blank" rel="noreferrer">Cinemaazi Indian cinema archive</a>,
+                <a href="https://www.nowrunning.com/" target="_blank" rel="noreferrer">NowRunning</a>, <a
+                    href="https://www.moviebuff.com/" target="_blank" rel="noreferrer">Moviebuff</a>, <a
+                    href="https://www.jiotv.com/" target="_blank" rel="noreferrer">JioTV</a>, <a
+                    href="https://tv.apple.com/" target="_blank" rel="noreferrer">Apple TV</a>, and <a
+                    href="https://www.primevideo.com/" target="_blank" rel="noreferrer">Prime Video</a>. <a
+                    href="https://www.youtube.com/watch?v=Z6rdvxv0-TA" target="_blank" rel="noreferrer">Goldmines
+                    Bollywood</a> supplied the Parda Hai Parda plot summary. Availability searches go to <a
+                    href="https://www.justwatch.com/in" target="_blank" rel="noreferrer">JustWatch India</a>. CineVerse
+                is not endorsed or certified by TMDB.</p>
         </div>
     </footer>
     <dialog class="movie-modal" id="movie-modal" aria-labelledby="modal-title">
@@ -239,7 +314,8 @@
         <div class="modal-content" id="modal-content"></div>
     </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top" hidden>&#8593;</button>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top"
+        hidden>&#8593;</button>
     <script src="telugu-movies.js"></script>
     <script src="script.js"></script>
 </body>
