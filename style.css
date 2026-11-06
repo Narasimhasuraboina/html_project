@@ -1164,6 +1164,135 @@ body.light-theme .about-collection { color: #35413a; }
     }
 }
 
+/* Interaction polish: cinematic depth without turning the page into a dashboard. */
+.recommendation-strip {
+    position: relative;
+    overflow: hidden;
+}
+
+.recommendation-strip::after {
+    position: absolute;
+    top: -80px;
+    right: 8%;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(211, 164, 111, .14);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.recommendation-strip .hero-recommendation-card {
+    position: relative;
+    z-index: 1;
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.recommendation-strip .hero-recommendation-card::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1px;
+    width: 1px;
+    background: var(--accent);
+    content: "";
+}
+
+.recommendation-is-new .hero-recommendation-card {
+    animation: recommendation-arrive 420ms ease-out both;
+}
+
+@keyframes recommendation-arrive {
+    from { opacity: .35; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.recommendation-strip .hero-recommendation-poster {
+    box-shadow: 10px 0 0 -9px var(--accent);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.recommendation-strip .hero-recommendation-card:hover .hero-recommendation-poster {
+    transform: translateY(-3px) rotate(-1deg);
+    box-shadow: 13px 0 0 -9px var(--accent);
+}
+
+.mood-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.mood-hero::before {
+    position: absolute;
+    top: 12%;
+    right: -120px;
+    width: 420px;
+    height: 420px;
+    border: 1px solid rgba(211, 164, 111, .11);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.mood-hero::after {
+    position: absolute;
+    top: 19%;
+    right: 2%;
+    width: 230px;
+    height: 230px;
+    border: 1px solid rgba(211, 164, 111, .08);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.mood-content {
+    position: relative;
+    z-index: 1;
+}
+
+.mood-button {
+    position: relative;
+    transition: color 160ms ease, padding-left 160ms ease;
+}
+
+.mood-button::before {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    content: "";
+    transition: width 180ms ease;
+}
+
+.mood-button:hover,
+.mood-button.active {
+    padding-left: 9px;
+}
+
+.mood-button:hover::before,
+.mood-button.active::before {
+    width: 24px;
+}
+
+.hero-catalog-fact::before {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    content: "";
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .recommendation-is-new .hero-recommendation-card {
+        animation: none;
+    }
+}
+
 @media (max-width: 560px) {
     .movie-night-form {
         grid-template-columns: 1fr;

@@ -4353,6 +4353,8 @@ function renderHeroRecommendation() {
             <span class="hero-recommendation-meta">${recommendation.year} <span aria-hidden="true">&#183;</span> ${recommendation.language}${recommendation.rating ? ` <span aria-hidden="true">&#183;</span> &#9733; ${formatRating(recommendation.rating)}` : ""}</span>
         </div>
     `;
+    result.classList.remove("recommendation-is-new");
+    requestAnimationFrame(() => result.classList.add("recommendation-is-new"));
 }
 
 function renderMovieNightResult() {
