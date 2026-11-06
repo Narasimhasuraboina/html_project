@@ -1337,3 +1337,400 @@ body.light-theme .about-collection { color: #35413a; }
 @media (max-width: 760px) {
     .hero-catalog-fact { margin-top: 16px; }
 }
+
+/* Final editorial visual system: restrained contrast, strong typography, and less ornament. */
+:root {
+    --background: #151513;
+    --surface: #1d1c19;
+    --surface-light: #2a2823;
+    --text: #f0ece4;
+    --muted: #aaa59c;
+    --accent: #d3a46f;
+    --border: rgba(240, 236, 228, .14);
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body.light-theme {
+    --background: #f5f1ea;
+    --surface: #fbfaf7;
+    --surface-light: #e9e2d7;
+    --text: #292621;
+    --muted: #716b63;
+    --accent: #95603f;
+    --border: rgba(41, 38, 33, .16);
+    background: var(--background);
+}
+
+.site-header {
+    background: var(--background);
+    border-bottom-color: var(--border);
+}
+
+.header-content {
+    min-height: 76px;
+}
+
+.brand {
+    font-size: 1.28rem;
+    letter-spacing: -.04em;
+}
+
+.brand-mark {
+    width: 34px;
+    border: 0;
+    border-bottom: 2px solid var(--accent);
+    border-radius: 0;
+    color: var(--accent);
+}
+
+.brand span:last-child {
+    color: var(--text);
+}
+
+.site-nav a,
+.theme-toggle {
+    color: var(--muted);
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.theme-toggle:hover {
+    color: var(--text);
+}
+
+.theme-toggle,
+.menu-toggle {
+    border-color: var(--border);
+    border-radius: 2px;
+}
+
+.quote-banner {
+    background: var(--surface);
+}
+
+.quote-content {
+    min-height: 64px;
+}
+
+.quote-mark {
+    color: var(--accent);
+}
+
+.recommendation-strip {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    background: #24231f;
+}
+
+.recommendation-strip .hero-recommendation {
+    max-width: 860px;
+}
+
+.recommendation-strip .hero-recommendation-card {
+    grid-template-columns: 66px minmax(0, 1fr) auto;
+    gap: 20px;
+    padding: 0;
+    border: 0;
+    border-left: 1px solid var(--accent);
+    border-radius: 0;
+    background: transparent;
+}
+
+.recommendation-strip .hero-recommendation-poster {
+    width: 66px;
+    height: 94px;
+    border-radius: 0;
+}
+
+.recommendation-strip .hero-recommendation-label {
+    font-size: .64rem;
+    letter-spacing: .16em;
+}
+
+.recommendation-strip .hero-recommendation-card h2 {
+    margin: 4px 0 7px;
+    font-size: 1.5rem;
+    letter-spacing: -.025em;
+}
+
+.recommendation-strip .hero-recommendation-card p {
+    max-width: 580px;
+    font-size: .86rem;
+}
+
+.recommendation-strip .hero-recommendation-link {
+    margin-top: 14px;
+    color: var(--accent);
+}
+
+.recommendation-strip .hero-recommendation-meta {
+    align-self: end;
+    padding-bottom: 3px;
+    font-size: .76rem;
+}
+
+.mood-hero {
+    padding-block: clamp(72px, 10vw, 128px);
+    background: var(--background);
+}
+
+.mood-content {
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+    gap: clamp(48px, 9vw, 128px);
+}
+
+.featured-label,
+.section-kicker {
+    color: var(--accent);
+}
+
+.mood-content h1 {
+    max-width: 670px;
+    font-size: clamp(3.2rem, 6vw, 5.8rem);
+    line-height: .96;
+    letter-spacing: -.065em;
+}
+
+.mood-intro > p {
+    max-width: 500px;
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.hero-actions {
+    margin-top: 30px;
+}
+
+.surprise-button {
+    min-height: 47px;
+    border: 0;
+    border-radius: 2px;
+    background: var(--accent);
+    color: #201a14;
+    font-size: .88rem;
+}
+
+.surprise-button:hover {
+    background: #e0b47f;
+}
+
+.browse-link {
+    color: var(--muted);
+}
+
+.mood-picker {
+    padding: 30px 0 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.picker-label {
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+}
+
+.mood-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 28px;
+}
+
+.mood-button {
+    min-height: 48px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.mood-button:hover {
+    background: transparent;
+    color: var(--text);
+}
+
+.mood-button.active {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.mood-content .mood-note {
+    margin-top: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.discovery-controls {
+    padding-block: 30px;
+    background: var(--surface);
+}
+
+.search-field input,
+.language-select {
+    border-color: var(--border);
+    border-radius: 2px;
+    background: var(--background);
+}
+
+.genre-button {
+    border-color: var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+}
+
+.genre-button.active {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--background);
+}
+
+.catalog-section {
+    padding-block: 78px 92px;
+}
+
+.catalog-section-alt {
+    background: var(--surface);
+}
+
+.section-heading {
+    margin-bottom: 24px;
+}
+
+.section-heading h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+}
+
+.movie-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 42px 22px;
+}
+
+.movie-card {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.movie-card:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.movie-card .movie-open {
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-card .movie-poster {
+    transition: transform 280ms ease, filter 280ms ease;
+}
+
+.movie-card:hover .movie-poster {
+    transform: scale(1.025);
+    filter: brightness(1.08);
+}
+
+.movie-card-content {
+    padding: 15px 0 12px;
+}
+
+.movie-card-topline,
+.movie-language,
+.movie-year {
+    color: var(--muted);
+}
+
+.movie-card h3 {
+    margin-top: 7px;
+    font-size: 1.18rem;
+}
+
+.movie-language {
+    margin-top: 7px;
+}
+
+.mood-match-reason {
+    margin: 13px 0 11px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--accent);
+    font-size: .78rem;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.favorite-button {
+    top: 10px;
+    right: 10px;
+    border: 0;
+    border-radius: 0;
+    background: rgba(20, 19, 17, .75);
+}
+
+.watchlist-button {
+    width: 100%;
+    min-height: 35px;
+    margin: 0;
+    border-color: var(--border);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--muted);
+}
+
+.watchlist-button:hover {
+    background: var(--surface-light);
+}
+
+body.light-theme .recommendation-strip {
+    background: #e9e2d7;
+}
+
+body.light-theme .mood-hero {
+    background: var(--background);
+}
+
+body.light-theme .surprise-button {
+    color: #fffaf4;
+    background: #95603f;
+}
+
+body.light-theme .genre-button.active {
+    background: var(--text);
+    color: var(--background);
+}
+
+@media (max-width: 760px) {
+    .mood-content {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+
+    .mood-picker {
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+    }
+
+    .recommendation-strip .hero-recommendation-card {
+        grid-template-columns: 58px minmax(0, 1fr);
+    }
+
+    .recommendation-strip .hero-recommendation-meta {
+        grid-column: 2;
+        align-self: start;
+    }
+}
