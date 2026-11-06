@@ -803,6 +803,33 @@ body.light-theme {
 .quote-content blockquote { font-size: .95rem; }
 .quote-next { border: 0; border-bottom: 1px solid var(--accent); border-radius: 0; padding: 5px 0; color: var(--text); }
 
+.recommendation-strip {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    background: #2a211d;
+}
+.recommendation-strip .hero-recommendation {
+    max-width: 760px;
+    margin: 0;
+}
+.recommendation-strip .hero-recommendation-card {
+    grid-template-columns: 74px minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 10px 14px;
+    border: 0;
+    border-left: 4px solid var(--accent);
+    background: transparent;
+    box-shadow: none;
+}
+.recommendation-strip .hero-recommendation-poster {
+    width: 74px;
+    height: 102px;
+}
+.recommendation-strip .hero-recommendation-meta {
+    grid-column: auto;
+    align-self: center;
+}
+
 .mood-hero {
     padding-block: clamp(58px, 8vw, 104px);
     background:
@@ -1182,6 +1209,11 @@ body.light-theme .about-collection { color: #35413a; }
     .footer-content { text-align: left; align-items: flex-start; }
     .attribution { text-align: left; }
     .hero-recommendation { margin-top: 22px; }
+    .recommendation-strip { padding: 12px 0; }
+    .recommendation-strip .hero-recommendation { margin: 0; }
+    .recommendation-strip .hero-recommendation-card { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+    .recommendation-strip .hero-recommendation-poster { width: 58px; height: 82px; }
+    .recommendation-strip .hero-recommendation-meta { grid-column: 2; }
     .hero-recommendation-card { grid-template-columns: 78px minmax(0, 1fr); gap: 13px; }
     .hero-recommendation-poster { width: 78px; height: 117px; }
     .hero-recommendation-meta { grid-column: 2; }
