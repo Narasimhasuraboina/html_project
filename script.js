@@ -4265,7 +4265,7 @@ let visibleMovieCount = CATALOG_PAGE_SIZE;
 
 document.addEventListener("error", event => {
     const image = event.target;
-    if (!image.matches || !image.matches(".movie-poster, .modal-poster")) return;
+    if (!image.matches || !image.matches(".movie-poster, .modal-poster, .hero-recommendation-poster")) return;
 
     const fallback = document.createElement("span");
     fallback.className = `${image.className} poster-unavailable`;
@@ -4332,6 +4332,8 @@ function renderHeroRecommendation() {
     }
 
     const recommendation = [...candidates].sort((a, b) =>
+        Number(String(b.poster || "").includes("image.tmdb.org")) - Number(String(a.poster || "").includes("image.tmdb.org")) ||
+        Number(Boolean(b.poster)) - Number(Boolean(a.poster)) ||
         Number(b.rating || 0) - Number(a.rating || 0) ||
         Number(b.year || 0) - Number(a.year || 0) ||
         a.title.localeCompare(b.title)
@@ -5136,5 +5138,3 @@ backToTopButton.addEventListener("click", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
 });
-
-

@@ -748,13 +748,13 @@
 
 /* CineVerse editorial layout: quieter colors, type-led sections, and straightforward controls. */
 :root {
-    --background: #181817;
-    --surface: #22211f;
-    --surface-light: #2c2a27;
-    --text: #eee9df;
-    --muted: #b0a99e;
-    --accent: #d3a46f;
-    --border: rgba(238, 233, 223, .16);
+    --background: #0e1624;
+    --surface: #172235;
+    --surface-light: #22314a;
+    --text: #f4f7fb;
+    --muted: #a9b5c8;
+    --accent: #f2b35d;
+    --border: rgba(194, 211, 235, .18);
 }
 
 body {
@@ -763,13 +763,13 @@ body {
 }
 
 body.light-theme {
-    --background: #f4efe7;
-    --surface: #fbf9f5;
-    --surface-light: #eae3d8;
-    --text: #29251f;
-    --muted: #6f675e;
-    --accent: #955a3f;
-    --border: rgba(41, 37, 31, .18);
+    --background: #eef4fb;
+    --surface: #ffffff;
+    --surface-light: #dfe9f5;
+    --text: #172235;
+    --muted: #53647b;
+    --accent: #bd6b29;
+    --border: rgba(35, 57, 86, .18);
     background: var(--background);
 }
 
@@ -806,7 +806,7 @@ body.light-theme {
 .recommendation-strip {
     padding: 18px 0;
     border-bottom: 1px solid var(--border);
-    background: #2a211d;
+    background: linear-gradient(100deg, #162a43, #241f35);
 }
 .recommendation-strip .hero-recommendation {
     max-width: 760px;
@@ -833,8 +833,8 @@ body.light-theme {
 .mood-hero {
     padding-block: clamp(58px, 8vw, 104px);
     background:
-        radial-gradient(circle at 16% 28%, rgba(149, 90, 63, .18), transparent 28%),
-        linear-gradient(120deg, #1d1b19 0%, var(--background) 58%);
+        radial-gradient(circle at 16% 28%, rgba(242, 179, 93, .2), transparent 28%),
+        linear-gradient(120deg, #172b45 0%, var(--background) 58%);
 }
 .mood-content { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(35px, 7vw, 90px); }
 .featured-label { margin-bottom: 13px; color: var(--accent); font-size: .72rem; letter-spacing: .12em; }
@@ -846,7 +846,7 @@ body.light-theme {
     padding: clamp(24px, 4vw, 40px);
     border: 1px solid var(--border);
     border-radius: 6px;
-    background: rgba(34, 33, 31, .76);
+    background: rgba(23, 34, 53, .86);
     box-shadow: 0 18px 45px rgba(0, 0, 0, .18);
 }
 .picker-label { margin: 0 0 13px; color: var(--muted); font-size: .82rem; }
@@ -1254,7 +1254,7 @@ body.light-theme .about-collection { color: #35413a; }
     border: 1px solid rgba(211, 164, 111, .42);
     border-left: 4px solid var(--accent);
     border-radius: 6px;
-    background: linear-gradient(135deg, rgba(53, 39, 31, .95), rgba(34, 33, 31, .98));
+    background: linear-gradient(135deg, rgba(31, 57, 87, .96), rgba(23, 34, 53, .98));
     box-shadow: 0 16px 35px rgba(0, 0, 0, .22);
 }
 .hero-recommendation-poster {
@@ -1266,7 +1266,6 @@ body.light-theme .about-collection { color: #35413a; }
     background: var(--surface-light);
 }
 .hero-recommendation-copy { min-width: 0; }
-}
 .hero-recommendation-label {
     color: var(--accent);
     font-size: .68rem;
