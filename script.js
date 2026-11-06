@@ -4187,6 +4187,7 @@ allTitles.forEach(item => {
 
 const WATCHLIST_KEY = "cineVerseWatchlist";
 const FAVORITES_KEY = "cineVerseFavorites";
+const VIEWED_KEY = "cineVerseViewed";
 const THEME_KEY = "cineVerseTheme";
 
 function loadSavedIds(storageKey) {
@@ -4200,6 +4201,7 @@ function loadSavedIds(storageKey) {
 
 let watchlistIds = loadSavedIds(WATCHLIST_KEY);
 let favoriteIds = loadSavedIds(FAVORITES_KEY);
+let viewedIds = loadSavedIds(VIEWED_KEY);
 const moodDefaults = {
     Action: ["thrilled", "wonder"], Adventure: ["wonder", "uplifted"], Animation: ["wonder"],
     Comedy: ["uplifted"], Crime: ["thrilled", "thoughtful"], Documentary: ["thoughtful", "wonder"],
@@ -4220,6 +4222,44 @@ tvShows.forEach(item => {
 
 const textOf = item => `${item.title} ${item.description}`.toLowerCase();
 const formatRating = rating => Number(rating).toFixed(1);
+
+function getRatingQualityScore(item) {
+    const rating = Number(item.rating);
+    if (!Number.isFinite(rating) || rating <= 0) return 0;
+    return Math.min(1, Math.max(0, (rating - 7) / 2));
+}
+
+function getRecommendationScore(item, preferences = {}) {
+    const {
+        mood,
+        genre = "All",
+        language = "All",
+        runtime = "any"
+    } = preferences;
+    let score = 0;
+
+    if (mood && item.mood.includes(mood)) score += 5;
+    if (genre !== "All" && item.genre === genre) score += 3;
+    if (language !== "All" && item.language === language) score += 3;
+    if (runtime !== "any" && matchesRuntime(item, runtime)) score += 2;
+    score += getRatingQualityScore(item);
+    if (viewedIds.includes(item.id)) score -= 1;
+    if (watchlistIds.includes(item.id)) score -= 0.5;
+    if (favoriteIds.includes(item.id)) score -= 0.5;
+
+    return score;
+}
+
+function rankRecommendations(items, preferences = {}) {
+    return [...items].sort((a, b) =>
+        getRecommendationScore(b, preferences) - getRecommendationScore(a, preferences) ||
+        Number(String(b.poster || "").includes("image.tmdb.org")) - Number(String(a.poster || "").includes("image.tmdb.org")) ||
+        Number(b.rating || 0) - Number(a.rating || 0) ||
+        Number(b.year || 0) - Number(a.year || 0) ||
+        a.title.localeCompare(b.title)
+    );
+}
+
 const extraMoodRules = {
     adventurous: item => ["Action", "Adventure", "Animation"].includes(item.genre) || (item.genre === "Fantasy" && /quest|journey|adventure|expedition|explore|travel/.test(textOf(item))),
     romantic: item => item.genre === "Romance" || /romance|love|lovers|relationship|wedding|couple|fall for/.test(textOf(item)),
@@ -4331,13 +4371,12 @@ function renderHeroRecommendation() {
         return;
     }
 
-    const recommendation = [...candidates].sort((a, b) =>
-        Number(String(b.poster || "").includes("image.tmdb.org")) - Number(String(a.poster || "").includes("image.tmdb.org")) ||
-        Number(Boolean(b.poster)) - Number(Boolean(a.poster)) ||
-        Number(b.rating || 0) - Number(a.rating || 0) ||
-        Number(b.year || 0) - Number(a.year || 0) ||
-        a.title.localeCompare(b.title)
-    )[0];
+    const posterCandidates = candidates.filter(item => String(item.poster || "").includes("image.tmdb.org"));
+    const recommendation = rankRecommendations(posterCandidates.length ? posterCandidates : candidates, {
+        mood: selectedMood,
+        genre: selectedGenre,
+        language: selectedLanguage
+    })[0];
 
     result.innerHTML = `
         <div class="hero-recommendation-card">
@@ -4375,11 +4414,11 @@ function renderMovieNightResult() {
         return;
     }
 
-    const recommendation = [...candidates].sort((a, b) =>
-        Number(b.rating || 0) - Number(a.rating || 0) ||
-        Number(b.year || 0) - Number(a.year || 0) ||
-        a.title.localeCompare(b.title)
-    )[0];
+    const recommendation = rankRecommendations(candidates, {
+        mood,
+        language,
+        runtime: runtimeChoice
+    })[0];
     const runtimeText = recommendation.runtime ? ` at ${recommendation.runtime}` : "";
     result.innerHTML = renderFeatureCard(
         recommendation,
@@ -4535,10 +4574,17 @@ function filterTitles(items) {
 
 function updateCatalogs(resetVisibleCount = false) {
     if (resetVisibleCount) visibleMovieCount = CATALOG_PAGE_SIZE;
-    const filteredMovies = filterTitles(movies).filter(item => item.mood.includes(selectedMood));
+    const filteredMovies = rankRecommendations(
+        filterTitles(movies).filter(item => item.mood.includes(selectedMood)),
+        {
+            mood: selectedMood,
+            genre: selectedGenre,
+            language: selectedLanguage
+        }
+    );
     renderMovies(filteredMovies, "trending-movies");
     renderWatchlist();
-    document.getElementById("catalog-count").textContent = `${filteredMovies.length} curated suggestions match this mood and your filters.`;
+    document.getElementById("catalog-count").textContent = `${filteredMovies.length} ranked suggestions match this mood and your filters.`;
     document.getElementById("mood-results-caption").textContent = `${filteredMovies.length} films selected for your ${selectedMood} mood`;
     renderHeroRecommendation();
 }
@@ -4769,6 +4815,11 @@ function openMovieModal(itemId) {
 
     if (!item) return;
 
+    if (!viewedIds.includes(item.id)) {
+        viewedIds = [...viewedIds, item.id];
+        saveIds(VIEWED_KEY, viewedIds);
+    }
+
     const watchSearchUrl = `https://www.justwatch.com/in/search?q=${encodeURIComponent(`${item.title} ${item.year}`)}`;
     const whyWatchReason = getWhyWatchReason(item);
 
@@ -4860,8 +4911,13 @@ document.getElementById("surprise-pick").addEventListener("click", () => {
         return;
     }
 
-    const freshPicks = matchingFilms.filter(item => item.id !== lastSurprisePickId);
-    const options = freshPicks.length ? freshPicks : matchingFilms;
+    const rankedFilms = rankRecommendations(matchingFilms, {
+        mood: selectedMood,
+        genre: selectedGenre,
+        language: selectedLanguage
+    });
+    const freshPicks = rankedFilms.filter(item => item.id !== lastSurprisePickId);
+    const options = (freshPicks.length ? freshPicks : rankedFilms).slice(0, 8);
     const pickedFilm = options[Math.floor(Math.random() * options.length)];
     lastSurprisePickId = pickedFilm.id;
     openMovieModal(pickedFilm.id);
