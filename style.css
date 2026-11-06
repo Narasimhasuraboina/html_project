@@ -746,6 +746,592 @@
             .toast { transition: none; }
         }
 
+        /* Hybrid streaming/editorial redesign. This intentionally supersedes the earlier visual layers. */
+        body {
+            background: #0b0c0e;
+            color: #f6f1e9;
+        }
+
+        .site-header {
+            position: absolute;
+            z-index: 20;
+            top: 0;
+            right: 0;
+            left: 0;
+            border-bottom: 0;
+            background: linear-gradient(180deg, rgba(5, 6, 8, .82), transparent);
+        }
+
+        .header-content {
+            min-height: 84px;
+        }
+
+        .brand {
+            color: #f6f1e9;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.4rem;
+        }
+
+        .brand-mark {
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(246, 241, 233, .55);
+            border-radius: 50%;
+            color: var(--accent);
+        }
+
+        .brand span:last-child {
+            color: inherit;
+        }
+
+        .site-nav a,
+        .theme-toggle {
+            color: rgba(246, 241, 233, .75);
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible,
+        .theme-toggle:hover {
+            color: #fff;
+        }
+
+        .theme-toggle {
+            border-color: rgba(246, 241, 233, .28);
+            background: rgba(0, 0, 0, .18);
+        }
+
+        .quote-banner {
+            position: absolute;
+            z-index: 10;
+            top: 84px;
+            right: 0;
+            left: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .quote-content {
+            justify-content: flex-end;
+            min-height: 42px;
+        }
+
+        .quote-mark,
+        .quote-content blockquote {
+            display: none;
+        }
+
+        .quote-next {
+            color: rgba(246, 241, 233, .75);
+            font-size: .72rem;
+        }
+
+        .recommendation-strip {
+            position: relative;
+            min-height: min(720px, 82vh);
+            padding: 170px 0 96px;
+            overflow: hidden;
+            border: 0;
+            background:
+                linear-gradient(90deg, rgba(5, 7, 9, .98) 0%, rgba(5, 7, 9, .83) 35%, rgba(5, 7, 9, .2) 72%, rgba(5, 7, 9, .72) 100%),
+                radial-gradient(circle at 75% 30%, rgba(164, 111, 63, .28), transparent 34%),
+                #101215;
+        }
+
+        .recommendation-strip::before {
+            position: absolute;
+            top: 0;
+            right: 7%;
+            bottom: 0;
+            width: 48%;
+            background: linear-gradient(90deg, transparent, rgba(33, 30, 25, .48));
+            content: "";
+            pointer-events: none;
+        }
+
+        .recommendation-strip .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .recommendation-strip .hero-recommendation {
+            max-width: 860px;
+            margin: 0;
+        }
+
+        .recommendation-strip .hero-recommendation-card {
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 42px;
+            align-items: center;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .recommendation-strip .hero-recommendation-poster {
+            width: 220px;
+            height: 330px;
+            border-radius: 3px;
+            box-shadow: 20px 24px 48px rgba(0, 0, 0, .45);
+        }
+
+        .recommendation-strip .hero-recommendation-copy {
+            max-width: 560px;
+        }
+
+        .recommendation-strip .hero-recommendation-label {
+            display: block;
+            margin-bottom: 13px;
+            color: #e4ad6f;
+            font-size: .7rem;
+            letter-spacing: .2em;
+        }
+
+        .recommendation-strip .hero-recommendation-card h2 {
+            margin: 0 0 14px;
+            color: #fffaf3;
+            font-size: clamp(2.4rem, 5vw, 5rem);
+            line-height: .98;
+            letter-spacing: -.055em;
+        }
+
+        .recommendation-strip .hero-recommendation-card p {
+            max-width: 520px;
+            color: rgba(246, 241, 233, .72);
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        .recommendation-strip .hero-recommendation-link {
+            min-height: 44px;
+            margin-top: 25px;
+            padding: 0 18px;
+            border: 0;
+            border-radius: 3px;
+            background: #e4ad6f;
+            color: #22170d;
+            font-weight: 700;
+        }
+
+        .recommendation-strip .hero-recommendation-link:hover {
+            background: #f3c78d;
+            color: #22170d;
+        }
+
+        .recommendation-strip .hero-recommendation-meta {
+            grid-column: 2;
+            align-self: start;
+            margin-top: 20px;
+            color: rgba(246, 241, 233, .66);
+            font-size: .82rem;
+        }
+
+        .mood-hero {
+            padding-block: 72px 92px;
+            border-top: 1px solid rgba(246, 241, 233, .1);
+            background: #111316;
+        }
+
+        .mood-content {
+            grid-template-columns: minmax(0, .75fr) minmax(380px, 1.25fr);
+            align-items: start;
+            gap: 90px;
+        }
+
+        .mood-intro h1,
+        .mood-intro > p,
+        .hero-actions,
+        .hero-catalog-fact {
+            display: none;
+        }
+
+        .mood-intro .featured-label {
+            margin: 0;
+            color: rgba(246, 241, 233, .5);
+        }
+
+        .mood-picker {
+            padding: 0;
+            border: 0;
+        }
+
+        .picker-label {
+            margin-bottom: 18px;
+            color: #f6f1e9;
+            font-size: 1.45rem;
+        }
+
+        .mood-options {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .mood-button {
+            min-height: 46px;
+            padding: 0 14px;
+            border: 1px solid rgba(246, 241, 233, .16);
+            border-radius: 3px;
+            color: rgba(246, 241, 233, .7);
+            text-align: center;
+        }
+
+        .mood-button:hover,
+        .mood-button.active {
+            padding-left: 14px;
+            border-color: #e4ad6f;
+            background: rgba(228, 173, 111, .14);
+            color: #f3c78d;
+        }
+
+        .mood-button::before,
+        .mood-button:hover::before,
+        .mood-button.active::before {
+            display: none;
+        }
+
+        .mood-content .mood-note {
+            margin-top: 18px;
+            color: rgba(246, 241, 233, .55);
+        }
+
+        .discovery-controls {
+            padding-block: 28px;
+            background: #181a1e;
+        }
+
+        .catalog-section {
+            padding-block: 72px 96px;
+            background: #0b0c0e;
+        }
+
+        .catalog-section-alt {
+            background: #111316;
+        }
+
+        .section-heading h2 {
+            color: #f6f1e9;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+        }
+
+        .movie-grid {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 28px 16px;
+        }
+
+        .movie-card {
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .movie-card .movie-poster {
+            border-radius: 3px;
+        }
+
+        .movie-card-content {
+            padding: 13px 0 10px;
+        }
+
+        .movie-card h3 {
+            color: #f6f1e9;
+            font-size: 1.02rem;
+        }
+
+        .movie-card-topline,
+        .movie-language,
+        .movie-year {
+            color: rgba(246, 241, 233, .55);
+        }
+
+        .mood-match-reason {
+            color: #e4ad6f;
+        }
+
+        .watchlist-button {
+            border-color: rgba(246, 241, 233, .18);
+            color: rgba(246, 241, 233, .65);
+        }
+
+        .watchlist-button:hover {
+            border-color: #e4ad6f;
+            background: rgba(228, 173, 111, .1);
+            color: #f3c78d;
+        }
+
+        @media (max-width: 760px) {
+            .recommendation-strip {
+                min-height: auto;
+                padding: 138px 0 60px;
+            }
+
+            .recommendation-strip .hero-recommendation-card {
+                grid-template-columns: 112px minmax(0, 1fr);
+                gap: 22px;
+            }
+
+            .recommendation-strip .hero-recommendation-poster {
+                width: 112px;
+                height: 168px;
+            }
+
+            .recommendation-strip .hero-recommendation-card h2 {
+                font-size: 2.2rem;
+            }
+
+            .recommendation-strip .hero-recommendation-meta {
+                grid-column: 2;
+            }
+
+            .mood-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .mood-intro .featured-label {
+                display: block;
+            }
+
+            .mood-options {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* End-of-file overrides keep the complete redesign ahead of legacy responsive rules. */
+        body {
+            background: #0b0c0e;
+            color: #f6f1e9;
+        }
+
+        .site-header {
+            position: absolute;
+            z-index: 20;
+            top: 0;
+            right: 0;
+            left: 0;
+            border-bottom: 0;
+            background: linear-gradient(180deg, rgba(5, 6, 8, .82), transparent);
+        }
+
+        .quote-banner {
+            position: absolute;
+            z-index: 10;
+            top: 84px;
+            right: 0;
+            left: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .quote-mark,
+        .quote-content blockquote {
+            display: none;
+        }
+
+        .recommendation-strip {
+            position: relative;
+            min-height: min(720px, 82vh);
+            padding: 170px 0 96px;
+            overflow: hidden;
+            border: 0;
+            background:
+                linear-gradient(90deg, rgba(5, 7, 9, .98) 0%, rgba(5, 7, 9, .83) 35%, rgba(5, 7, 9, .2) 72%, rgba(5, 7, 9, .72) 100%),
+                radial-gradient(circle at 75% 30%, rgba(164, 111, 63, .28), transparent 34%),
+                #101215;
+        }
+
+        .recommendation-strip::before {
+            position: absolute;
+            top: 0;
+            right: 7%;
+            bottom: 0;
+            width: 48%;
+            background: linear-gradient(90deg, transparent, rgba(33, 30, 25, .48));
+            content: "";
+        }
+
+        .recommendation-strip .hero-recommendation {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0;
+        }
+
+        .recommendation-strip .hero-recommendation-card {
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 42px;
+            align-items: center;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .recommendation-strip .hero-recommendation-poster {
+            width: 220px;
+            height: 330px;
+            border-radius: 3px;
+            box-shadow: 20px 24px 48px rgba(0, 0, 0, .45);
+        }
+
+        .recommendation-strip .hero-recommendation-card h2 {
+            margin: 0 0 14px;
+            color: #fffaf3;
+            font-size: clamp(2.4rem, 5vw, 5rem);
+            line-height: .98;
+        }
+
+        .recommendation-strip .hero-recommendation-card p {
+            max-width: 520px;
+            color: rgba(246, 241, 233, .72);
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        .recommendation-strip .hero-recommendation-link {
+            min-height: 44px;
+            margin-top: 25px;
+            padding: 0 18px;
+            border: 0;
+            border-radius: 3px;
+            background: #e4ad6f;
+            color: #22170d;
+            font-weight: 700;
+        }
+
+        .recommendation-strip .hero-recommendation-meta {
+            grid-column: 2;
+            align-self: start;
+            margin-top: 20px;
+            color: rgba(246, 241, 233, .66);
+        }
+
+        .mood-hero {
+            padding-block: 72px 92px;
+            border-top: 1px solid rgba(246, 241, 233, .1);
+            background: #111316;
+        }
+
+        .mood-intro h1,
+        .mood-intro > p,
+        .mood-intro .hero-actions,
+        .mood-intro .hero-catalog-fact {
+            display: none;
+        }
+
+        .mood-content {
+            grid-template-columns: minmax(0, .75fr) minmax(380px, 1.25fr);
+            align-items: start;
+            gap: 90px;
+        }
+
+        .mood-picker {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .picker-label {
+            color: #f6f1e9;
+            font-size: 1.45rem;
+        }
+
+        .mood-options {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .mood-button {
+            min-height: 46px;
+            padding: 0 14px;
+            border: 1px solid rgba(246, 241, 233, .16);
+            border-radius: 3px;
+            color: rgba(246, 241, 233, .7);
+            text-align: center;
+        }
+
+        .mood-button:hover,
+        .mood-button.active {
+            padding-left: 14px;
+            border-color: #e4ad6f;
+            background: rgba(228, 173, 111, .14);
+            color: #f3c78d;
+        }
+
+        .mood-button::before {
+            display: none;
+        }
+
+        .discovery-controls {
+            padding-block: 28px;
+            background: #181a1e;
+        }
+
+        .catalog-section {
+            padding-block: 72px 96px;
+            background: #0b0c0e;
+        }
+
+        .catalog-section-alt {
+            background: #111316;
+        }
+
+        .movie-grid {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 28px 16px;
+        }
+
+        .movie-card {
+            overflow: hidden;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .movie-card-content {
+            padding: 13px 0 10px;
+        }
+
+        @media (max-width: 760px) {
+            .recommendation-strip {
+                min-height: auto;
+                padding: 138px 0 60px;
+            }
+
+            .recommendation-strip .hero-recommendation-card {
+                grid-template-columns: 112px minmax(0, 1fr);
+                gap: 22px;
+            }
+
+            .recommendation-strip .hero-recommendation-poster {
+                width: 112px;
+                height: 168px;
+            }
+
+            .recommendation-strip .hero-recommendation-card h2 {
+                font-size: 2.2rem;
+            }
+
+            .recommendation-strip .hero-recommendation-meta {
+                grid-column: 2;
+            }
+
+            .mood-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .mood-options {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
 /* CineVerse editorial layout: quieter colors, type-led sections, and straightforward controls. */
 :root {
     --background: #0e1624;
@@ -1862,4 +2448,44 @@ body.light-theme .genre-button.active {
         grid-column: 2;
         align-self: start;
     }
+}
+
+/* Active final theme: this block intentionally comes last. */
+body { background: #0b0c0e; color: #f6f1e9; }
+.site-header { position: absolute; z-index: 20; inset: 0 0 auto; border: 0; background: linear-gradient(180deg, rgba(5,6,8,.88), transparent); }
+.quote-banner { position: absolute; z-index: 10; top: 84px; right: 0; left: 0; border: 0; background: transparent; }
+.quote-mark, .quote-content blockquote { display: none; }
+.recommendation-strip { position: relative; min-height: min(720px, 82vh); padding: 170px 0 96px; overflow: hidden; border: 0; background: linear-gradient(90deg, rgba(5,7,9,.99), rgba(5,7,9,.82) 42%, rgba(5,7,9,.28)), radial-gradient(circle at 75% 30%, rgba(164,111,63,.3), transparent 34%), #101215; }
+.recommendation-strip::before { position: absolute; inset: 0 7% 0 auto; width: 48%; background: linear-gradient(90deg, transparent, rgba(52,42,30,.46)); content: ""; }
+.recommendation-strip .hero-recommendation { position: relative; z-index: 1; max-width: 860px; margin: 0; }
+.recommendation-strip .hero-recommendation-card { grid-template-columns: 220px minmax(0,1fr); gap: 42px; align-items: center; padding: 0; border: 0; background: transparent; }
+.recommendation-strip .hero-recommendation-poster { width: 220px; height: 330px; border-radius: 3px; box-shadow: 20px 24px 48px rgba(0,0,0,.5); }
+.recommendation-strip .hero-recommendation-card h2 { margin: 0 0 14px; color: #fffaf3; font-size: clamp(2.4rem,5vw,5rem); line-height: .98; }
+.recommendation-strip .hero-recommendation-card p { max-width: 520px; color: rgba(246,241,233,.72); font-size: 1rem; line-height: 1.65; }
+.recommendation-strip .hero-recommendation-link { min-height: 44px; margin-top: 25px; padding: 0 18px; border: 0; border-radius: 3px; background: #e4ad6f; color: #22170d; font-weight: 700; }
+.recommendation-strip .hero-recommendation-meta { grid-column: 2; align-self: start; margin-top: 20px; color: rgba(246,241,233,.66); }
+.mood-hero { padding-block: 72px 92px; border-top: 1px solid rgba(246,241,233,.1); background: #111316; }
+.mood-intro h1, .mood-intro > p, .mood-intro .hero-actions, .mood-intro .hero-catalog-fact { display: none; }
+.mood-content { grid-template-columns: minmax(0,.75fr) minmax(380px,1.25fr); align-items: start; gap: 90px; }
+.mood-picker { padding: 0; border: 0; background: transparent; box-shadow: none; }
+.picker-label { color: #f6f1e9; font-size: 1.45rem; }
+.mood-options { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.mood-button { min-height: 46px; padding: 0 14px; border: 1px solid rgba(246,241,233,.16); border-radius: 3px; color: rgba(246,241,233,.7); text-align: center; }
+.mood-button:hover, .mood-button.active { padding-left: 14px; border-color: #e4ad6f; background: rgba(228,173,111,.14); color: #f3c78d; }
+.mood-button::before { display: none; }
+.discovery-controls { padding-block: 28px; background: #181a1e; }
+.catalog-section { padding-block: 72px 96px; background: #0b0c0e; }
+.catalog-section-alt { background: #111316; }
+.movie-grid { grid-template-columns: repeat(5,minmax(0,1fr)); gap: 28px 16px; }
+.movie-card { overflow: hidden; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.movie-card-content { padding: 13px 0 10px; }
+@media (max-width: 760px) {
+    .recommendation-strip { min-height: auto; padding: 138px 0 60px; }
+    .recommendation-strip .hero-recommendation-card { grid-template-columns: 112px minmax(0,1fr); gap: 22px; }
+    .recommendation-strip .hero-recommendation-poster { width: 112px; height: 168px; }
+    .recommendation-strip .hero-recommendation-card h2 { font-size: 2.2rem; }
+    .recommendation-strip .hero-recommendation-meta { grid-column: 2; }
+    .mood-content { grid-template-columns: 1fr; gap: 35px; }
+    .mood-options { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .movie-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
