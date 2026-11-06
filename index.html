@@ -22,7 +22,7 @@
                 <span>Cine<span>Verse</span></span>
             </a>
 
-            <nav class="site-nav" aria-label="Main navigation">
+            <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
                 <ul>
                     <li><a href="#home" aria-current="page">Home</a></li>
                     <li><a href="#movie-night">Movie Night</a></li>
@@ -31,6 +31,8 @@
                     <li><a href="#about">About</a></li>
                 </ul>
             </nav>
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false"
+                aria-controls="site-navigation">Menu</button>
             <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Light theme</button>
         </div>
     </header>
@@ -57,6 +59,7 @@
                         <a class="browse-link" href="#movies">Browse the collection <span
                                 aria-hidden="true">&#8595;</span></a>
                     </div>
+                    <div class="hero-recommendation" id="hero-recommendation" aria-live="polite"></div>
                     <p class="hero-catalog-fact">450 films <span aria-hidden="true">&#183;</span> Hindi, Telugu, and
                         English</p>
                 </div>

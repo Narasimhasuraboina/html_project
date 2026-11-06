@@ -4322,6 +4322,37 @@ function renderFeatureCard(item, reason) {
     `;
 }
 
+function renderHeroRecommendation() {
+    const result = document.getElementById("hero-recommendation");
+    const candidates = filterTitles(movies).filter(item => item.mood.includes(selectedMood));
+
+    if (!candidates.length) {
+        result.innerHTML = `<p class="hero-recommendation-empty">No ${moodLabels[selectedMood] || selectedMood} picks match the current filters. <button class="hero-clear-filters" type="button" data-clear-filters>Clear filters</button></p>`;
+        return;
+    }
+
+    const recommendation = [...candidates].sort((a, b) =>
+        Number(b.rating || 0) - Number(a.rating || 0) ||
+        Number(b.year || 0) - Number(a.year || 0) ||
+        a.title.localeCompare(b.title)
+    )[0];
+
+    result.innerHTML = `
+        <div class="hero-recommendation-card">
+            ${recommendation.poster
+                ? `<img class="hero-recommendation-poster" src="${recommendation.poster}" alt="" loading="lazy">`
+                : `<span class="hero-recommendation-poster poster-unavailable" aria-hidden="true">No poster</span>`}
+            <div class="hero-recommendation-copy">
+                <span class="hero-recommendation-label">Tonight's match</span>
+                <h2>${recommendation.title}</h2>
+                <p>${recommendation.description}</p>
+                <button class="hero-recommendation-link" type="button" data-item-id="${recommendation.id}">View why it fits <span aria-hidden="true">&#8594;</span></button>
+            </div>
+            <span class="hero-recommendation-meta">${recommendation.year} <span aria-hidden="true">&#183;</span> ${recommendation.language}${recommendation.rating ? ` <span aria-hidden="true">&#183;</span> &#9733; ${formatRating(recommendation.rating)}` : ""}</span>
+        </div>
+    `;
+}
+
 function renderMovieNightResult() {
     const form = document.getElementById("movie-night-form");
     const result = document.getElementById("movie-night-result");
@@ -4505,6 +4536,7 @@ function updateCatalogs(resetVisibleCount = false) {
     renderWatchlist();
     document.getElementById("catalog-count").textContent = `${filteredMovies.length} curated suggestions match this mood and your filters.`;
     document.getElementById("mood-results-caption").textContent = `${filteredMovies.length} films selected for your ${selectedMood} mood`;
+    renderHeroRecommendation();
 }
 
 function renderWatchlist() {
@@ -4635,7 +4667,6 @@ document.querySelectorAll(".mood-button").forEach(button => {
         });
         document.getElementById("mood-note").textContent = moodNotes[selectedMood];
         updateCatalogs();
-        document.getElementById("movies").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 });
 
@@ -4791,6 +4822,24 @@ document.querySelectorAll(".feature-result").forEach(result => {
     });
 });
 
+document.getElementById("hero-recommendation").addEventListener("click", event => {
+    const detailButton = event.target.closest("[data-item-id]");
+    if (detailButton) openMovieModal(detailButton.dataset.itemId);
+
+    if (event.target.closest("[data-clear-filters]")) {
+        searchInput.value = "";
+        selectedGenre = "All";
+        selectedLanguage = "All";
+        languageSelect.value = "All";
+        genreButtons.forEach(button => {
+            const isSelected = button.dataset.genre === "All";
+            button.classList.toggle("active", isSelected);
+            button.setAttribute("aria-pressed", String(isSelected));
+        });
+        updateCatalogs(true);
+    }
+});
+
 document.getElementById("new-double-feature").addEventListener("click", () => {
     doubleFeatureOffset += 1;
     renderDoubleFeature();
@@ -4838,6 +4887,23 @@ movieModal.addEventListener("click", event => {
 });
 
 const themeToggle = document.getElementById("theme-toggle");
+const menuToggle = document.getElementById("menu-toggle");
+const siteNavigation = document.getElementById("site-navigation");
+
+menuToggle.addEventListener("click", () => {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    menuToggle.textContent = isOpen ? "Menu" : "Close";
+    siteNavigation.classList.toggle("is-open", !isOpen);
+});
+
+siteNavigation.addEventListener("click", event => {
+    if (!event.target.closest("a")) return;
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "Menu";
+    siteNavigation.classList.remove("is-open");
+});
+
 const backToTopButton = document.getElementById("back-to-top");
 const readingProgressFill = document.getElementById("reading-progress-fill");
 const quoteElement = document.getElementById("movie-quote");
@@ -5070,8 +5136,5 @@ backToTopButton.addEventListener("click", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
 });
-
-
-
 
 
