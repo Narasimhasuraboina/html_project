@@ -1543,7 +1543,7 @@ body.light-theme .mood-match-reason { color: #684512; }
 .how-it-works { display: grid; gap: 0; max-width: 590px; margin: 28px 0 0; padding: 0; list-style: none; }
 .how-it-works li { display: grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--border); }
 .how-it-works li > span { color: var(--accent); font: 400 1.05rem/1.4 Georgia, "Times New Roman", serif; }
-.how-it-works strong { color: var(--text); font-size: .96rem; }
+.how-it-works strong { color: #f5ead4; font-size: .96rem; }
 .about-copy .how-it-works p { margin: 4px 0 0; color: var(--muted); font-size: .86rem; line-height: 1.5; }
 .about-details { padding: clamp(22px, 3vw, 34px); border: 1px solid rgba(201, 177, 128, .24); border-radius: 8px; background: linear-gradient(145deg, rgba(29, 39, 39, .95), rgba(24, 26, 25, .92)); box-shadow: 0 22px 50px rgba(0, 0, 0, .18); }
 .about-stat { display: inline-flex; flex-direction: column; min-width: 44%; gap: 2px; margin: 0 3% 20px 0; padding: 0 0 15px; border-bottom: 1px solid rgba(201, 177, 128, .25); vertical-align: top; }
@@ -2505,6 +2505,38 @@ body,
 body.light-theme {
     background: var(--background);
     color: var(--text);
+}
+
+.movie-modal {
+    background: #11151d;
+    color: #f6f1e9;
+}
+
+.movie-modal .modal-details h2,
+.movie-modal .modal-story-label {
+    color: #f6f1e9;
+}
+
+.movie-modal .modal-meta {
+    color: #aeb7c4;
+}
+
+.movie-modal .why-watch p,
+.movie-modal .modal-synopsis {
+    color: #d7dce4;
+}
+
+.movie-modal .why-watch .why-watch-mood {
+    color: #c0c8d3;
+}
+
+.movie-modal .why-watch .why-watch-mood strong,
+.movie-modal .where-to-watch-label {
+    color: #f6f1e9;
+}
+
+.movie-modal .where-to-watch p {
+    color: #aeb7c4;
 }
 
 .site-header {
