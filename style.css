@@ -2489,3 +2489,327 @@ body { background: #0b0c0e; color: #f6f1e9; }
     .mood-options { grid-template-columns: repeat(2,minmax(0,1fr)); }
     .movie-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+
+/* A24-inspired final direction: art-directed feature first, tools second. */
+:root {
+    --background: #e9e5dc;
+    --surface: #f3f0e9;
+    --surface-light: #d8d1c5;
+    --text: #171717;
+    --muted: #716e68;
+    --accent: #b13a2e;
+    --border: rgba(23, 23, 23, .18);
+}
+
+body,
+body.light-theme {
+    background: var(--background);
+    color: var(--text);
+}
+
+.site-header {
+    background: var(--background);
+}
+
+.brand {
+    color: var(--text);
+}
+
+.brand-mark {
+    border-color: var(--text);
+    color: var(--accent);
+}
+
+.brand span:last-child,
+.site-nav a,
+.theme-toggle {
+    color: var(--text);
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.theme-toggle:hover {
+    color: var(--accent);
+}
+
+.theme-toggle {
+    border-color: var(--border);
+    background: transparent;
+}
+
+.quote-banner {
+    display: none;
+}
+
+.recommendation-strip {
+    min-height: min(760px, 88vh);
+    padding: 138px 0 84px;
+    background: var(--background);
+}
+
+.recommendation-strip::before {
+    right: 0;
+    width: 43%;
+    background: #d6cec1;
+}
+
+.recommendation-strip .hero-recommendation-card {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: clamp(42px, 8vw, 118px);
+    max-width: 1050px;
+}
+
+.recommendation-strip .hero-recommendation-poster {
+    grid-column: 2;
+    grid-row: 1;
+    width: 360px;
+    height: 540px;
+    border-radius: 0;
+    box-shadow: 22px 22px 0 rgba(177, 58, 46, .18);
+}
+
+.recommendation-strip .hero-recommendation-copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    max-width: 510px;
+}
+
+.recommendation-strip .hero-recommendation-label {
+    color: var(--accent);
+    font-size: .68rem;
+    letter-spacing: .2em;
+}
+
+.recommendation-strip .hero-recommendation-card h2 {
+    max-width: 520px;
+    margin: 14px 0 18px;
+    color: var(--text);
+    font: 400 clamp(3.2rem, 6vw, 6.2rem)/.9 Georgia, "Times New Roman", serif;
+    letter-spacing: -.07em;
+}
+
+.recommendation-strip .hero-recommendation-card p {
+    max-width: 430px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.recommendation-strip .hero-recommendation-link {
+    min-height: 45px;
+    margin-top: 28px;
+    padding: 0 18px;
+    border: 1px solid var(--text);
+    border-radius: 0;
+    background: var(--text);
+    color: var(--background);
+}
+
+.recommendation-strip .hero-recommendation-link:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fffaf4;
+}
+
+.recommendation-strip .hero-recommendation-meta {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    margin: 0 0 4px;
+    color: var(--muted);
+}
+
+.mood-hero {
+    padding-block: 74px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.mood-content {
+    grid-template-columns: .75fr 1.25fr;
+    gap: 80px;
+}
+
+.mood-intro h1,
+.mood-intro > p,
+.mood-intro .hero-actions,
+.mood-intro .hero-catalog-fact {
+    display: block;
+}
+
+.mood-intro h1 {
+    max-width: 400px;
+    margin: 12px 0 0;
+    color: var(--text);
+    font: 400 clamp(2.4rem, 4vw, 4.2rem)/.98 Georgia, "Times New Roman", serif;
+    letter-spacing: -.06em;
+}
+
+.mood-intro > p {
+    max-width: 400px;
+    color: var(--muted);
+}
+
+.hero-actions {
+    margin-top: 24px;
+}
+
+.surprise-button {
+    border: 0;
+    border-radius: 0;
+    background: var(--accent);
+    color: #fffaf4;
+}
+
+.browse-link {
+    color: var(--text);
+}
+
+.mood-picker {
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.picker-label {
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+}
+
+.mood-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 20px;
+}
+
+.mood-button {
+    min-height: 48px;
+    padding: 8px 0;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    color: var(--muted);
+    text-align: left;
+}
+
+.mood-button:hover,
+.mood-button.active {
+    padding-left: 0;
+    border-color: var(--accent);
+    background: transparent;
+    color: var(--accent);
+}
+
+.mood-button::before {
+    display: none;
+}
+
+.mood-content .mood-note {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+}
+
+.discovery-controls {
+    background: #d6cec1;
+}
+
+.catalog-section {
+    background: var(--background);
+}
+
+.catalog-section-alt {
+    background: var(--surface);
+}
+
+.section-heading h2 {
+    color: var(--text);
+    font: 400 clamp(2rem, 4vw, 3.2rem)/1 Georgia, "Times New Roman", serif;
+}
+
+.movie-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 34px 18px;
+}
+
+.movie-card {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.movie-card .movie-poster {
+    border-radius: 0;
+}
+
+.movie-card h3 {
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.movie-card-topline,
+.movie-language,
+.movie-year {
+    color: var(--muted);
+}
+
+.mood-match-reason {
+    color: var(--accent);
+}
+
+.watchlist-button {
+    border-color: var(--border);
+    border-radius: 0;
+    color: var(--text);
+}
+
+@media (max-width: 760px) {
+    .recommendation-strip {
+        min-height: auto;
+        padding: 118px 0 60px;
+    }
+
+    .recommendation-strip::before {
+        width: 30%;
+    }
+
+    .recommendation-strip .hero-recommendation-card {
+        grid-template-columns: 116px minmax(0, 1fr);
+        gap: 22px;
+    }
+
+    .recommendation-strip .hero-recommendation-poster {
+        grid-column: 1;
+        width: 116px;
+        height: 174px;
+        box-shadow: 10px 10px 0 rgba(177, 58, 46, .18);
+    }
+
+    .recommendation-strip .hero-recommendation-copy {
+        grid-column: 2;
+    }
+
+    .recommendation-strip .hero-recommendation-card h2 {
+        font-size: 2.8rem;
+    }
+
+    .recommendation-strip .hero-recommendation-meta {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .mood-content {
+        grid-template-columns: 1fr;
+        gap: 42px;
+    }
+
+    .mood-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
