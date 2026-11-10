@@ -1121,6 +1121,15 @@ updateBackToTopVisibility();
 updateScrollProgress();
 renderCinemaParticles();
 
+const siteLoader = document.getElementById("site-loader");
+if (siteLoader) {
+    const loaderDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 250 : 900;
+    window.setTimeout(() => {
+        siteLoader.classList.add("is-hidden");
+        window.setTimeout(() => siteLoader.remove(), 450);
+    }, loaderDuration);
+}
+
 backToTopButton.addEventListener("click", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
