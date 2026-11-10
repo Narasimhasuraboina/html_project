@@ -1,0 +1,33 @@
+{
+  "scriptCompleted": true,
+  "stats": {
+    "filesScanned": 18,
+    "filesWithImports": 2,
+    "totalEdges": 2
+  },
+  "failures": [],
+  "importMap": {
+    "crawlfeeds_README.md": [],
+    "data/movies.js": [],
+    "eslint.config.js": [],
+    "index.html": [],
+    "index2.html": [],
+    "index3.html": [],
+    "index4.html": [],
+    "index5.html": [],
+    "indian_movies_source.csv": [],
+    "movie-catalog.jsdata": [],
+    "movie-catalog.json": [],
+    "movie_catalog_source.csv": [],
+    "package.json": [],
+    "script.js": [
+      "data/movies.js"
+    ],
+    "style.css": [],
+    "tests/catalog.test.js": [
+      "data/movies.js"
+    ],
+    "tmdb_movies_posters.csv": [],
+    "tmdb_movies_source.csv": []
+  }
+}

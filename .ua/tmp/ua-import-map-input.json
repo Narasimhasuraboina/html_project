@@ -1,0 +1,113 @@
+{
+  "projectRoot": "C:\\Users\\surab\\OneDrive\\Desktop\\HTML Project",
+  "files": [
+    {
+      "path": "crawlfeeds_README.md",
+      "language": "markdown",
+      "sizeLines": 253,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "data/movies.js",
+      "language": "javascript",
+      "sizeLines": 6521,
+      "fileCategory": "code"
+    },
+    {
+      "path": "eslint.config.js",
+      "language": "javascript",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "index.html",
+      "language": "html",
+      "sizeLines": 293,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "index2.html",
+      "language": "html",
+      "sizeLines": 0,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "index3.html",
+      "language": "html",
+      "sizeLines": 0,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "index4.html",
+      "language": "html",
+      "sizeLines": 2,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "index5.html",
+      "language": "html",
+      "sizeLines": 0,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "indian_movies_source.csv",
+      "language": "csv",
+      "sizeLines": 4344,
+      "fileCategory": "data"
+    },
+    {
+      "path": "movie-catalog.jsdata",
+      "language": "jsdata",
+      "sizeLines": 3729,
+      "fileCategory": "code"
+    },
+    {
+      "path": "movie-catalog.json",
+      "language": "json",
+      "sizeLines": 3730,
+      "fileCategory": "config"
+    },
+    {
+      "path": "movie_catalog_source.csv",
+      "language": "csv",
+      "sizeLines": 1113,
+      "fileCategory": "data"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": "script.js",
+      "language": "javascript",
+      "sizeLines": 1019,
+      "fileCategory": "code"
+    },
+    {
+      "path": "style.css",
+      "language": "css",
+      "sizeLines": 2847,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "tests/catalog.test.js",
+      "language": "javascript",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tmdb_movies_posters.csv",
+      "language": "csv",
+      "sizeLines": 249,
+      "fileCategory": "data"
+    },
+    {
+      "path": "tmdb_movies_source.csv",
+      "language": "csv",
+      "sizeLines": 4804,
+      "fileCategory": "data"
+    }
+  ]
+}

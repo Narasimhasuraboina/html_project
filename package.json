@@ -1,0 +1,13 @@
+{
+  "name": "cineverse",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint script.js tests",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0"
+  }
+}

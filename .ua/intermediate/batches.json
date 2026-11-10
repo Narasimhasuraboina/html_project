@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 18,
+  "totalBatches": 3,
+  "exportsByPath": {
+    "data/movies.js": [
+      "movies",
+      "tvShows",
+      "runtimes",
+      "featuredTitle"
+    ],
+    "eslint.config.js": [],
+    "movie-catalog.jsdata": [],
+    "script.js": [],
+    "tests/catalog.test.js": []
+  },
+  "batches": [
+    {
+      "batchIndex": 1,
+      "files": [
+        {
+          "path": "data/movies.js",
+          "language": "javascript",
+          "sizeLines": 6521,
+          "fileCategory": "code"
+        },
+        {
+          "path": "script.js",
+          "language": "javascript",
+          "sizeLines": 1019,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/catalog.test.js",
+          "language": "javascript",
+          "sizeLines": 25,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "data/movies.js": [],
+        "script.js": [
+          "data/movies.js"
+        ],
+        "tests/catalog.test.js": [
+          "data/movies.js"
+        ]
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "crawlfeeds_README.md",
+          "language": "markdown",
+          "sizeLines": 253,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "index.html",
+          "language": "html",
+          "sizeLines": 293,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "index2.html",
+          "language": "html",
+          "sizeLines": 0,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "index3.html",
+          "language": "html",
+          "sizeLines": 0,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "index4.html",
+          "language": "html",
+          "sizeLines": 2,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "index5.html",
+          "language": "html",
+          "sizeLines": 0,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "indian_movies_source.csv",
+          "language": "csv",
+          "sizeLines": 4344,
+          "fileCategory": "data"
+        },
+        {
+          "path": "movie-catalog.json",
+          "language": "json",
+          "sizeLines": 3730,
+          "fileCategory": "config"
+        },
+        {
+          "path": "movie_catalog_source.csv",
+          "language": "csv",
+          "sizeLines": 1113,
+          "fileCategory": "data"
+        },
+        {
+          "path": "package.json",
+          "language": "json",
+          "sizeLines": 13,
+          "fileCategory": "config"
+        },
+        {
+          "path": "style.css",
+          "language": "css",
+          "sizeLines": 2847,
+          "fileCategory": "markup"
+        },
+        {
+          "path": "tmdb_movies_posters.csv",
+          "language": "csv",
+          "sizeLines": 249,
+          "fileCategory": "data"
+        },
+        {
+          "path": "tmdb_movies_source.csv",
+          "language": "csv",
+          "sizeLines": 4804,
+          "fileCategory": "data"
+        }
+      ],
+      "batchImportData": {
+        "crawlfeeds_README.md": [],
+        "index.html": [],
+        "index2.html": [],
+        "index3.html": [],
+        "index4.html": [],
+        "index5.html": [],
+        "indian_movies_source.csv": [],
+        "movie-catalog.json": [],
+        "movie_catalog_source.csv": [],
+        "package.json": [],
+        "style.css": [],
+        "tmdb_movies_posters.csv": [],
+        "tmdb_movies_source.csv": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 3,
+      "files": [
+        {
+          "path": "eslint.config.js",
+          "language": "javascript",
+          "sizeLines": 22,
+          "fileCategory": "code"
+        },
+        {
+          "path": "movie-catalog.jsdata",
+          "language": "jsdata",
+          "sizeLines": 3729,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "eslint.config.js": [],
+        "movie-catalog.jsdata": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}

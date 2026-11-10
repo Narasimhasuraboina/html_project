@@ -1,0 +1,13 @@
+{
+  "projectRoot": "C:\\Users\\surab\\OneDrive\\Desktop\\HTML Project",
+  "batchFiles": [
+    {"path": "data/movies.js", "language": "javascript", "sizeLines": 6521, "fileCategory": "code"},
+    {"path": "script.js", "language": "javascript", "sizeLines": 1019, "fileCategory": "code"},
+    {"path": "tests/catalog.test.js", "language": "javascript", "sizeLines": 25, "fileCategory": "code"}
+  ],
+  "batchImportData": {
+    "data/movies.js": [],
+    "script.js": ["data/movies.js"],
+    "tests/catalog.test.js": ["data/movies.js"]
+  }
+}
