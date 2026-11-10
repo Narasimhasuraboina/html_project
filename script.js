@@ -10,6 +10,7 @@ const WATCHLIST_KEY = "cineVerseWatchlist";
 const FAVORITES_KEY = "cineVerseFavorites";
 const VIEWED_KEY = "cineVerseViewed";
 const THEME_KEY = "cineVerseTheme";
+const pageRecommendationOffset = Math.floor(Math.random() * 10000);
 
 function loadSavedIds(storageKey) {
     try {
@@ -215,11 +216,14 @@ function renderHeroRecommendation() {
     }
 
     const posterCandidates = candidates.filter(item => String(item.poster || "").includes("image.tmdb.org"));
-    const recommendation = rankRecommendations(posterCandidates.length ? posterCandidates : candidates, {
+    const rankedCandidates = rankRecommendations(posterCandidates.length ? posterCandidates : candidates, {
         mood: selectedMood,
         genre: selectedGenre,
         language: selectedLanguage
-    })[0];
+    });
+    // Keep the strongest matches, but rotate among them on every fresh page load.
+    const topMatches = rankedCandidates.slice(0, Math.min(12, rankedCandidates.length));
+    const recommendation = topMatches[pageRecommendationOffset % topMatches.length];
 
     result.innerHTML = `
         <div class="hero-recommendation-card">
