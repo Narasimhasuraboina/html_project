@@ -281,10 +281,16 @@ function renderFilmOfDay() {
     const result = document.getElementById("film-of-day");
     const dateLabel = document.getElementById("daily-date");
     const today = new Date();
-    const candidates = movies;
-    const item = candidates[getDateSeed(today) % candidates.length];
+    const languages = ["English", "Hindi", "Telugu"];
+    const dateSeed = getDateSeed(today);
+    const language = languages[dateSeed % languages.length];
+    const candidates = movies.filter(movie => movie.language === language);
+    const item = candidates[Math.floor(dateSeed / languages.length) % candidates.length];
     dateLabel.textContent = today.toLocaleDateString(undefined, { dateStyle: "long" });
-    result.innerHTML = renderFeatureCard(item, "The same catalog title stays featured for everyone throughout this calendar day.");
+    result.innerHTML = renderFeatureCard(
+        item,
+        `Chosen from our ${language} collection today so the daily spotlight keeps moving across languages, regions, and film traditions.`
+    );
 }
 
 let doubleFeatureOffset = 0;
@@ -557,6 +563,8 @@ const moodNotes = {
 document.querySelectorAll(".mood-button").forEach(button => {
     button.addEventListener("click", () => {
         selectedMood = button.dataset.mood;
+        selectedNightMood.value = selectedMood;
+        selectedMoodLabel.textContent = button.textContent.trim().toLowerCase();
         visibleMovieCount = CATALOG_PAGE_SIZE;
         document.querySelectorAll(".mood-button").forEach(moodButton => {
             const selected = moodButton === button;
@@ -706,6 +714,8 @@ function openMovieModal(itemId) {
 }
 
 const movieNightLanguage = document.getElementById("night-language");
+const selectedNightMood = document.getElementById("selected-night-mood");
+const selectedMoodLabel = document.getElementById("selected-mood-label");
 [...new Set(allTitles.map(item => item.language).filter(Boolean))].sort().forEach(language => {
     const option = document.createElement("option");
     option.value = language;

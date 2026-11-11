@@ -1098,6 +1098,230 @@
             }
         }
 
+        /* Compact page rhythm: reduce empty vertical space while preserving hierarchy. */
+        .recommendation-strip {
+            min-height: min(560px, 72vh);
+            padding: 96px 0 56px;
+        }
+
+        .recommendation-strip .hero-recommendation-poster {
+            width: 176px;
+            height: 264px;
+        }
+
+        .recommendation-strip .hero-recommendation-card {
+            gap: clamp(28px, 5vw, 72px);
+        }
+
+        .mood-hero {
+            padding-block: 48px 56px;
+        }
+
+        .mood-content {
+            gap: 48px;
+        }
+
+        .mood-intro h1 {
+            font-size: clamp(2.3rem, 4vw, 3.8rem);
+        }
+
+        .mood-intro > p {
+            margin-top: 16px;
+        }
+
+        .hero-actions {
+            margin-top: 20px;
+        }
+
+        .mood-button {
+            min-height: 40px;
+            padding-block: 5px;
+        }
+
+        .mood-content .mood-note {
+            margin-top: 14px;
+        }
+
+        .mood-refinement {
+            margin-top: 28px;
+            padding-top: 20px;
+        }
+
+        .mood-refinement .movie-night-form {
+            margin-top: 16px;
+        }
+
+        .feature-section {
+            padding-block: 42px;
+        }
+
+        .discovery-duo-intro {
+            margin-bottom: 20px;
+        }
+
+        .discovery-panel {
+            padding: 18px;
+        }
+
+        .section-heading {
+            margin-bottom: 18px;
+        }
+
+        .catalog-section {
+            padding-block: 52px 64px;
+        }
+
+        .movie-grid {
+            gap: 26px 16px;
+        }
+
+        @media (max-width: 760px) {
+            .recommendation-strip {
+                padding: 92px 0 44px;
+            }
+
+            .recommendation-strip .hero-recommendation-poster {
+                width: 96px;
+                height: 144px;
+            }
+
+            .mood-content {
+                gap: 30px;
+            }
+
+            .feature-section {
+                padding-block: 34px;
+            }
+
+            .catalog-section {
+                padding-block: 42px 52px;
+            }
+        }
+
+        /* Compact page rhythm: keep the editorial layout without oversized gaps. */
+        .recommendation-strip {
+            min-height: min(560px, 72vh);
+            padding: 96px 0 56px;
+        }
+
+        .recommendation-strip .hero-recommendation-card {
+            gap: clamp(28px, 5vw, 72px);
+        }
+
+        .recommendation-strip .hero-recommendation-poster {
+            width: 176px;
+            height: 264px;
+        }
+
+        .recommendation-strip .hero-recommendation-card h2 {
+            font-size: clamp(2.2rem, 4vw, 4rem);
+        }
+
+        .recommendation-strip .hero-recommendation-card p {
+            line-height: 1.5;
+        }
+
+        .mood-hero {
+            padding-block: 48px 56px;
+        }
+
+        .mood-content {
+            gap: 48px;
+        }
+
+        .mood-intro h1 {
+            font-size: clamp(2.3rem, 4vw, 3.8rem);
+        }
+
+        .mood-intro > p {
+            margin-top: 16px;
+        }
+
+        .hero-actions {
+            margin-top: 20px;
+        }
+
+        .mood-picker {
+            padding-top: 0;
+        }
+
+        .mood-options {
+            gap: 0 14px;
+        }
+
+        .mood-button {
+            min-height: 40px;
+            padding-block: 5px;
+        }
+
+        .mood-content .mood-note {
+            margin-top: 14px;
+        }
+
+        .mood-refinement {
+            margin-top: 28px;
+            padding-top: 20px;
+        }
+
+        .mood-refinement .movie-night-form {
+            margin-top: 16px;
+        }
+
+        .feature-section {
+            padding-block: 42px;
+        }
+
+        .discovery-duo-intro {
+            margin-bottom: 20px;
+        }
+
+        .discovery-duo-intro h2 {
+            margin-bottom: 7px;
+        }
+
+        .discovery-panel {
+            padding: 18px;
+        }
+
+        .section-heading {
+            margin-bottom: 18px;
+        }
+
+        .catalog-section {
+            padding-block: 52px 64px;
+        }
+
+        .movie-grid {
+            gap: 26px 16px;
+        }
+
+        @media (max-width: 760px) {
+            .recommendation-strip {
+                padding: 92px 0 44px;
+            }
+
+            .recommendation-strip .hero-recommendation-card {
+                gap: 16px;
+            }
+
+            .recommendation-strip .hero-recommendation-poster {
+                width: 96px;
+                height: 144px;
+            }
+
+            .mood-content {
+                gap: 30px;
+            }
+
+            .feature-section {
+                padding-block: 34px;
+            }
+
+            .catalog-section {
+                padding-block: 42px 52px;
+            }
+        }
+
         /* End-of-file overrides keep the complete redesign ahead of legacy responsive rules. */
         body {
             background: #0b0c0e;
@@ -1757,6 +1981,107 @@ body.light-theme .about-collection { color: #35413a; }
     background: var(--surface);
 }
 
+.discovery-duo-section {
+    background: var(--surface);
+}
+
+.discovery-duo-intro {
+    max-width: 720px;
+    margin-bottom: 30px;
+}
+
+.discovery-duo-intro h2 {
+    margin: 5px 0 10px;
+    font: 400 clamp(2rem, 4vw, 3.1rem)/1.05 Georgia, "Times New Roman", serif;
+    letter-spacing: -.035em;
+}
+
+.discovery-duo-intro p {
+    max-width: 600px;
+    margin: 0;
+    color: var(--muted);
+}
+
+.discovery-duo {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 20px;
+}
+
+.discovery-panel {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+.discovery-panel .section-heading {
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.discovery-panel .section-heading h2 {
+    font-size: clamp(1.7rem, 3vw, 2.45rem);
+}
+
+.discovery-panel .section-heading > p {
+    text-align: right;
+}
+
+.discovery-panel .feature-result {
+    margin-top: 0;
+}
+
+.discovery-panel .feature-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.discovery-panel .feature-card .movie-poster {
+    width: 120px;
+}
+
+.discovery-panel .feature-card-copy h3 {
+    font-size: 1.35rem;
+}
+
+.discovery-panel .feature-card-copy > p:not(.feature-card-meta) {
+    margin-bottom: 16px;
+    font-size: .86rem;
+    line-height: 1.55;
+}
+
+.discovery-panel .double-feature-pair {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 10px;
+}
+
+.discovery-panel .double-feature-pair .feature-card {
+    display: block;
+}
+
+.discovery-panel .double-feature-pair .feature-card .movie-poster {
+    width: 100%;
+    max-height: 210px;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.discovery-panel .double-feature-pair .feature-card-copy h3 {
+    font-size: 1.1rem;
+}
+
+.discovery-panel .double-feature-plus {
+    align-self: center;
+}
+
+.discovery-panel .pairing-note {
+    margin-top: 18px;
+}
+
 .movie-night-form {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(150px, .7fr)) auto;
@@ -1910,6 +2235,10 @@ body.light-theme .about-collection { color: #35413a; }
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .discovery-duo {
+        grid-template-columns: 1fr;
+    }
+
     .movie-night-form fieldset {
         grid-column: 1 / -1;
     }
@@ -1920,6 +2249,17 @@ body.light-theme .about-collection { color: #35413a; }
 
     .double-feature-plus {
         justify-self: center;
+    }
+}
+
+@media (max-width: 760px) {
+    .discovery-panel .section-heading {
+        display: block;
+    }
+
+    .discovery-panel .section-heading > p {
+        margin-top: 8px;
+        text-align: left;
     }
 }
 
@@ -2663,6 +3003,91 @@ body { background: #0b0c0e; color: #f6f1e9; }
     .movie-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 
+.mood-refinement {
+    margin-top: 42px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(246, 241, 233, .14);
+}
+
+.mood-refinement h2 {
+    margin: 5px 0 7px;
+    color: #f6f1e9;
+    font: 400 clamp(1.7rem, 3vw, 2.4rem)/1.05 Georgia, "Times New Roman", serif;
+}
+
+.mood-refinement > div:first-child > p {
+    margin: 0;
+    color: rgba(246, 241, 233, .62);
+    font-size: .9rem;
+}
+
+.mood-refinement > div:first-child strong {
+    color: #e4ad6f;
+    font-weight: 650;
+}
+
+.mood-refinement .movie-night-form {
+    display: grid;
+    grid-template-columns: minmax(150px, .75fr) minmax(150px, 1fr) minmax(150px, 1fr) auto;
+    align-items: end;
+    gap: 12px;
+    margin-top: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.mood-refinement .movie-night-form label {
+    grid-row: 1;
+    margin: 0 0 -7px;
+    color: rgba(246, 241, 233, .58);
+    font-size: .74rem;
+    font-weight: 650;
+}
+
+.mood-refinement .movie-night-form select,
+.mood-refinement .movie-night-form .feature-button {
+    grid-row: 2;
+}
+
+.mood-refinement .movie-night-form select {
+    min-height: 42px;
+    border-color: rgba(246, 241, 233, .18);
+    background: rgba(246, 241, 233, .06);
+    color: #f6f1e9;
+}
+
+.mood-refinement .feature-button {
+    min-height: 42px;
+    white-space: nowrap;
+}
+
+.mood-refinement .feature-result {
+    margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+    .mood-refinement .movie-night-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mood-refinement .movie-night-form label {
+        grid-row: auto;
+        margin: 0 0 -5px;
+    }
+
+    .mood-refinement .movie-night-form select,
+    .mood-refinement .movie-night-form .feature-button {
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .mood-refinement .movie-night-form {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* A24-inspired final direction: art-directed feature first, tools second. */
 :root {
     --background: #e9e5dc;
@@ -3016,5 +3441,94 @@ body.light-theme {
 
     .movie-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Compact page rhythm: reduce empty vertical space while preserving hierarchy. */
+.recommendation-strip { min-height: min(560px, 72vh); padding: 96px 0 56px; }
+.recommendation-strip .hero-recommendation-poster { width: 176px; height: 264px; }
+.recommendation-strip .hero-recommendation-card { gap: clamp(28px, 5vw, 72px); }
+.mood-hero { padding-block: 48px 56px; }
+.mood-content { gap: 48px; }
+.mood-intro h1 { font-size: clamp(2.3rem, 4vw, 3.8rem); }
+.mood-intro > p { margin-top: 16px; }
+.hero-actions { margin-top: 20px; }
+.mood-button { min-height: 40px; padding-block: 5px; }
+.mood-content .mood-note { margin-top: 14px; }
+.mood-refinement { margin-top: 28px; padding-top: 20px; }
+.mood-refinement .movie-night-form { margin-top: 16px; }
+.feature-section { padding-block: 42px; }
+.discovery-duo-intro { margin-bottom: 20px; }
+.discovery-panel { padding: 18px; }
+.section-heading { margin-bottom: 18px; }
+.catalog-section { padding-block: 52px 64px; }
+.movie-grid { gap: 26px 16px; }
+
+@media (max-width: 760px) {
+    .recommendation-strip { padding: 92px 0 44px; }
+    .recommendation-strip .hero-recommendation-poster { width: 96px; height: 144px; }
+    .mood-content { gap: 30px; }
+    .feature-section { padding-block: 34px; }
+    .catalog-section { padding-block: 42px 52px; }
+}
+
+/* Keep the hero content together: metadata gets its own row instead of covering the button. */
+.recommendation-strip {
+    min-height: 470px;
+    padding-block: 78px 48px;
+}
+
+.recommendation-strip .hero-recommendation {
+    max-width: 100%;
+}
+
+.recommendation-strip .hero-recommendation-card {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    grid-template-areas:
+        "copy poster"
+        "meta poster";
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 12px 48px;
+}
+
+.recommendation-strip .hero-recommendation-poster {
+    grid-area: poster;
+    width: 220px;
+    height: 330px;
+}
+
+.recommendation-strip .hero-recommendation-copy {
+    grid-area: copy;
+    max-width: 680px;
+}
+
+.recommendation-strip .hero-recommendation-meta {
+    grid-area: meta;
+    align-self: start;
+    margin: 0;
+}
+
+@media (max-width: 760px) {
+    .recommendation-strip {
+        min-height: auto;
+        padding-block: 92px 44px;
+    }
+
+    .recommendation-strip .hero-recommendation-card {
+        grid-template-columns: 96px minmax(0, 1fr);
+        grid-template-areas:
+            "poster copy"
+            "poster meta";
+        gap: 12px 16px;
+    }
+
+    .recommendation-strip .hero-recommendation-poster {
+        width: 96px;
+        height: 144px;
+    }
+
+    .recommendation-strip .hero-recommendation-copy {
+        max-width: none;
     }
 }
