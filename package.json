@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint script.js tests",
+    "lint": "eslint script.js sw.js src tests",
     "test": "node --test"
   },
   "devDependencies": {

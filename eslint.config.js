@@ -2,7 +2,7 @@ import globals from "globals";
 
 export default [
     {
-        files: ["script.js", "tests/**/*.js"],
+        files: ["script.js", "src/**/*.js", "tests/**/*.js"],
         languageOptions: {
             ecmaVersion: "latest",
             sourceType: "module",
@@ -17,6 +17,22 @@ export default [
             "no-var": "error",
             "prefer-const": "error",
             "no-unreachable": "error"
+        }
+    },
+    {
+        files: ["sw.js"],
+        languageOptions: {
+            ecmaVersion: "latest",
+            sourceType: "module",
+            globals: {
+                ...globals.serviceworker
+            }
+        },
+        rules: {
+            "no-undef": "error",
+            "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+            "no-var": "error",
+            "prefer-const": "error"
         }
     }
 ];

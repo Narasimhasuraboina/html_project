@@ -1,0 +1,19 @@
+{
+  "name": "CineVerse | Discover Stories Worth Watching",
+  "short_name": "CineVerse",
+  "description": "Pick a movie by mood, then explore films and TV shows by genre, language, and era.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e1014",
+  "theme_color": "#161b22",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

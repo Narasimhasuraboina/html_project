@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#161b22">
     <meta name="description"
         content="Pick a movie by mood, then explore 450 Indian and Hollywood films by genre and language.">
     <title>CineVerse | Discover Stories Worth Watching</title>
-
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <h1></h1>
     <div class="site-loader" id="site-loader" role="status" aria-label="Loading CineVerse">
         <div class="site-loader-brand">CineVerse</div>
         <div class="site-loader-hero">
@@ -22,6 +25,18 @@
         </div>
         <p>Finding tonight's story</p>
     </div>
+    <script>
+        // Failsafe: Ensures loading overlay never blocks the user if JS encounters any delay
+        window.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                const loader = document.getElementById("site-loader");
+                if (loader && !loader.classList.contains("is-hidden")) {
+                    loader.classList.add("is-hidden");
+                    setTimeout(() => loader.remove(), 450);
+                }
+            }, 900);
+        });
+    </script>
     <div class="reading-progress" id="reading-progress" aria-hidden="true">
         <span class="reading-progress-fill" id="reading-progress-fill"></span>
     </div>
@@ -161,7 +176,8 @@
                             </div>
                         </div>
                         <div class="feature-result" id="double-feature"></div>
-                        <button class="feature-button feature-button-secondary" id="new-double-feature" type="button">Find
+                        <button class="feature-button feature-button-secondary" id="new-double-feature"
+                            type="button">Find
                             another pairing</button>
                     </article>
                 </div>
@@ -172,13 +188,40 @@
             <div class="container">
                 <label class="search-label" for="movie-search">Search titles, languages, or film industries</label>
                 <div class="search-field">
-                    <input id="movie-search" type="search" placeholder="Search a real movie title..."
+                    <input id="movie-search" type="search" placeholder="Search a real movie title or keyword..."
                         autocomplete="off">
                 </div>
-                <label class="search-label language-select-label" for="language-select">Language</label>
-                <select id="language-select" class="language-select">
-                    <option value="All">Any language</option>
-                </select>
+                <div class="search-options">
+                    <label class="search-all-moods-toggle">
+                        <input type="checkbox" id="search-all-moods" checked> Search across all moods
+                    </label>
+                </div>
+                <div class="type-filter" role="group" aria-label="Filter by type">
+                    <button class="type-button active" type="button" data-type="all" aria-pressed="true">All
+                        Titles</button>
+                    <button class="type-button" type="button" data-type="movie" aria-pressed="false">Movies</button>
+                    <button class="type-button" type="button" data-type="tv" aria-pressed="false">TV Series</button>
+                </div>
+                <div class="controls-row">
+                    <div class="controls-col">
+                        <label class="search-label language-select-label" for="language-select">Language</label>
+                        <select id="language-select" class="language-select">
+                            <option value="All">Any language</option>
+                        </select>
+                    </div>
+                    <div class="controls-col">
+                        <label class="search-label" for="era-select">Era / Period</label>
+                        <select id="era-select" class="era-select">
+                            <option value="all">Any Era</option>
+                            <option value="2020s">2020s (Modern)</option>
+                            <option value="2010s">2010s</option>
+                            <option value="2000s">2000s</option>
+                            <option value="90s">1990s</option>
+                            <option value="classics">Classics (Pre-1990)</option>
+                        </select>
+                    </div>
+                    <button class="clear-filters-btn" id="clear-all-filters" type="button">Reset Filters</button>
+                </div>
                 <div class="genre-filter" role="group" aria-label="Filter by genre">
                     <button class="genre-button active" type="button" data-genre="All" aria-pressed="true">All</button>
                     <button class="genre-button" type="button" data-genre="Action" aria-pressed="false">Action</button>
@@ -228,6 +271,25 @@
                         <h2 id="watchlist-title">My Watchlist</h2>
                     </div>
                     <p>Your saved movies and shows</p>
+                </div>
+                <div class="watchlist-controls">
+                    <div class="watchlist-tabs" role="tablist" aria-label="Watchlist views">
+                        <button class="watchlist-tab active" type="button" role="tab" id="tab-all-saved"
+                            data-watchlist-tab="all" aria-selected="true">All Saved (<span
+                                id="count-saved">0</span>)</button>
+                        <button class="watchlist-tab" type="button" role="tab" id="tab-to-watch"
+                            data-watchlist-tab="to-watch" aria-selected="false">Want to Watch (<span
+                                id="count-towatch">0</span>)</button>
+                        <button class="watchlist-tab" type="button" role="tab" id="tab-watched"
+                            data-watchlist-tab="watched" aria-selected="false">Watched (<span
+                                id="count-watched">0</span>)</button>
+                    </div>
+                    <div class="watchlist-actions">
+                        <button class="watchlist-action-btn" id="export-watchlist" type="button"
+                            title="Export your watchlist as a JSON file">Export JSON</button>
+                        <button class="watchlist-action-btn" id="clear-watchlist" type="button"
+                            title="Remove all items from your watchlist">Clear</button>
+                    </div>
                 </div>
                 <div class="movie-grid" id="watchlist-grid"></div>
             </div>

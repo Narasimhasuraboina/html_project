@@ -3532,3 +3532,260 @@ body.light-theme {
         max-width: none;
     }
 }
+
+
+/* ==========================================================================
+   New Feature Enhancements: Type Filters, Controls Row, Watchlist Tabs, Modal Actions
+   ========================================================================== */
+
+/* Search Options & Toggle */
+.search-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.search-all-moods-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.search-all-moods-toggle input[type="checkbox"] {
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+/* Content Type Filter */
+.type-filter {
+    display: flex;
+    gap: 8px;
+    margin-block: 16px 12px;
+}
+
+.type-button {
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.type-button:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+.type-button.active {
+    background: var(--accent);
+    color: #11151d;
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+/* Controls Row: Language, Era, Clear Filters */
+.controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    margin-block: 14px 18px;
+}
+
+.controls-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.era-select, .language-select {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 14px;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    cursor: pointer;
+    min-width: 170px;
+}
+
+.clear-filters-btn {
+    background: transparent;
+    color: var(--muted);
+    border: 1px dashed var(--border);
+    padding: 9px 16px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: flex-end;
+}
+
+.clear-filters-btn:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    background: rgba(240, 184, 75, 0.08);
+}
+
+/* Card Actions: Seen Button & Watchlist Button */
+.card-action-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px 12px;
+}
+
+.card-action-bar .watchlist-button {
+    flex: 1;
+    margin: 0;
+    width: auto;
+}
+
+.seen-button {
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.seen-button:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+.seen-button.is-seen {
+    background: rgba(46, 160, 67, 0.18);
+    color: #4ade80;
+    border-color: #2ea043;
+    font-weight: 600;
+}
+
+.movie-card.is-viewed {
+    opacity: 0.88;
+}
+
+.movie-card.is-viewed .movie-poster {
+    filter: brightness(0.92);
+}
+
+/* Watchlist Controls & Tabs */
+.watchlist-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.watchlist-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.watchlist-tab {
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.watchlist-tab:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+.watchlist-tab.active {
+    background: var(--accent);
+    color: #11151d;
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+.watchlist-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.watchlist-action-btn {
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.watchlist-action-btn:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+/* Modal Action Buttons: Trailer, Share, Seen */
+.modal-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-block: 16px 20px;
+}
+
+.modal-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.modal-action-btn:hover {
+    border-color: var(--accent);
+    background: var(--surface-light);
+    color: var(--accent);
+}
+
+.modal-action-btn.trailer-btn {
+    background: #c1122f;
+    color: #ffffff;
+    border-color: #c1122f;
+}
+
+.modal-action-btn.trailer-btn:hover {
+    background: #e61937;
+    color: #ffffff;
+    border-color: #e61937;
+}
+
+.modal-action-btn.watched-btn.is-watched {
+    background: rgba(46, 160, 67, 0.2);
+    color: #4ade80;
+    border-color: #2ea043;
+}

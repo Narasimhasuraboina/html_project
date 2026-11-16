@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#241b12" />
+      <stop offset="100%" stop-color="#0e1014" />
+    </radialGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d6a2" />
+      <stop offset="100%" stop-color="#d49a55" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bgGlow)" />
+  <circle cx="256" cy="256" r="190" fill="none" stroke="url(#goldGradient)" stroke-width="14" stroke-opacity="0.3" stroke-dasharray="16 12" />
+  <circle cx="256" cy="256" r="150" fill="none" stroke="url(#goldGradient)" stroke-width="6" stroke-opacity="0.5" />
+  <text x="256" y="325" font-family="Georgia, serif" font-size="220" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle">C</text>
+  <circle cx="256" cy="76" r="16" fill="url(#goldGradient)" />
+  <circle cx="256" cy="436" r="16" fill="url(#goldGradient)" />
+  <circle cx="76" cy="256" r="16" fill="url(#goldGradient)" />
+  <circle cx="436" cy="256" r="16" fill="url(#goldGradient)" />
+</svg>
+
