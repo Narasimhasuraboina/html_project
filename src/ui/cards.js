@@ -30,7 +30,9 @@ export function revealMovieCardsAsParticles(container) {
     if (!movieCardParticleObserver) {
         movieCardParticleObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                entry.target.classList.toggle("is-particle-visible", entry.isIntersecting);
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-particle-visible");
+                movieCardParticleObserver.unobserve(entry.target);
             });
         }, { threshold: 0.18 });
     }
@@ -40,6 +42,11 @@ export function revealMovieCardsAsParticles(container) {
         card.style.setProperty("--particle-delay", `${Math.min(index * 45, 360)}ms`);
         movieCardParticleObserver.observe(card);
     });
+
+    // Never leave content hidden if an observer callback is delayed or skipped.
+    window.setTimeout(() => {
+        cards.forEach(card => card.classList.add("is-particle-visible"));
+    }, 1800);
 }
 
 export function createMovieCard(item, options = {}) {

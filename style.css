@@ -5,7 +5,7 @@
             --surface-light: #181e29;
             --text: #f5f6f8;
             --muted: #a2a9b7;
-            --accent: #f0b84b;
+            --accent: #e9b65a;
             --border: rgba(255, 255, 255, 0.1);
         }
 
@@ -4033,7 +4033,7 @@ img {
     }
 }
 
- 
+
 @media (max-width: 760px) {
     .recommendation-strip .hero-recommendation-copy,
     .recommendation-strip .hero-recommendation-card h2,
@@ -4051,7 +4051,7 @@ img {
     }
 }
 
- 
+
 body.light-theme .mood-refinement {
     border-color: var(--border);
 }
@@ -4100,3 +4100,6 @@ body.light-theme .mood-intro .featured-label {
         line-height: 1.02;
     }
 }
+
+/* Premium visual layer */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
