@@ -1,4 +1,4 @@
-const CACHE_NAME = "cineverse-v3";
+const CACHE_NAME = "cineverse-v9";
 const ASSETS_TO_CACHE = [
     "./",
     "./index.html",
@@ -29,29 +29,41 @@ self.addEventListener("activate", event => {
     event.waitUntil(
         caches.keys().then(keys => {
             return Promise.all(
-                keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+                keys.filter(key => key.startsWith("cineverse-") && key !== CACHE_NAME).map(key => caches.delete(key))
             );
         }).then(() => self.clients.claim())
     );
 });
 
 self.addEventListener("fetch", event => {
-    // Only handle GET requests
     if (event.request.method !== "GET") return;
 
-    // TMDB images or external resources: fetch first, cache fallback
+    // Poster images: refresh from the network, retain a cached copy for offline use.
     if (event.request.url.includes("image.tmdb.org")) {
-        event.respondWith(
-            fetch(event.request).catch(() => caches.match(event.request))
-        );
+        event.respondWith((async () => {
+            try {
+                const response = await fetch(event.request);
+                if (response.ok || response.type === "opaque") {
+                    const cache = await caches.open(CACHE_NAME);
+                    await cache.put(event.request, response.clone());
+                    return response;
+                }
+
+                const cachedResponse = await caches.match(event.request);
+                return cachedResponse || response;
+            } catch (error) {
+                const cachedResponse = await caches.match(event.request);
+                if (cachedResponse) return cachedResponse;
+                throw error;
+            }
+        })());
         return;
     }
 
-    // App shell: cache first with network fallback
+    // App shell: cache first with a background network refresh.
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
             if (cachedResponse) {
-                // Fetch update in background (stale-while-revalidate)
                 fetch(event.request).then(networkResponse => {
                     if (networkResponse && networkResponse.status === 200) {
                         caches.open(CACHE_NAME).then(cache => cache.put(event.request, networkResponse));
@@ -63,4 +75,3 @@ self.addEventListener("fetch", event => {
         })
     );
 });
-

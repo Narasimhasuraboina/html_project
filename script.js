@@ -16,6 +16,25 @@ import { createMovieCard, renderFeatureCard, revealMovieCardsAsParticles } from 
 import { openMovieModal } from "./src/ui/modal.js";
 import { showToast } from "./src/ui/toast.js";
 
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
+
+function safeImageUrl(value) {
+    try {
+        const url = new URL(String(value ?? ""), window.location.href);
+        return ["http:", "https:"].includes(url.protocol) ? escapeHTML(url.href) : "";
+    } catch {
+        return "";
+    }
+}
+
 // Normalize catalog data
 const allTitles = [featuredTitle, ...movies, ...tvShows];
 allTitles.forEach(item => {
@@ -220,19 +239,26 @@ function renderHeroRecommendation() {
 
     const topMatches = rankedCandidates.slice(0, Math.min(12, rankedCandidates.length));
     const recommendation = topMatches[pageRecommendationOffset % topMatches.length];
+    const poster = safeImageUrl(recommendation.poster);
+    const title = escapeHTML(recommendation.title);
+    const description = escapeHTML(recommendation.description);
+    const itemId = escapeHTML(recommendation.id);
+    const year = escapeHTML(recommendation.year);
+    const language = escapeHTML(recommendation.language);
+    const rating = recommendation.rating ? escapeHTML(formatRating(recommendation.rating)) : "";
 
     result.innerHTML = `
         <div class="hero-recommendation-card">
-            ${recommendation.poster
-                ? `<img class="hero-recommendation-poster" src="${recommendation.poster}" alt="" loading="lazy">`
+            ${poster
+                ? `<img class="hero-recommendation-poster" src="${poster}" alt="" data-title="${title}" loading="lazy">`
                 : `<span class="hero-recommendation-poster poster-unavailable" aria-hidden="true">No poster</span>`}
             <div class="hero-recommendation-copy">
                 <span class="hero-recommendation-label">Tonight's match</span>
-                <h2>${recommendation.title}</h2>
-                <p>${recommendation.description}</p>
-                <button class="hero-recommendation-link" type="button" data-item-id="${recommendation.id}">View why it fits <span aria-hidden="true">&#8594;</span></button>
+                <h2>${title}</h2>
+                <p>${description}</p>
+                <button class="hero-recommendation-link" type="button" data-item-id="${itemId}">View why it fits <span aria-hidden="true">&#8594;</span></button>
             </div>
-            <span class="hero-recommendation-meta">${recommendation.year} <span aria-hidden="true">&#183;</span> ${recommendation.language}${recommendation.rating ? ` <span aria-hidden="true">&#183;</span> &#9733; ${formatRating(recommendation.rating)}` : ""}</span>
+            <span class="hero-recommendation-meta">${year} <span aria-hidden="true">&#183;</span> ${language}${rating ? ` <span aria-hidden="true">&#183;</span> &#9733; ${rating}` : ""}</span>
         </div>
     `;
     result.classList.remove("recommendation-is-new");
@@ -310,7 +336,7 @@ function renderDoubleFeature() {
             <span class="double-feature-plus" aria-hidden="true">+</span>
             ${renderFeatureCard(second, `Follow with this: ${second.description}`)}
         </div>
-        <p class="pairing-note">${connection}</p>
+        <p class="pairing-note">${escapeHTML(connection)}</p>
     `;
 }
 
@@ -455,8 +481,15 @@ function exportWatchlistAsJSON() {
     const a = document.createElement("a");
     a.href = url;
     a.download = `cineverse-watchlist-${new Date().toISOString().slice(0, 10)}.json`;
+    a.hidden = true;
+    document.body.append(a);
     a.click();
-    URL.revokeObjectURL(url);
+
+    // Give the browser time to start the download before releasing the Blob URL.
+    window.setTimeout(() => {
+        URL.revokeObjectURL(url);
+        a.remove();
+    }, 1000);
     showToast("Watchlist exported successfully!");
 }
 
@@ -466,8 +499,15 @@ function clearAllWatchlist() {
         return;
     }
     if (window.confirm("Are you sure you want to clear your entire watchlist?")) {
+        const previousIds = [...watchlistIds];
         watchlistIds = [];
-        saveIds(WATCHLIST_KEY, watchlistIds);
+
+        if (!saveIds(WATCHLIST_KEY, watchlistIds)) {
+            watchlistIds = previousIds;
+            showToast("Could not clear the watchlist. Your saved titles were kept.");
+            return;
+        }
+
         updateCatalogs();
         showToast("Watchlist cleared.");
     }
@@ -707,6 +747,8 @@ function setTheme(theme) {
         themeToggle.setAttribute("aria-pressed", String(isLight));
         themeToggle.textContent = isLight ? "Dark theme" : "Light theme";
     }
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) themeColorMeta.content = isLight ? "#e9e5dc" : "#111316";
     renderCinemaParticles();
 }
 
@@ -785,6 +827,8 @@ function initFromUrlParams() {
     const moodParam = params.get("mood");
     if (moodParam && moodNotes[moodParam]) {
         selectedMood = moodParam;
+        if (selectedNightMood) selectedNightMood.value = selectedMood;
+        if (selectedMoodLabel) selectedMoodLabel.textContent = moodLabels[selectedMood] || selectedMood;
         document.querySelectorAll(".mood-button").forEach(btn => {
             const isMatch = btn.dataset.mood === moodParam;
             btn.classList.toggle("active", isMatch);

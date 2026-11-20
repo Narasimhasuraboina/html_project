@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0">
+<iframe id="app" src="/" style="display:block;width:100vw;height:100vh;border:0"></iframe>
+<pre id="report"></pre>
+<script>
+const frame = document.getElementById("app");
+frame.addEventListener("load", () => {
+  setTimeout(() => {
+    const w = frame.contentWindow;
+    const d = frame.contentDocument;
+    const selectors = [".container", ".recommendation-strip", ".hero-recommendation-card", ".hero-recommendation-copy", ".hero-recommendation-card p", ".mood-content", ".mood-intro", ".mood-intro h1", ".mood-intro > p"];
+    const boxes = {};
+    for (const selector of selectors) {
+      const el = d.querySelector(selector);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      const cs = w.getComputedStyle(el);
+      boxes[selector] = {x:Math.round(r.x), y:Math.round(r.y), width:Math.round(r.width), height:Math.round(r.height), right:Math.round(r.right), scrollWidth:el.scrollWidth, clientWidth:el.clientWidth, scrollHeight:el.scrollHeight, clientHeight:el.clientHeight, whiteSpace:cs.whiteSpace, overflow:cs.overflow, fontSize:cs.fontSize, lineHeight:cs.lineHeight, text:el.textContent.trim().slice(0,90)};
+    }
+    document.getElementById("report").textContent = JSON.stringify({viewport:w.innerWidth, documentWidth:d.documentElement.scrollWidth, bodyWidth:d.body.scrollWidth, boxes}, null, 2);
+  }, 1800);
+});
+</script>
+</body>
+</html>

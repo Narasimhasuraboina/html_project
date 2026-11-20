@@ -6517,5 +6517,5 @@ export const featuredTitle = {
     rating: 8.7,
     genre: "Sci-Fi",
     description: "A team of explorers travels beyond our galaxy in search of a future for humanity.",
-    poster: ""
+    poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
 };

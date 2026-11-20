@@ -1,10 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { movies, tvShows } from "../data/movies.js";
+import { featuredTitle, movies, tvShows } from "../data/movies.js";
 
 test("the canonical movie catalog has 450 unique records", () => {
     assert.equal(movies.length, 450);
     assert.equal(new Set(movies.map(movie => movie.id)).size, movies.length);
+});
+
+test("the featured title has a valid remote poster URL", () => {
+    assert.equal(featuredTitle.title, "Interstellar");
+    assert.match(featuredTitle.poster, /^https:\/\/image\.tmdb\.org\//);
 });
 
 test("every movie has the fields needed by the catalog UI", () => {

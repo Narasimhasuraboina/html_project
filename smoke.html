@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>localStorage.removeItem("cineVerseWatchlist");localStorage.removeItem("cineVerseFavorites");localStorage.removeItem("cineVerseViewed");localStorage.removeItem("cineVerseTheme");</script>
+</head>
+<body style="margin:0">
+<iframe id="app" src="/" style="display:block;width:100vw;height:100vh;border:0"></iframe>
+<pre id="report">Running CineVerse browser smoke tests...</pre>
+<script>
+const frame = document.getElementById("app");
+frame.addEventListener("load", () => {
+  setTimeout(() => {
+    const d = frame.contentDocument;
+    const w = frame.contentWindow;
+    const results = [];
+    const check = (name, condition, detail = "") => results.push({name, passed:Boolean(condition), detail});
+    try {
+      const mood = d.querySelector('[data-mood="thrilled"]');
+      mood.click();
+      check("Mood selection updates active state", mood.getAttribute("aria-pressed") === "true");
+
+      const search = d.getElementById("movie-search");
+      search.value = "Interstellar";
+      search.dispatchEvent(new w.Event("input", {bubbles:true}));
+      const card = d.querySelector("#trending-movies .movie-card");
+      check("Search returns a matching movie card", Boolean(card), "Search term: Interstellar");
+
+      const open = card?.querySelector(".movie-open");
+      open?.click();
+      const modal = d.getElementById("movie-modal");
+      check("Movie details modal opens", Boolean(modal?.open));
+      check("Modal displays the selected movie title", d.getElementById("modal-title")?.textContent === "Interstellar");
+
+      d.querySelector(".modal-close")?.click();
+      check("Movie details modal closes", !modal?.open);
+
+      const theme = d.getElementById("theme-toggle");
+      theme.click();
+      check("Theme toggle switches to light mode", d.body.classList.contains("light-theme"));
+      check("Browser theme color follows selected theme", d.querySelector('meta[name="theme-color"]')?.content === "#e9e5dc");
+
+      const watchButton = d.querySelector("#trending-movies .watchlist-button");
+      watchButton?.click();
+      const stored = JSON.parse(w.localStorage.getItem("cineVerseWatchlist") || "[]");
+      check("Watchlist saves the selected movie locally", stored.length === 1 && stored[0] === 0, JSON.stringify(stored));
+
+      search.value = "";
+      search.dispatchEvent(new w.Event("input", {bubbles:true}));
+      const typeTv = d.querySelector('[data-type="tv"]');
+      typeTv.click();
+      const tvCards = [...d.querySelectorAll("#trending-movies .movie-card")];
+      check("TV filter updates the catalog", typeTv.getAttribute("aria-pressed") === "true" && tvCards.length > 0);
+    } catch (error) {
+      results.push({name:"Browser smoke test execution",passed:false,detail:String(error)});
+    }
+    document.getElementById("report").textContent = JSON.stringify({passed:results.filter(x=>x.passed).length,total:results.length,results},null,2);
+  }, 1800);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0">
+<iframe id="app" src="/" style="display:block;width:100vw;height:100vh;border:0"></iframe>
+<pre id="report" style="position:fixed;left:0;bottom:0;z-index:10;background:#fff;color:#111;max-height:30vh;overflow:auto"></pre>
+<script>
+const frame=document.getElementById("app");
+frame.addEventListener("load",()=>setTimeout(()=>{
+  const w=frame.contentWindow,d=frame.contentDocument;
+  d.getElementById("movies")?.scrollIntoView();
+  setTimeout(()=>{
+    const grid=d.getElementById("trending-movies");
+    const card=grid?.querySelector(".movie-card");
+    const cs=card?w.getComputedStyle(card):null;
+    const r=card?.getBoundingClientRect();
+    document.getElementById("report").textContent=JSON.stringify({
+      count:grid?.querySelectorAll(".movie-card").length,
+      gridDisplay:grid&&w.getComputedStyle(grid).display,
+      cardClass:card?.className,
+      opacity:cs?.opacity,
+      visibility:cs?.visibility,
+      transform:cs?.transform,
+      cardRect:r&&{x:r.x,y:r.y,width:r.width,height:r.height},
+      scrollY:w.scrollY,
+      docHeight:d.documentElement.scrollHeight
+    },null,2);
+  },1000);
+},1200));
+</script>
+</body>
+</html>
