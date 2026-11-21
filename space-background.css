@@ -1,0 +1,172 @@
+/* Full-bleed photographic deep space with scroll-linked parallax */
+html {
+    background: #03040b;
+}
+body {
+    position: relative;
+    isolation: isolate;
+    background: #03040b !important;
+    overflow-x: clip;
+}
+.space-background {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    display: block;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: #03040b;
+    background-image:
+        linear-gradient(180deg, rgba(2, 3, 10, .08), rgba(2, 3, 10, .2) 36%, rgba(2, 3, 10, .12) 70%, rgba(2, 3, 10, .5)),
+        url("./assets/nebula-background.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transform: translate3d(0, var(--space-shift, 0px), 0);
+    will-change: transform;
+}
+/* A second, offset image wash creates the huge, layered cloud formations in the page. */
+.space-background::before,
+.space-background::after {
+    content: "";
+    position: absolute;
+    inset: -8% -5%;
+    pointer-events: none;
+    background-image: url("./assets/nebula-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 28% 40%;
+    mix-blend-mode: screen;
+}
+.space-background::before {
+    opacity: .42;
+    filter: saturate(1.4) hue-rotate(15deg) contrast(1.14);
+    transform: translate3d(0, var(--space-shift-far, 0px), 0) scale(1.08);
+}
+.space-background::after {
+    opacity: .24;
+    background-position: 78% 64%;
+    filter: saturate(1.8) hue-rotate(-18deg) blur(2px);
+    transform: translate3d(0, var(--space-shift-near, 0px), 0) scale(1.16);
+}
+body > .space-background {
+    z-index: -1;
+}
+.site-header,
+main,
+.site-footer {
+    position: relative;
+    z-index: 1;
+}
+.site-header {
+    background: linear-gradient(180deg, rgba(3, 5, 15, .84), rgba(3, 5, 15, .48)) !important;
+    backdrop-filter: blur(12px) saturate(135%);
+}
+.quote-banner {
+    background: rgba(5, 7, 18, .32) !important;
+    backdrop-filter: blur(4px);
+}
+.recommendation-strip {
+    background: linear-gradient(105deg, rgba(4, 6, 18, .64), rgba(15, 9, 28, .42)) !important;
+}
+.recommendation-strip .hero-recommendation-card {
+    background: linear-gradient(115deg, rgba(7, 10, 27, .92), rgba(6, 8, 20, .84)) !important;
+    border-color: rgba(171, 185, 255, .24);
+}
+.mood-hero {
+    background:
+        linear-gradient(90deg, rgba(5, 8, 22, .48), rgba(5, 7, 19, .28)) !important;
+}
+.mood-picker {
+    background: linear-gradient(145deg, rgba(17, 22, 48, .78), rgba(7, 11, 29, .72)) !important;
+    border-color: rgba(176, 183, 255, .22);
+    backdrop-filter: blur(12px);
+}
+.feature-section,
+.discovery-controls,
+.catalog-section,
+.catalog-section-alt,
+.about-section,
+.site-footer {
+    background-color: rgba(5, 8, 20, .42) !important;
+}
+.discovery-controls { backdrop-filter: blur(10px); }
+.feature-section,
+.catalog-section-alt,
+.discovery-duo-section {
+    background: rgba(10, 13, 31, .52) !important;
+}
+.discovery-panel,
+.movie-card {
+    background: linear-gradient(150deg, rgba(17, 22, 48, .84), rgba(5, 9, 23, .87)) !important;
+    border-color: rgba(154, 174, 255, .18);
+}
+.about-section {
+    background:
+        linear-gradient(90deg, rgba(6, 9, 24, .62), rgba(6, 9, 24, .38)) !important;
+}
+.site-footer { background: rgba(3, 5, 15, .68) !important; }
+
+/* The optional light UI retains the cosmic scene but uses pale glass surfaces. */
+body.light-theme {
+    background: #111526 !important;
+}
+body.light-theme .space-background {
+    filter: brightness(.78) saturate(.88);
+}
+body.light-theme .site-header {
+    background: rgba(235, 239, 248, .82) !important;
+}
+body.light-theme .quote-banner {
+    background: rgba(235, 239, 248, .64) !important;
+}
+body.light-theme .recommendation-strip {
+    background: rgba(222, 228, 242, .58) !important;
+}
+body.light-theme .recommendation-strip .hero-recommendation-card {
+    background: rgba(248, 249, 253, .92) !important;
+}
+body.light-theme .mood-hero {
+    background: rgba(231, 235, 245, .48) !important;
+}
+body.light-theme .feature-section,
+body.light-theme .discovery-controls,
+body.light-theme .catalog-section,
+body.light-theme .catalog-section-alt,
+body.light-theme .about-section,
+body.light-theme .site-footer {
+    background-color: rgba(232, 236, 246, .58) !important;
+}
+body.light-theme .feature-section,
+body.light-theme .catalog-section-alt,
+body.light-theme .discovery-duo-section {
+    background: rgba(226, 232, 244, .66) !important;
+}
+body.light-theme .movie-card,
+body.light-theme .discovery-panel {
+    background: rgba(249, 250, 253, .9) !important;
+    border-color: rgba(66, 82, 117, .16);
+}
+
+@media (max-width: 760px) {
+    .space-background {
+        background-position: center top;
+    }
+    .space-background::before {
+        opacity: .32;
+    }
+    .space-background::after {
+        opacity: .2;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .space-background,
+    .space-background::before,
+    .space-background::after {
+        transform: none !important;
+        will-change: auto;
+    }
+}

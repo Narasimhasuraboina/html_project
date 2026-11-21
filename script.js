@@ -12,6 +12,7 @@ import {
 import { moodDefaults, extraMoodRules, moodNotes, moodLabels } from "./src/constants/editorial.js";
 import { originalMovieQuotes } from "./src/constants/quotes.js";
 import { initCinemaParticles } from "./src/particles.js";
+import { initSpaceBackground } from "./src/space.js";
 import { createMovieCard, renderFeatureCard, revealMovieCardsAsParticles } from "./src/ui/cards.js";
 import { openMovieModal } from "./src/ui/modal.js";
 import { showToast } from "./src/ui/toast.js";
@@ -88,6 +89,7 @@ const readingProgressFill = document.getElementById("reading-progress-fill");
 const quoteElement = document.getElementById("movie-quote");
 const quoteButton = document.getElementById("next-quote");
 const renderCinemaParticles = initCinemaParticles();
+initSpaceBackground();
 
 // Populate language select dropdowns
 [...new Set(allTitles.map(item => item.language))].sort().forEach(language => {

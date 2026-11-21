@@ -1,8 +1,11 @@
-const CACHE_NAME = "cineverse-v10";
+const CACHE_NAME = "cineverse-v12";
 const ASSETS_TO_CACHE = [
     "./",
     "./index.html",
     "./style.css",
+    "./premium-pass.css",
+    "./space-background.css",
+    "./assets/nebula-background.jpg",
     "./script.js",
     "./manifest.json",
     "./icon.svg",
@@ -10,6 +13,7 @@ const ASSETS_TO_CACHE = [
     "./src/storage.js",
     "./src/recommendations.js",
     "./src/particles.js",
+    "./src/space.js",
     "./src/constants/editorial.js",
     "./src/constants/quotes.js",
     "./src/ui/cards.js",
